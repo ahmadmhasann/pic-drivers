@@ -1,0 +1,141 @@
+[p GLOBOPT AUTOSTATIC IEEE_DBL IEEE_FLT PIC14 PICREGULAR PICMID ]
+[d version 1.1 ]
+[d edition pro ]
+[d chip 16F877A ]
+[d frameptr 0 ]
+"41 G:\MPLABXProjects\pic_test.X\main.c
+[e E860 . `uc
+A 0
+B 1
+C 2
+D 3
+E 4
+]
+"26 G:\MPLABXProjects\pic_test.X\lcd.c
+[e E873 . `uc
+A 0
+B 1
+C 2
+D 3
+E 4
+]
+"89
+[e E879 . `uc
+OUTPUT 0
+INPUT 1
+]
+"91
+[e E882 . `uc
+LOW 0
+HIGH 1
+]
+"67 G:\MPLABXProjects\pic_test.X\ssd.c
+[e E860 . `uc
+A 0
+B 1
+C 2
+D 3
+E 4
+]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\__lldiv.c
+[v ___lldiv __lldiv `(ul  1 e 4 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\aldiv.c
+[v ___aldiv __aldiv `(l  1 e 4 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\almod.c
+[v ___almod __almod `(l  1 e 4 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\llmod.c
+[v ___llmod __llmod `(ul  1 e 4 0 ]
+"10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcadd.c
+[v ___fladd __fladd `(d  1 e 4 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul32.c
+[v ___lmul __lmul `(ul  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+"6 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\pic\__eeprom.c
+[v ___eecpymem __eecpymem `(v  1 e 1 0 ]
+"39
+[v ___memcpyee __memcpyee `(v  1 e 1 0 ]
+"12 G:\MPLABXProjects\pic_test.X\dio.c
+[v _dio_vid_set_port_direction dio_vid_set_port_direction `(v  1 e 1 0 ]
+"33
+[v _dio_vid_set_port_value dio_vid_set_port_value `(v  1 e 1 0 ]
+"53
+[v _dio_u8_read_port_value dio_u8_read_port_value `(uc  1 e 1 0 ]
+"80
+[v _dio_vid_set_pin_value dio_vid_set_pin_value `(v  1 e 1 0 ]
+"116
+[v _dio_vid_set_pin_direction dio_vid_set_pin_direction `(v  1 e 1 0 ]
+"24 G:\MPLABXProjects\pic_test.X\lcd.c
+[v _lcd_vid_write_charachter lcd_vid_write_charachter `(v  1 e 1 0 ]
+"55
+[v _lcd_vid_write_command lcd_vid_write_command `(v  1 e 1 0 ]
+"21 G:\MPLABXProjects\pic_test.X\main.c
+[v _ISR ISR `II(v  1 e 1 0 ]
+"39
+[v _main main `(i  1 e 2 0 ]
+"27 G:\MPLABXProjects\pic_test.X\ssd.c
+[v _ssd_get_number ssd_get_number `(uc  1 e 1 0 ]
+"166 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
+[v _PORTA PORTA `VEuc  1 e 1 @5 ]
+"216
+[v _PORTB PORTB `VEuc  1 e 1 @6 ]
+"278
+[v _PORTC PORTC `VEuc  1 e 1 @7 ]
+"340
+[v _PORTD PORTD `VEuc  1 e 1 @8 ]
+"402
+[v _PORTE PORTE `VEuc  1 e 1 @9 ]
+"1325
+[v _TRISA TRISA `VEuc  1 e 1 @133 ]
+"1375
+[v _TRISB TRISB `VEuc  1 e 1 @134 ]
+"1437
+[v _TRISC TRISC `VEuc  1 e 1 @135 ]
+"1499
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+"1561
+[v _TRISE TRISE `VEuc  1 e 1 @137 ]
+"2569
+[v _GIE GIE `VEb  1 e 0 @95 ]
+"2629
+[v _PEIE PEIE `VEb  1 e 0 @94 ]
+"2887
+[v _TMR1IE TMR1IE `VEb  1 e 0 @1120 ]
+"2890
+[v _TMR1IF TMR1IF `VEb  1 e 0 @96 ]
+"2893
+[v _TMR1ON TMR1ON `VEb  1 e 0 @128 ]
+"19 G:\MPLABXProjects\pic_test.X\main.c
+[v _counter counter `VEuc  1 e 1 0 ]
+"39
+[v _main main `(i  1 e 2 0 ]
+{
+"71
+} 0
+"33 G:\MPLABXProjects\pic_test.X\dio.c
+[v _dio_vid_set_port_value dio_vid_set_port_value `(v  1 e 1 0 ]
+{
+[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_value@value value `uc  1 p 1 3 ]
+[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 6 ]
+"51
+} 0
+"12
+[v _dio_vid_set_port_direction dio_vid_set_port_direction `(v  1 e 1 0 ]
+{
+[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_direction@direction direction `uc  1 p 1 3 ]
+[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 6 ]
+"30
+} 0
+"21 G:\MPLABXProjects\pic_test.X\main.c
+[v _ISR ISR `II(v  1 e 1 0 ]
+{
+"37
+} 0
