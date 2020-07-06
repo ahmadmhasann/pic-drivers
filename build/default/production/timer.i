@@ -1,4 +1,4 @@
-# 1 "ssd.c"
+# 1 "timer.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "ssd.c" 2
-# 10 "ssd.c"
+# 1 "timer.c" 2
+# 11 "timer.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -1721,19 +1721,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 10 "ssd.c" 2
-
-# 1 "./config.h" 1
-# 40 "./config.h"
-#pragma config FOSC = HS
-#pragma config WDTE = OFF
-#pragma config PWRTE = ON
-#pragma config BOREN = ON
-#pragma config LVP = OFF
-#pragma config CPD = OFF
-#pragma config WRT = OFF
-#pragma config CP = OFF
-# 11 "ssd.c" 2
+# 11 "timer.c" 2
 
 # 1 "./types.h" 1
 # 10 "./types.h"
@@ -1747,10 +1735,10 @@ typedef unsigned long long int u64;
 typedef float f32;
 typedef double f64;
 typedef long double f96;
-# 12 "ssd.c" 2
+# 12 "timer.c" 2
 
 # 1 "./macros.h" 1
-# 13 "ssd.c" 2
+# 13 "timer.c" 2
 
 # 1 "./dio.h" 1
 # 11 "./dio.h"
@@ -1768,77 +1756,133 @@ u8 dio_u8_read_port_value (u8 portNumber);
 u8 dio_u8_read_pin_value (u8 portNumber, u8 index);
 void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
 void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
-# 14 "ssd.c" 2
+# 14 "timer.c" 2
 
-# 1 "./lcd.h" 1
-# 10 "./lcd.h"
-void lcd_vid_write_charachter (u8 data);
-void lcd_vid_write_command (u8 command);
-void lcd_vid_init(void);
-void lcd_vid_write_string(u8 str[]);
-void lcd_vid_write_number(s32 number);
-void lcd_vid_set_position(u8 row, u8 col);
-void lcd_vid_clear_screan (void);
-# 15 "ssd.c" 2
-# 27 "ssd.c"
-u8 ssd_get_number(u8 number) {
-    switch (number) {
-        case 0:
-            return 0x3F;
-        case 1:
-            return 0x06;
+# 1 "./scheduler.h" 1
+# 15 "./scheduler.h"
+typedef struct data {
+
+    void (*taskFunction)(void);
+
+    u64 delay;
+
+    u64 period;
+
+    u64 runMe;
+} sTask;
+
+void sch_vid_dispatch_tasks(void);
+
+u8 sch_u8_add_task(void ( * pFunction)(),
+        const u64 DELAY,
+        const u64 PERIOD);
+void timerInit(void);
+void sch_vid_init(void);
+u8 sch_vid_delete_task(u8 index);
+void SCH_Report_Status(void);
+void SCH_Go_To_Sleep(void);
+void sch_update(void);
+# 15 "timer.c" 2
+
+# 1 "./timer.h" 1
+# 12 "./timer.h"
+void timer_vid_init_0(u16 prescaler, u8 interruptEnable);
+void timer_vid_set_isr_0(void (*callback_function) (void));
+void timer_vid_set_isr_1(void (*callback_function) (void));
+void timer_vid_set_isr_2(void (*callback_function) (void));
+# 16 "timer.c" 2
+
+void(*timer0_isr)(void);
+void(*timer1_isr)(void);
+void(*timer2_isr)(void);
+
+void __attribute__((picinterrupt(("")))) timer_isr() {
+    if (TMR0IF == 1) {
+        TMR0IF = 0;
+        timer0_isr();
+    }
+    if (((PIR1>>TMR1IF)&1) == 1) {
+        PIR1&=~(1<<TMR1IF);
+        timer1_isr();
+    }
+    if (((PIR1>>TMR2IF)&1) == 1) {
+        PIR1&=~(1<<TMR2IF);
+        timer2_isr();
+    }
+}
+
+void timer_vid_set_isr_0(void (*callback_function) (void)) {
+    timer0_isr = callback_function;
+}
+
+void timer_vid_set_isr_1(void (*callback_function) (void)) {
+    timer1_isr = callback_function;
+}
+
+void timer_vid_set_isr_2(void (*callback_function) (void)) {
+    timer2_isr = callback_function;
+}
+
+void timer_vid_init_0(u16 prescaler, u8 interruptEnable) {
+
+
+    T0CS = 0;
+
+
+    PSA = 0;
+
+
+    switch (prescaler) {
         case 2:
-            return 0x5B;
-        case 3:
-            return 0x4F;
+            PS0 = 0;
+            PS1 = 0;
+            PS2 = 0;
+            break;
         case 4:
-            return 0x66;
-        case 5:
-            return 0x6D;
-        case 6:
-            return 0x7D;
-        case 7:
-            return 0x07;
+            PS0 = 1;
+            PS1 = 0;
+            PS2 = 0;
+            break;
         case 8:
-            return 0x7F;
-        case 9:
-            return 0x6F;
-        case 10:
-            return 0x77;
-        case 11:
-            return 0x7c;
-        case 12:
-            return 0x58;
-        case 13:
-            return 0x5E;
-        case 14:
-            return 0x79;
-        case 15:
-            return 0x71;
-        default:
-            return 0;
+            PS0 = 0;
+            PS1 = 1;
+            PS2 = 0;
+            break;
+        case 16:
+            PS0 = 1;
+            PS1 = 1;
+            PS2 = 0;
+            break;
+        case 32:
+            PS0 = 0;
+            PS1 = 0;
+            PS2 = 1;
+            break;
+        case 64:
+            PS0 = 1;
+            PS1 = 0;
+            PS2 = 1;
+            break;
+        case 128:
+            PS0 = 0;
+            PS1 = 1;
+            PS2 = 1;
+            break;
+        case 256:
+            PS0 = 1;
+            PS1 = 1;
+            PS2 = 1;
+            break;
     }
-}
 
-void ssd_init(void) {
-    dio_vid_set_port_direction(D, 0);
-    dio_vid_set_pin_direction(A, 2, 0);
-    dio_vid_set_pin_direction(A, 3, 0);
-}
+    if (interruptEnable) {
 
-void ssd_set_state (u8 state) {
-    u8 ones = state % 10;
-    u8 tens = state / 10;
-    if (dio_u8_read_pin_value(A, 3)) {
-        dio_vid_set_pin_value(A, 2, 1);
-        dio_vid_set_pin_value(A, 3, 0);
-        dio_vid_set_port_value(D, ssd_get_number(tens));
+        PEIE = 1;
+
+
+        GIE = 1;
+
+
+        TMR0IE = 1;
     }
-    else {
-        dio_vid_set_pin_value(A, 2, 0);
-        dio_vid_set_pin_value(A, 3, 1);
-        dio_vid_set_port_value(D, ssd_get_number(ones));
-
-    }
-# 98 "ssd.c"
 }

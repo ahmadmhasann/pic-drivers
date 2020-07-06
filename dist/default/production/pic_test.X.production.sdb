@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F877A ]
 [d frameptr 0 ]
-"41 G:\MPLABXProjects\pic_test.X\main.c
+"42 G:\MPLABXProjects\pic_test.X\main.c
 [e E860 . `uc
 A 0
 B 1
@@ -19,17 +19,15 @@ C 2
 D 3
 E 4
 ]
-"89
-[e E879 . `uc
-OUTPUT 0
-INPUT 1
-]
-"91
-[e E882 . `uc
-LOW 0
-HIGH 1
-]
 "67 G:\MPLABXProjects\pic_test.X\ssd.c
+[e E860 . `uc
+A 0
+B 1
+C 2
+D 3
+E 4
+]
+"16 G:\MPLABXProjects\pic_test.X\i2c.c
 [e E860 . `uc
 A 0
 B 1
@@ -51,8 +49,13 @@ E 4
 [v ___llmod __llmod `(ul  1 e 4 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
+"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+[v i1___bmul __bmul `(uc  1 e 1 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
 "6 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\pic\__eeprom.c
@@ -65,20 +68,50 @@ E 4
 [v _dio_vid_set_port_value dio_vid_set_port_value `(v  1 e 1 0 ]
 "53
 [v _dio_u8_read_port_value dio_u8_read_port_value `(uc  1 e 1 0 ]
+"75
+[v _dio_u8_read_pin_value dio_u8_read_pin_value `(uc  1 e 1 0 ]
 "80
 [v _dio_vid_set_pin_value dio_vid_set_pin_value `(v  1 e 1 0 ]
 "116
 [v _dio_vid_set_pin_direction dio_vid_set_pin_direction `(v  1 e 1 0 ]
+"9 G:\MPLABXProjects\pic_test.X\eeprom.c
+[v _eeprom_vid_write eeprom_vid_write `(v  1 e 1 0 ]
+"28
+[v _eeprom_u8_read eeprom_u8_read `(uc  1 e 1 0 ]
+"41 G:\MPLABXProjects\pic_test.X\i2c.c
+[v _i2c_vid_wait i2c_vid_wait `(v  1 e 1 0 ]
 "24 G:\MPLABXProjects\pic_test.X\lcd.c
 [v _lcd_vid_write_charachter lcd_vid_write_charachter `(v  1 e 1 0 ]
 "55
 [v _lcd_vid_write_command lcd_vid_write_command `(v  1 e 1 0 ]
-"21 G:\MPLABXProjects\pic_test.X\main.c
-[v _ISR ISR `II(v  1 e 1 0 ]
-"39
+"37 G:\MPLABXProjects\pic_test.X\main.c
+[v _showNumber25 showNumber25 `(v  1 e 1 0 ]
+"41
+[v _checkButtons checkButtons `(v  1 e 1 0 ]
+"64
 [v _main main `(i  1 e 2 0 ]
+"19 G:\MPLABXProjects\pic_test.X\scheduler.c
+[v _sch_vid_init sch_vid_init `(v  1 e 1 0 ]
+"29
+[v _sch_update sch_update `(v  1 e 1 0 ]
+"49
+[v _sch_u8_add_task sch_u8_add_task `(uc  1 e 1 0 ]
+"73
+[v _sch_vid_dispatch_tasks sch_vid_dispatch_tasks `(v  1 e 1 0 ]
+"89
+[v _sch_vid_delete_task sch_vid_delete_task `(uc  1 e 1 0 ]
 "27 G:\MPLABXProjects\pic_test.X\ssd.c
 [v _ssd_get_number ssd_get_number `(uc  1 e 1 0 ]
+"66
+[v _ssd_init ssd_init `(v  1 e 1 0 ]
+"72
+[v _ssd_set_state ssd_set_state `(v  1 e 1 0 ]
+"21 G:\MPLABXProjects\pic_test.X\timer.c
+[v _timer_isr timer_isr `II(v  1 e 1 0 ]
+"36
+[v _timer_vid_set_isr_0 timer_vid_set_isr_0 `(v  1 e 1 0 ]
+"48
+[v _timer_vid_init_0 timer_vid_init_0 `(v  1 e 1 0 ]
 "166 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "216
@@ -89,6 +122,10 @@ E 4
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "402
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
+"532
+[v _PIR1 PIR1 `VEuc  1 e 1 @12 ]
+"808
+[v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "1325
 [v _TRISA TRISA `VEuc  1 e 1 @133 ]
 "1375
@@ -99,43 +136,313 @@ E 4
 [v _TRISD TRISD `VEuc  1 e 1 @136 ]
 "1561
 [v _TRISE TRISE `VEuc  1 e 1 @137 ]
+"1754
+[v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
+"1823
+[v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
+"1830
+[v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
+"2288
+[v _EEDATA EEDATA `VEuc  1 e 1 @268 ]
+"2295
+[v _EEADR EEADR `VEuc  1 e 1 @269 ]
+"2361
+[v _EECON2 EECON2 `VEuc  1 e 1 @397 ]
+"2374
+[v _ACKDT ACKDT `VEb  1 e 0 @1165 ]
+"2377
+[v _ACKEN ACKEN `VEb  1 e 0 @1164 ]
 "2569
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "2629
 [v _PEIE PEIE `VEb  1 e 0 @94 ]
-"2887
-[v _TMR1IE TMR1IE `VEb  1 e 0 @1120 ]
+"2632
+[v _PEN PEN `VEb  1 e 0 @1162 ]
+"2635
+[v _PS0 PS0 `VEb  1 e 0 @1032 ]
+"2638
+[v _PS1 PS1 `VEb  1 e 0 @1033 ]
+"2641
+[v _PS2 PS2 `VEb  1 e 0 @1034 ]
+"2644
+[v _PSA PSA `VEb  1 e 0 @1035 ]
+"2737
+[v _RCEN RCEN `VEb  1 e 0 @1163 ]
+"2746
+[v _RD RD `VEb  1 e 0 @3168 ]
+"2806
+[v _SEN SEN `VEb  1 e 0 @1160 ]
+"2818
+[v _SSPEN SSPEN `VEb  1 e 0 @165 ]
+"2827
+[v _SSPM0 SSPM0 `VEb  1 e 0 @160 ]
+"2830
+[v _SSPM1 SSPM1 `VEb  1 e 0 @161 ]
+"2833
+[v _SSPM2 SSPM2 `VEb  1 e 0 @162 ]
+"2836
+[v _SSPM3 SSPM3 `VEb  1 e 0 @163 ]
+"2839
+[v _SSPOV SSPOV `VEb  1 e 0 @166 ]
+"2845
+[v _T0CS T0CS `VEb  1 e 0 @1037 ]
+"2878
+[v _TMR0IE TMR0IE `VEb  1 e 0 @93 ]
+"2881
+[v _TMR0IF TMR0IF `VEb  1 e 0 @90 ]
 "2890
 [v _TMR1IF TMR1IF `VEb  1 e 0 @96 ]
-"2893
-[v _TMR1ON TMR1ON `VEb  1 e 0 @128 ]
-"19 G:\MPLABXProjects\pic_test.X\main.c
-[v _counter counter `VEuc  1 e 1 0 ]
-"39
+"2899
+[v _TMR2IF TMR2IF `VEb  1 e 0 @97 ]
+"3043
+[v _WCOL WCOL `VEb  1 e 0 @167 ]
+"3046
+[v _WR WR `VEb  1 e 0 @3169 ]
+"3049
+[v _WREN WREN `VEb  1 e 0 @3170 ]
+"21 G:\MPLABXProjects\pic_test.X\main.c
+[v _counter counter `us  1 e 2 0 ]
+"22
+[v _setTemperature setTemperature `VEuc  1 e 1 0 ]
+"23
+[v _buttonPressedFlag buttonPressedFlag `VEuc  1 e 1 0 ]
+[s S176 data 13 `*.27(v 1 taskFunction 1 0 `ul 1 delay 4 1 `ul 1 period 4 5 `ul 1 runMe 4 9 ]
+"17 G:\MPLABXProjects\pic_test.X\scheduler.c
+[v _sch_tasks sch_tasks `[3]S176  1 e 39 0 ]
+"17 G:\MPLABXProjects\pic_test.X\timer.c
+[v _timer0_isr timer0_isr `*.27(v  1 e 1 0 ]
+"18
+[v _timer1_isr timer1_isr `*.27(v  1 e 1 0 ]
+"19
+[v _timer2_isr timer2_isr `*.27(v  1 e 1 0 ]
+"64 G:\MPLABXProjects\pic_test.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"71
+"81
+} 0
+"66 G:\MPLABXProjects\pic_test.X\ssd.c
+[v _ssd_init ssd_init `(v  1 e 1 0 ]
+{
+"70
+} 0
+"12 G:\MPLABXProjects\pic_test.X\dio.c
+[v _dio_vid_set_port_direction dio_vid_set_port_direction `(v  1 e 1 0 ]
+{
+[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_direction@direction direction `uc  1 p 1 6 ]
+[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 9 ]
+"30
+} 0
+"116
+[v _dio_vid_set_pin_direction dio_vid_set_pin_direction `(v  1 e 1 0 ]
+{
+[v dio_vid_set_pin_direction@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_pin_direction@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_pin_direction@index index `uc  1 p 1 6 ]
+[v dio_vid_set_pin_direction@direction direction `uc  1 p 1 7 ]
+[v dio_vid_set_pin_direction@portNumber portNumber `uc  1 a 1 10 ]
+"149
+} 0
+"19 G:\MPLABXProjects\pic_test.X\scheduler.c
+[v _sch_vid_init sch_vid_init `(v  1 e 1 0 ]
+{
+"20
+[v sch_vid_init@i i `uc  1 a 1 13 ]
+"27
+} 0
+"36 G:\MPLABXProjects\pic_test.X\timer.c
+[v _timer_vid_set_isr_0 timer_vid_set_isr_0 `(v  1 e 1 0 ]
+{
+[v timer_vid_set_isr_0@callback_function callback_function `*.27(v  1 a 1 wreg ]
+[v timer_vid_set_isr_0@callback_function callback_function `*.27(v  1 a 1 wreg ]
+[v timer_vid_set_isr_0@callback_function callback_function `*.27(v  1 a 1 7 ]
+"38
+} 0
+"48
+[v _timer_vid_init_0 timer_vid_init_0 `(v  1 e 1 0 ]
+{
+[v timer_vid_init_0@prescaler prescaler `us  1 p 2 6 ]
+[v timer_vid_init_0@interruptEnable interruptEnable `uc  1 p 1 8 ]
+"110
+} 0
+"73 G:\MPLABXProjects\pic_test.X\scheduler.c
+[v _sch_vid_dispatch_tasks sch_vid_dispatch_tasks `(v  1 e 1 0 ]
+{
+"74
+[v sch_vid_dispatch_tasks@index index `uc  1 a 1 26 ]
+"87
+} 0
+"41 G:\MPLABXProjects\pic_test.X\main.c
+[v _checkButtons checkButtons `(v  1 e 1 0 ]
+{
+"62
+} 0
+"37
+[v _showNumber25 showNumber25 `(v  1 e 1 0 ]
+{
+"39
+} 0
+"72 G:\MPLABXProjects\pic_test.X\ssd.c
+[v _ssd_set_state ssd_set_state `(v  1 e 1 0 ]
+{
+[v ssd_set_state@state state `uc  1 a 1 wreg ]
+"74
+[v ssd_set_state@tens tens `uc  1 a 1 19 ]
+"73
+[v ssd_set_state@ones ones `uc  1 a 1 18 ]
+"72
+[v ssd_set_state@state state `uc  1 a 1 wreg ]
+[v ssd_set_state@state state `uc  1 a 1 20 ]
+"98
+} 0
+"27
+[v _ssd_get_number ssd_get_number `(uc  1 e 1 0 ]
+{
+[v ssd_get_number@number number `uc  1 a 1 wreg ]
+[v ssd_get_number@number number `uc  1 a 1 wreg ]
+[v ssd_get_number@number number `uc  1 a 1 8 ]
+"64
 } 0
 "33 G:\MPLABXProjects\pic_test.X\dio.c
 [v _dio_vid_set_port_value dio_vid_set_port_value `(v  1 e 1 0 ]
 {
 [v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
 [v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_port_value@value value `uc  1 p 1 3 ]
-[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 6 ]
+[v dio_vid_set_port_value@value value `uc  1 p 1 9 ]
+[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 12 ]
 "51
 } 0
-"12
-[v _dio_vid_set_port_direction dio_vid_set_port_direction `(v  1 e 1 0 ]
+"80
+[v _dio_vid_set_pin_value dio_vid_set_pin_value `(v  1 e 1 0 ]
 {
-[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_port_direction@direction direction `uc  1 p 1 3 ]
-[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 6 ]
-"30
+[v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_pin_value@index index `uc  1 p 1 6 ]
+[v dio_vid_set_pin_value@value value `uc  1 p 1 7 ]
+[v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 10 ]
+"113
 } 0
-"21 G:\MPLABXProjects\pic_test.X\main.c
-[v _ISR ISR `II(v  1 e 1 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awmod.c
+[v ___awmod __awmod `(i  1 e 2 0 ]
 {
-"37
+"10
+[v ___awmod@sign sign `uc  1 a 1 12 ]
+[v ___awmod@counter counter `uc  1 a 1 11 ]
+"5
+[v ___awmod@divisor divisor `i  1 p 2 6 ]
+[v ___awmod@dividend dividend `i  1 p 2 8 ]
+"34
+} 0
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 13 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 12 ]
+[v ___awdiv@counter counter `uc  1 a 1 11 ]
+"5
+[v ___awdiv@divisor divisor `i  1 p 2 6 ]
+[v ___awdiv@dividend dividend `i  1 p 2 8 ]
+"41
+} 0
+"89 G:\MPLABXProjects\pic_test.X\scheduler.c
+[v _sch_vid_delete_task sch_vid_delete_task `(uc  1 e 1 0 ]
+{
+[v sch_vid_delete_task@index index `uc  1 a 1 wreg ]
+[v sch_vid_delete_task@index index `uc  1 a 1 wreg ]
+[v sch_vid_delete_task@index index `uc  1 a 1 11 ]
+"96
+} 0
+"9 G:\MPLABXProjects\pic_test.X\eeprom.c
+[v _eeprom_vid_write eeprom_vid_write `(v  1 e 1 0 ]
+{
+[v eeprom_vid_write@address address `uc  1 a 1 wreg ]
+"11
+[v eeprom_vid_write@gie_Status gie_Status `uc  1 a 1 8 ]
+"9
+[v eeprom_vid_write@address address `uc  1 a 1 wreg ]
+[v eeprom_vid_write@data data `uc  1 p 1 6 ]
+[v eeprom_vid_write@address address `uc  1 a 1 7 ]
+"25
+} 0
+"75 G:\MPLABXProjects\pic_test.X\dio.c
+[v _dio_u8_read_pin_value dio_u8_read_pin_value `(uc  1 e 1 0 ]
+{
+[v dio_u8_read_pin_value@portNumber portNumber `uc  1 a 1 wreg ]
+"76
+[v dio_u8_read_pin_value@port port `uc  1 a 1 12 ]
+"75
+[v dio_u8_read_pin_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_u8_read_pin_value@index index `uc  1 p 1 9 ]
+[v dio_u8_read_pin_value@portNumber portNumber `uc  1 a 1 11 ]
+"78
+} 0
+"53
+[v _dio_u8_read_port_value dio_u8_read_port_value `(uc  1 e 1 0 ]
+{
+[v dio_u8_read_port_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_u8_read_port_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_u8_read_port_value@portNumber portNumber `uc  1 a 1 8 ]
+"72
+} 0
+"49 G:\MPLABXProjects\pic_test.X\scheduler.c
+[v _sch_u8_add_task sch_u8_add_task `(uc  1 e 1 0 ]
+{
+[v sch_u8_add_task@taskFunction taskFunction `*.27(v  1 a 1 wreg ]
+"52
+[v sch_u8_add_task@index index `uc  1 a 1 21 ]
+"49
+[v sch_u8_add_task@taskFunction taskFunction `*.27(v  1 a 1 wreg ]
+"50
+[v sch_u8_add_task@delay delay `DCul  1 p 4 10 ]
+"51
+[v sch_u8_add_task@period period `DCul  1 p 4 14 ]
+[v sch_u8_add_task@taskFunction taskFunction `*.27(v  1 a 1 20 ]
+"71
+} 0
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c
+[v ___bmul __bmul `(uc  1 e 1 0 ]
+{
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+"6
+[v ___bmul@product product `uc  1 a 1 8 ]
+"4
+[v ___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+[v ___bmul@multiplicand multiplicand `uc  1 p 1 6 ]
+"6
+[v ___bmul@multiplier multiplier `uc  1 a 1 9 ]
+"51
+} 0
+"28 G:\MPLABXProjects\pic_test.X\eeprom.c
+[v _eeprom_u8_read eeprom_u8_read `(uc  1 e 1 0 ]
+{
+[v eeprom_u8_read@address address `uc  1 a 1 wreg ]
+[v eeprom_u8_read@address address `uc  1 a 1 wreg ]
+[v eeprom_u8_read@address address `uc  1 a 1 6 ]
+"35
+} 0
+"21 G:\MPLABXProjects\pic_test.X\timer.c
+[v _timer_isr timer_isr `II(v  1 e 1 0 ]
+{
+"34
+} 0
+"29 G:\MPLABXProjects\pic_test.X\scheduler.c
+[v _sch_update sch_update `(v  1 e 1 0 ]
+{
+"30
+[v sch_update@index index `uc  1 a 1 10 ]
+"47
+} 0
+"4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c
+[v i1___bmul __bmul `(uc  1 e 1 0 ]
+{
+[v i1___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+[v i1___bmul@product __bmul `uc  1 a 1 3 ]
+[v i1___bmul@multiplier multiplier `uc  1 a 1 wreg ]
+[v i1___bmul@multiplicand multiplicand `uc  1 p 1 0 ]
+"6
+[v i1___bmul@multiplier multiplier `uc  1 a 1 2 ]
+"51
 } 0

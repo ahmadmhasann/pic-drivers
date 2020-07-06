@@ -1,4 +1,4 @@
-# 1 "ssd.c"
+# 1 "eeprom.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,13 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "ssd.c" 2
-# 10 "ssd.c"
+# 1 "eeprom.c" 2
+
+
+
+
+
+
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -1721,19 +1726,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 10 "ssd.c" 2
-
-# 1 "./config.h" 1
-# 40 "./config.h"
-#pragma config FOSC = HS
-#pragma config WDTE = OFF
-#pragma config PWRTE = ON
-#pragma config BOREN = ON
-#pragma config LVP = OFF
-#pragma config CPD = OFF
-#pragma config WRT = OFF
-#pragma config CP = OFF
-# 11 "ssd.c" 2
+# 7 "eeprom.c" 2
 
 # 1 "./types.h" 1
 # 10 "./types.h"
@@ -1747,98 +1740,32 @@ typedef unsigned long long int u64;
 typedef float f32;
 typedef double f64;
 typedef long double f96;
-# 12 "ssd.c" 2
+# 8 "eeprom.c" 2
 
-# 1 "./macros.h" 1
-# 13 "ssd.c" 2
+void eeprom_vid_write(u8 address, u8 data)
+{
+   unsigned char gie_Status;
 
-# 1 "./dio.h" 1
-# 11 "./dio.h"
-enum {
- A,
- B,
- C,
- D,
-    E
-};
-# 29 "./dio.h"
-void dio_vid_set_port_direction (u8 portNumber, u8 direction);
-void dio_vid_set_port_value (u8 portNumber, u8 value);
-u8 dio_u8_read_port_value (u8 portNumber);
-u8 dio_u8_read_pin_value (u8 portNumber, u8 index);
-void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
-void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
-# 14 "ssd.c" 2
+    while(WR);
+    EEADR=address;
+    EEDATA=data;
+    WREN=1;
+    gie_Status = GIE;
+    GIE = 0;
+    EECON2=0x55;
+    EECON2=0xaa;
+    WR=1;
+    GIE = gie_Status;
+    WREN=0;
 
-# 1 "./lcd.h" 1
-# 10 "./lcd.h"
-void lcd_vid_write_charachter (u8 data);
-void lcd_vid_write_command (u8 command);
-void lcd_vid_init(void);
-void lcd_vid_write_string(u8 str[]);
-void lcd_vid_write_number(s32 number);
-void lcd_vid_set_position(u8 row, u8 col);
-void lcd_vid_clear_screan (void);
-# 15 "ssd.c" 2
-# 27 "ssd.c"
-u8 ssd_get_number(u8 number) {
-    switch (number) {
-        case 0:
-            return 0x3F;
-        case 1:
-            return 0x06;
-        case 2:
-            return 0x5B;
-        case 3:
-            return 0x4F;
-        case 4:
-            return 0x66;
-        case 5:
-            return 0x6D;
-        case 6:
-            return 0x7D;
-        case 7:
-            return 0x07;
-        case 8:
-            return 0x7F;
-        case 9:
-            return 0x6F;
-        case 10:
-            return 0x77;
-        case 11:
-            return 0x7c;
-        case 12:
-            return 0x58;
-        case 13:
-            return 0x5E;
-        case 14:
-            return 0x79;
-        case 15:
-            return 0x71;
-        default:
-            return 0;
-    }
 }
 
-void ssd_init(void) {
-    dio_vid_set_port_direction(D, 0);
-    dio_vid_set_pin_direction(A, 2, 0);
-    dio_vid_set_pin_direction(A, 3, 0);
-}
 
-void ssd_set_state (u8 state) {
-    u8 ones = state % 10;
-    u8 tens = state / 10;
-    if (dio_u8_read_pin_value(A, 3)) {
-        dio_vid_set_pin_value(A, 2, 1);
-        dio_vid_set_pin_value(A, 3, 0);
-        dio_vid_set_port_value(D, ssd_get_number(tens));
-    }
-    else {
-        dio_vid_set_pin_value(A, 2, 0);
-        dio_vid_set_pin_value(A, 3, 1);
-        dio_vid_set_port_value(D, ssd_get_number(ones));
+u8 eeprom_u8_read (u8 address)
+{
+    while(RD || WR);
+    EEADR=address;
+    RD = 1;
+    return(EEDATA);
 
-    }
-# 98 "ssd.c"
 }

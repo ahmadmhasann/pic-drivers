@@ -1,28 +1,25 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F887 `(v ~T0 @X0 0 tf ]
-"15 ./scheduler.h
-[; ;./scheduler.h: 15: typedef struct data {
-[s S95 `*F887 1 `uo 1 `uo 1 `uo 1 ]
-[n S95 data taskFunction delay period runMe ]
-"33
-[; ;./scheduler.h: 33: u8 sch_vid_delete_task(u8 index);
-[v _sch_vid_delete_task `(uc ~T0 @X0 0 ef1`uc ]
-[v F910 `(v ~T0 @X0 0 tf ]
-"13 ./timer.h
-[; ;./timer.h: 13: void timer_vid_set_isr_0(void (*callback_function) (void));
-[v _timer_vid_set_isr_0 `(v ~T0 @X0 0 ef1`*F910 ]
-"36 ./scheduler.h
-[; ;./scheduler.h: 36: void sch_update(void);
-[v _sch_update `(v ~T0 @X0 0 ef ]
-"12 ./timer.h
-[; ;./timer.h: 12: void timer_vid_init_0(u16 prescaler, u8 interruptEnable);
-[v _timer_vid_init_0 `(v ~T0 @X0 0 ef2`us`uc ]
-[v F929 `(v ~T0 @X0 0 tf ]
-[v F931 `(v ~T0 @X0 0 t? ]
-[v F933 `(v ~T0 @X0 0 t? ]
-[v F938 `(v ~T0 @X0 0 tf ]
-[v F940 `(v ~T0 @X0 0 tf ]
-[v F948 `(v ~T0 @X0 0 tf ]
+"3046 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 3046: extern volatile __bit WR __attribute__((address(0xC61)));
+[v _WR `Vb ~T0 @X0 0 e@3169 ]
+"2295
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2295: extern volatile unsigned char EEADR __attribute__((address(0x10D)));
+[v _EEADR `Vuc ~T0 @X0 0 e@269 ]
+"2288
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2288: extern volatile unsigned char EEDATA __attribute__((address(0x10C)));
+[v _EEDATA `Vuc ~T0 @X0 0 e@268 ]
+"3049
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 3049: extern volatile __bit WREN __attribute__((address(0xC62)));
+[v _WREN `Vb ~T0 @X0 0 e@3170 ]
+"2569
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2569: extern volatile __bit GIE __attribute__((address(0x5F)));
+[v _GIE `Vb ~T0 @X0 0 e@95 ]
+"2361
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2361: extern volatile unsigned char EECON2 __attribute__((address(0x18D)));
+[v _EECON2 `Vuc ~T0 @X0 0 e@397 ]
+"2746
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2746: extern volatile __bit RD __attribute__((address(0xC60)));
+[v _RD `Vb ~T0 @X0 0 e@3168 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -203,263 +200,95 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2363
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2363: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"17 scheduler.c
-[; ;scheduler.c: 17: sTask sch_tasks[3];
-[v _sch_tasks `S95 ~T0 @X0 -> 3 `i e ]
-"19
-[; ;scheduler.c: 19: void sch_vid_init(void) {
-[v _sch_vid_init `(v ~T0 @X0 1 ef ]
+"9 eeprom.c
+[; ;eeprom.c: 9: void eeprom_vid_write(u8 address, u8 data)
+[v _eeprom_vid_write `(v ~T0 @X0 1 ef2`uc`uc ]
+"10
+[; ;eeprom.c: 10: {
 {
-[e :U _sch_vid_init ]
+[e :U _eeprom_vid_write ]
+"9
+[; ;eeprom.c: 9: void eeprom_vid_write(u8 address, u8 data)
+[v _address `uc ~T0 @X0 1 r1 ]
+[v _data `uc ~T0 @X0 1 r2 ]
+"10
+[; ;eeprom.c: 10: {
 [f ]
-"20
-[; ;scheduler.c: 20:     u8 i;
-[v _i `uc ~T0 @X0 1 a ]
-"21
-[; ;scheduler.c: 21:     for (i = 0; i < 3; i++) {
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 3 `i 97  ]
-[e $U 98  ]
+"11
+[; ;eeprom.c: 11:    unsigned char gie_Status;
+[v _gie_Status `uc ~T0 @X0 1 a ]
+"13
+[; ;eeprom.c: 13:     while(WR);
+[e $U 96  ]
 [e :U 97 ]
-{
-"22
-[; ;scheduler.c: 22:         sch_vid_delete_task(i);
-[e ( _sch_vid_delete_task (1 _i ]
-"23
-[; ;scheduler.c: 23:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 3 `i 97  ]
+[e :U 96 ]
+[e $ _WR 97  ]
 [e :U 98 ]
-}
-"24
-[; ;scheduler.c: 24:     timer_vid_set_isr_0(sch_update);
-[e ( _timer_vid_set_isr_0 (1 &U _sch_update ]
+"14
+[; ;eeprom.c: 14:     EEADR=address;
+[e = _EEADR _address ]
+"15
+[; ;eeprom.c: 15:     EEDATA=data;
+[e = _EEDATA _data ]
+"16
+[; ;eeprom.c: 16:     WREN=1;
+[e = _WREN -> -> 1 `i `b ]
+"17
+[; ;eeprom.c: 17:     gie_Status = GIE;
+[e = _gie_Status -> _GIE `uc ]
+"18
+[; ;eeprom.c: 18:     GIE = 0;
+[e = _GIE -> -> 0 `i `b ]
+"19
+[; ;eeprom.c: 19:     EECON2=0x55;
+[e = _EECON2 -> -> 85 `i `uc ]
+"20
+[; ;eeprom.c: 20:     EECON2=0xaa;
+[e = _EECON2 -> -> 170 `i `uc ]
+"21
+[; ;eeprom.c: 21:     WR=1;
+[e = _WR -> -> 1 `i `b ]
+"22
+[; ;eeprom.c: 22:     GIE = gie_Status;
+[e = _GIE -> _gie_Status `b ]
+"23
+[; ;eeprom.c: 23:     WREN=0;
+[e = _WREN -> -> 0 `i `b ]
 "25
-[; ;scheduler.c: 25:     timer_vid_init_0(8, 1);
-[e ( _timer_vid_init_0 (2 , -> -> 8 `i `us -> -> 1 `i `uc ]
-"27
-[; ;scheduler.c: 27: }
-[e :UE 96 ]
+[; ;eeprom.c: 25: }
+[e :UE 95 ]
 }
+"28
+[; ;eeprom.c: 28: u8 eeprom_u8_read (u8 address)
+[v _eeprom_u8_read `(uc ~T0 @X0 1 ef1`uc ]
 "29
-[; ;scheduler.c: 29: void sch_update(void) {
-[v _sch_update `(v ~T0 @X0 1 ef ]
+[; ;eeprom.c: 29: {
 {
-[e :U _sch_update ]
+[e :U _eeprom_u8_read ]
+"28
+[; ;eeprom.c: 28: u8 eeprom_u8_read (u8 address)
+[v _address `uc ~T0 @X0 1 r1 ]
+"29
+[; ;eeprom.c: 29: {
 [f ]
 "30
-[; ;scheduler.c: 30:     u8 index;
-[v _index `uc ~T0 @X0 1 a ]
-"31
-[; ;scheduler.c: 31:     for (index = 0; index < 3; index++) {
-{
-[e = _index -> -> 0 `i `uc ]
-[e $ < -> _index `i -> 3 `i 101  ]
-[e $U 102  ]
+[; ;eeprom.c: 30:     while(RD || WR);
+[e $U 100  ]
 [e :U 101 ]
-{
-"33
-[; ;scheduler.c: 33:         if (sch_tasks[index].taskFunction) {
-[e $ ! != . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> -> 0 `i `*F929 104  ]
-{
-"34
-[; ;scheduler.c: 34:             if (sch_tasks[index].delay == 0) {
-[e $ ! == . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 -> -> -> 0 `i `o `uo 105  ]
-{
-"36
-[; ;scheduler.c: 36:                 sch_tasks[index].runMe += 1;
-[e =+ . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 1 `i `o `uo ]
-"37
-[; ;scheduler.c: 37:                 if (sch_tasks[index].period) {
-[e $ ! != . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 -> -> -> 0 `i `o `uo 106  ]
-{
-"39
-[; ;scheduler.c: 39:                     sch_tasks[index].delay = sch_tasks[index].period;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 ]
-"40
-[; ;scheduler.c: 40:                 }
-}
-[e :U 106 ]
-"41
-[; ;scheduler.c: 41:             } else {
-}
-[e $U 107  ]
-[e :U 105 ]
-{
-"43
-[; ;scheduler.c: 43:                 sch_tasks[index].delay -= 1;
-[e =- . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 -> -> -> 1 `i `o `uo ]
-"44
-[; ;scheduler.c: 44:             }
-}
-[e :U 107 ]
-"45
-[; ;scheduler.c: 45:         }
-}
-[e :U 104 ]
-"46
-[; ;scheduler.c: 46:     }
-}
-[e ++ _index -> -> 1 `i `uc ]
-[e $ < -> _index `i -> 3 `i 101  ]
+[e :U 100 ]
+[e $ || _RD _WR 101  ]
 [e :U 102 ]
-}
-"47
-[; ;scheduler.c: 47: }
-[e :UE 100 ]
-}
-"49
-[; ;scheduler.c: 49: u8 sch_u8_add_task(void ( * taskFunction)(),
-[v _sch_u8_add_task `(uc ~T0 @X0 1 ef3`*F931`Cuo`Cuo ]
-"51
-[; ;scheduler.c: 51:         const u64 period) {
-{
-[e :U _sch_u8_add_task ]
-"49
-[; ;scheduler.c: 49: u8 sch_u8_add_task(void ( * taskFunction)(),
-[v _taskFunction `*F933 ~T0 @X0 1 r1 ]
-"50
-[; ;scheduler.c: 50:         const u64 delay,
-[v _delay `Cuo ~T0 @X0 1 r2 ]
-"51
-[; ;scheduler.c: 51:         const u64 period) {
-[v _period `Cuo ~T0 @X0 1 r3 ]
-[f ]
-"52
-[; ;scheduler.c: 52:     u8 index = 0;
-[v _index `uc ~T0 @X0 1 a ]
-[e = _index -> -> 0 `i `uc ]
-"55
-[; ;scheduler.c: 55:     while ((sch_tasks[index].taskFunction != 0) && (index < 3)) {
-[e $U 109  ]
-[e :U 110 ]
-{
-"56
-[; ;scheduler.c: 56:         index++;
-[e ++ _index -> -> 1 `i `uc ]
-"57
-[; ;scheduler.c: 57:     }
-}
-[e :U 109 ]
-"55
-[; ;scheduler.c: 55:     while ((sch_tasks[index].taskFunction != 0) && (index < 3)) {
-[e $ && != . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> -> 0 `i `*F938 < -> _index `i -> 3 `i 110  ]
-[e :U 111 ]
-"60
-[; ;scheduler.c: 60:     if (index == 3) {
-[e $ ! == -> _index `i -> 3 `i 112  ]
-{
-"62
-[; ;scheduler.c: 62:         return 3;
-[e ) -> -> 3 `i `uc ]
-[e $UE 108  ]
-"63
-[; ;scheduler.c: 63:     }
-}
-[e :U 112 ]
-"66
-[; ;scheduler.c: 66:     sch_tasks[index].taskFunction = taskFunction;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> _taskFunction `*F940 ]
-"67
-[; ;scheduler.c: 67:     sch_tasks[index].delay = delay;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 _delay ]
-"68
-[; ;scheduler.c: 68:     sch_tasks[index].period = period;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 _period ]
-"69
-[; ;scheduler.c: 69:     sch_tasks[index].runMe = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 0 `i `o `uo ]
-"70
-[; ;scheduler.c: 70:     return index;
-[e ) _index ]
-[e $UE 108  ]
-"71
-[; ;scheduler.c: 71: }
-[e :UE 108 ]
-}
-"73
-[; ;scheduler.c: 73: void sch_vid_dispatch_tasks(void) {
-[v _sch_vid_dispatch_tasks `(v ~T0 @X0 1 ef ]
-{
-[e :U _sch_vid_dispatch_tasks ]
-[f ]
-"74
-[; ;scheduler.c: 74:     u8 index;
-[v _index `uc ~T0 @X0 1 a ]
-"76
-[; ;scheduler.c: 76:     for (index = 0; index < 3; index++) {
-{
-[e = _index -> -> 0 `i `uc ]
-[e $ < -> _index `i -> 3 `i 114  ]
-[e $U 115  ]
-[e :U 114 ]
-{
-"77
-[; ;scheduler.c: 77:         if (sch_tasks[index].runMe > 0) {
-[e $ ! > . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 0 `i `o `uo 117  ]
-{
-"78
-[; ;scheduler.c: 78:             (*sch_tasks[index].taskFunction)();
-[e ( *U . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 ..  ]
-"79
-[; ;scheduler.c: 79:             sch_tasks[index].runMe -= 1;
-[e =- . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 1 `i `o `uo ]
-"82
-[; ;scheduler.c: 82:             if (sch_tasks[index].period == 0) {
-[e $ ! == . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 -> -> -> 0 `i `o `uo 118  ]
-{
-"83
-[; ;scheduler.c: 83:                 sch_vid_delete_task(index);
-[e ( _sch_vid_delete_task (1 _index ]
-"84
-[; ;scheduler.c: 84:             }
-}
-[e :U 118 ]
-"85
-[; ;scheduler.c: 85:         }
-}
-[e :U 117 ]
-"86
-[; ;scheduler.c: 86:     }
-}
-[e ++ _index -> -> 1 `i `uc ]
-[e $ < -> _index `i -> 3 `i 114  ]
-[e :U 115 ]
-}
-"87
-[; ;scheduler.c: 87: }
-[e :UE 113 ]
-}
-"89
-[; ;scheduler.c: 89: u8 sch_vid_delete_task(u8 index) {
-[v _sch_vid_delete_task `(uc ~T0 @X0 1 ef1`uc ]
-{
-[e :U _sch_vid_delete_task ]
-[v _index `uc ~T0 @X0 1 r1 ]
-[f ]
-"90
-[; ;scheduler.c: 90:     if (index < 3) {
-[e $ ! < -> _index `i -> 3 `i 120  ]
-{
-"91
-[; ;scheduler.c: 91:         sch_tasks[index].taskFunction = 0x0000;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> -> 0 `i `*F948 ]
-"92
-[; ;scheduler.c: 92:         sch_tasks[index].delay = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 -> -> -> 0 `i `o `uo ]
-"93
-[; ;scheduler.c: 93:         sch_tasks[index].period = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 -> -> -> 0 `i `o `uo ]
-"94
-[; ;scheduler.c: 94:         sch_tasks[index].runMe = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 0 `i `o `uo ]
-"95
-[; ;scheduler.c: 95:     }
-}
-[e :U 120 ]
-"96
-[; ;scheduler.c: 96: }
-[e :UE 119 ]
+"31
+[; ;eeprom.c: 31:     EEADR=address;
+[e = _EEADR _address ]
+"32
+[; ;eeprom.c: 32:     RD = 1;
+[e = _RD -> -> 1 `i `b ]
+"33
+[; ;eeprom.c: 33:     return(EEDATA);
+[e ) _EEDATA ]
+[e $UE 99  ]
+"35
+[; ;eeprom.c: 35: }
+[e :UE 99 ]
 }

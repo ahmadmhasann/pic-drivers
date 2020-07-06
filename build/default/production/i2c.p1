@@ -1,28 +1,59 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F887 `(v ~T0 @X0 0 tf ]
-"15 ./scheduler.h
-[; ;./scheduler.h: 15: typedef struct data {
-[s S95 `*F887 1 `uo 1 `uo 1 `uo 1 ]
-[n S95 data taskFunction delay period runMe ]
-"33
-[; ;./scheduler.h: 33: u8 sch_vid_delete_task(u8 index);
-[v _sch_vid_delete_task `(uc ~T0 @X0 0 ef1`uc ]
-[v F910 `(v ~T0 @X0 0 tf ]
-"13 ./timer.h
-[; ;./timer.h: 13: void timer_vid_set_isr_0(void (*callback_function) (void));
-[v _timer_vid_set_isr_0 `(v ~T0 @X0 0 ef1`*F910 ]
-"36 ./scheduler.h
-[; ;./scheduler.h: 36: void sch_update(void);
-[v _sch_update `(v ~T0 @X0 0 ef ]
-"12 ./timer.h
-[; ;./timer.h: 12: void timer_vid_init_0(u16 prescaler, u8 interruptEnable);
-[v _timer_vid_init_0 `(v ~T0 @X0 0 ef2`us`uc ]
-[v F929 `(v ~T0 @X0 0 tf ]
-[v F931 `(v ~T0 @X0 0 t? ]
-[v F933 `(v ~T0 @X0 0 t? ]
-[v F938 `(v ~T0 @X0 0 tf ]
-[v F940 `(v ~T0 @X0 0 tf ]
-[v F948 `(v ~T0 @X0 0 tf ]
+"34 ./dio.h
+[; ;./dio.h: 34: void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
+[v _dio_vid_set_pin_direction `(v ~T0 @X0 0 ef3`uc`uc`uc ]
+"16 i2c.c
+[; ;i2c.c: 16:     dio_vid_set_pin_direction(C, 3, 0x01);
+[c E860 0 1 2 3 4 .. ]
+[n E860 . A B C D E  ]
+"3043 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 3043: extern volatile __bit WCOL __attribute__((address(0xA7)));
+[v _WCOL `Vb ~T0 @X0 0 e@167 ]
+"2839
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2839: extern volatile __bit SSPOV __attribute__((address(0xA6)));
+[v _SSPOV `Vb ~T0 @X0 0 e@166 ]
+"2818
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2818: extern volatile __bit SSPEN __attribute__((address(0xA5)));
+[v _SSPEN `Vb ~T0 @X0 0 e@165 ]
+"2836
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2836: extern volatile __bit SSPM3 __attribute__((address(0xA3)));
+[v _SSPM3 `Vb ~T0 @X0 0 e@163 ]
+"2833
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2833: extern volatile __bit SSPM2 __attribute__((address(0xA2)));
+[v _SSPM2 `Vb ~T0 @X0 0 e@162 ]
+"2830
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2830: extern volatile __bit SSPM1 __attribute__((address(0xA1)));
+[v _SSPM1 `Vb ~T0 @X0 0 e@161 ]
+"2827
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2827: extern volatile __bit SSPM0 __attribute__((address(0xA0)));
+[v _SSPM0 `Vb ~T0 @X0 0 e@160 ]
+"1754
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 1754: extern volatile unsigned char SSPCON2 __attribute__((address(0x091)));
+[v _SSPCON2 `Vuc ~T0 @X0 0 e@145 ]
+"1823
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 1823: extern volatile unsigned char SSPADD __attribute__((address(0x093)));
+[v _SSPADD `Vuc ~T0 @X0 0 e@147 ]
+"1830
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 1830: extern volatile unsigned char SSPSTAT __attribute__((address(0x094)));
+[v _SSPSTAT `Vuc ~T0 @X0 0 e@148 ]
+"2806
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2806: extern volatile __bit SEN __attribute__((address(0x488)));
+[v _SEN `Vb ~T0 @X0 0 e@1160 ]
+"2632
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2632: extern volatile __bit PEN __attribute__((address(0x48A)));
+[v _PEN `Vb ~T0 @X0 0 e@1162 ]
+"808
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 808: extern volatile unsigned char SSPBUF __attribute__((address(0x013)));
+[v _SSPBUF `Vuc ~T0 @X0 0 e@19 ]
+"2737
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2737: extern volatile __bit RCEN __attribute__((address(0x48B)));
+[v _RCEN `Vb ~T0 @X0 0 e@1163 ]
+"2374
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2374: extern volatile __bit ACKDT __attribute__((address(0x48D)));
+[v _ACKDT `Vb ~T0 @X0 0 e@1165 ]
+"2377
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2377: extern volatile __bit ACKEN __attribute__((address(0x48C)));
+[v _ACKEN `Vb ~T0 @X0 0 e@1164 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -203,263 +234,171 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2363
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2363: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"17 scheduler.c
-[; ;scheduler.c: 17: sTask sch_tasks[3];
-[v _sch_tasks `S95 ~T0 @X0 -> 3 `i e ]
-"19
-[; ;scheduler.c: 19: void sch_vid_init(void) {
-[v _sch_vid_init `(v ~T0 @X0 1 ef ]
+"15 i2c.c
+[; ;i2c.c: 15: void i2c_vid_init_master (u16 feq_k) {
+[v _i2c_vid_init_master `(v ~T0 @X0 1 ef1`us ]
 {
-[e :U _sch_vid_init ]
+[e :U _i2c_vid_init_master ]
+[v _feq_k `us ~T0 @X0 1 r1 ]
 [f ]
-"20
-[; ;scheduler.c: 20:     u8 i;
-[v _i `uc ~T0 @X0 1 a ]
-"21
-[; ;scheduler.c: 21:     for (i = 0; i < 3; i++) {
-{
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 3 `i 97  ]
-[e $U 98  ]
-[e :U 97 ]
-{
+"16
+[; ;i2c.c: 16:     dio_vid_set_pin_direction(C, 3, 0x01);
+[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 2 `uc -> -> 3 `i `uc -> -> 1 `i `uc ]
+"17
+[; ;i2c.c: 17:     dio_vid_set_pin_direction(C, 4, 0x01);
+[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 2 `uc -> -> 4 `i `uc -> -> 1 `i `uc ]
+"19
+[; ;i2c.c: 19:     WCOL = 0;
+[e = _WCOL -> -> 0 `i `b ]
 "22
-[; ;scheduler.c: 22:         sch_vid_delete_task(i);
-[e ( _sch_vid_delete_task (1 _i ]
-"23
-[; ;scheduler.c: 23:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 3 `i 97  ]
-[e :U 98 ]
-}
-"24
-[; ;scheduler.c: 24:     timer_vid_set_isr_0(sch_update);
-[e ( _timer_vid_set_isr_0 (1 &U _sch_update ]
+[; ;i2c.c: 22:     SSPOV = 0;
+[e = _SSPOV -> -> 0 `i `b ]
 "25
-[; ;scheduler.c: 25:     timer_vid_init_0(8, 1);
-[e ( _timer_vid_init_0 (2 , -> -> 8 `i `us -> -> 1 `i `uc ]
-"27
-[; ;scheduler.c: 27: }
+[; ;i2c.c: 25:     SSPEN = 1;
+[e = _SSPEN -> -> 1 `i `b ]
+"28
+[; ;i2c.c: 28:     SSPM3 = 1;
+[e = _SSPM3 -> -> 1 `i `b ]
+"29
+[; ;i2c.c: 29:     SSPM2 = 0;
+[e = _SSPM2 -> -> 0 `i `b ]
+"30
+[; ;i2c.c: 30:     SSPM1 = 0;
+[e = _SSPM1 -> -> 0 `i `b ]
+"31
+[; ;i2c.c: 31:     SSPM0 = 0;
+[e = _SSPM0 -> -> 0 `i `b ]
+"32
+[; ;i2c.c: 32:     SSPCON2 = 0x00;
+[e = _SSPCON2 -> -> 0 `i `uc ]
+"35
+[; ;i2c.c: 35:     SSPADD = (8000000/(4*feq_k*100))-1;
+[e = _SSPADD -> - / -> 8000000 `l -> * * -> -> 4 `i `ui -> _feq_k `ui -> -> 100 `i `ui `l -> -> 1 `i `l `uc ]
+"37
+[; ;i2c.c: 37:     SSPSTAT = 0x00;
+[e = _SSPSTAT -> -> 0 `i `uc ]
+"39
+[; ;i2c.c: 39: }
+[e :UE 95 ]
+}
+"41
+[; ;i2c.c: 41: void i2c_vid_wait (void) {
+[v _i2c_vid_wait `(v ~T0 @X0 1 ef ]
+{
+[e :U _i2c_vid_wait ]
+[f ]
+"43
+[; ;i2c.c: 43:     while ( (SSPSTAT & 0b00000100) || (SSPCON2 & 0b00011111));
+[e $U 97  ]
+[e :U 98 ]
+[e :U 97 ]
+[e $ || != & -> _SSPSTAT `i -> 4 `i -> 0 `i != & -> _SSPCON2 `i -> 31 `i -> 0 `i 98  ]
+[e :U 99 ]
+"44
+[; ;i2c.c: 44: }
 [e :UE 96 ]
 }
-"29
-[; ;scheduler.c: 29: void sch_update(void) {
-[v _sch_update `(v ~T0 @X0 1 ef ]
-{
-[e :U _sch_update ]
-[f ]
-"30
-[; ;scheduler.c: 30:     u8 index;
-[v _index `uc ~T0 @X0 1 a ]
-"31
-[; ;scheduler.c: 31:     for (index = 0; index < 3; index++) {
-{
-[e = _index -> -> 0 `i `uc ]
-[e $ < -> _index `i -> 3 `i 101  ]
-[e $U 102  ]
-[e :U 101 ]
-{
-"33
-[; ;scheduler.c: 33:         if (sch_tasks[index].taskFunction) {
-[e $ ! != . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> -> 0 `i `*F929 104  ]
-{
-"34
-[; ;scheduler.c: 34:             if (sch_tasks[index].delay == 0) {
-[e $ ! == . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 -> -> -> 0 `i `o `uo 105  ]
-{
-"36
-[; ;scheduler.c: 36:                 sch_tasks[index].runMe += 1;
-[e =+ . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 1 `i `o `uo ]
-"37
-[; ;scheduler.c: 37:                 if (sch_tasks[index].period) {
-[e $ ! != . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 -> -> -> 0 `i `o `uo 106  ]
-{
-"39
-[; ;scheduler.c: 39:                     sch_tasks[index].delay = sch_tasks[index].period;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 ]
-"40
-[; ;scheduler.c: 40:                 }
-}
-[e :U 106 ]
-"41
-[; ;scheduler.c: 41:             } else {
-}
-[e $U 107  ]
-[e :U 105 ]
-{
-"43
-[; ;scheduler.c: 43:                 sch_tasks[index].delay -= 1;
-[e =- . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 -> -> -> 1 `i `o `uo ]
-"44
-[; ;scheduler.c: 44:             }
-}
-[e :U 107 ]
-"45
-[; ;scheduler.c: 45:         }
-}
-[e :U 104 ]
-"46
-[; ;scheduler.c: 46:     }
-}
-[e ++ _index -> -> 1 `i `uc ]
-[e $ < -> _index `i -> 3 `i 101  ]
-[e :U 102 ]
-}
 "47
-[; ;scheduler.c: 47: }
+[; ;i2c.c: 47: void I2C_Begin()
+[v _I2C_Begin `(v ~T0 @X0 1 ef ]
+"48
+[; ;i2c.c: 48: {
+{
+[e :U _I2C_Begin ]
+[f ]
+"49
+[; ;i2c.c: 49:   i2c_vid_wait();
+[e ( _i2c_vid_wait ..  ]
+"50
+[; ;i2c.c: 50:   SEN = 1;
+[e = _SEN -> -> 1 `i `b ]
+"51
+[; ;i2c.c: 51: }
 [e :UE 100 ]
 }
-"49
-[; ;scheduler.c: 49: u8 sch_u8_add_task(void ( * taskFunction)(),
-[v _sch_u8_add_task `(uc ~T0 @X0 1 ef3`*F931`Cuo`Cuo ]
-"51
-[; ;scheduler.c: 51:         const u64 period) {
-{
-[e :U _sch_u8_add_task ]
-"49
-[; ;scheduler.c: 49: u8 sch_u8_add_task(void ( * taskFunction)(),
-[v _taskFunction `*F933 ~T0 @X0 1 r1 ]
-"50
-[; ;scheduler.c: 50:         const u64 delay,
-[v _delay `Cuo ~T0 @X0 1 r2 ]
-"51
-[; ;scheduler.c: 51:         const u64 period) {
-[v _period `Cuo ~T0 @X0 1 r3 ]
-[f ]
 "52
-[; ;scheduler.c: 52:     u8 index = 0;
-[v _index `uc ~T0 @X0 1 a ]
-[e = _index -> -> 0 `i `uc ]
-"55
-[; ;scheduler.c: 55:     while ((sch_tasks[index].taskFunction != 0) && (index < 3)) {
-[e $U 109  ]
-[e :U 110 ]
+[; ;i2c.c: 52: void I2C_End()
+[v _I2C_End `(v ~T0 @X0 1 ef ]
+"53
+[; ;i2c.c: 53: {
 {
+[e :U _I2C_End ]
+[f ]
+"54
+[; ;i2c.c: 54:   i2c_vid_wait();
+[e ( _i2c_vid_wait ..  ]
+"55
+[; ;i2c.c: 55:   PEN = 1;
+[e = _PEN -> -> 1 `i `b ]
 "56
-[; ;scheduler.c: 56:         index++;
-[e ++ _index -> -> 1 `i `uc ]
+[; ;i2c.c: 56: }
+[e :UE 101 ]
+}
 "57
-[; ;scheduler.c: 57:     }
-}
-[e :U 109 ]
-"55
-[; ;scheduler.c: 55:     while ((sch_tasks[index].taskFunction != 0) && (index < 3)) {
-[e $ && != . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> -> 0 `i `*F938 < -> _index `i -> 3 `i 110  ]
-[e :U 111 ]
+[; ;i2c.c: 57: void I2C_Write(unsigned data)
+[v _I2C_Write `(v ~T0 @X0 1 ef1`ui ]
+"58
+[; ;i2c.c: 58: {
+{
+[e :U _I2C_Write ]
+"57
+[; ;i2c.c: 57: void I2C_Write(unsigned data)
+[v _data `ui ~T0 @X0 1 r1 ]
+"58
+[; ;i2c.c: 58: {
+[f ]
+"59
+[; ;i2c.c: 59:   i2c_vid_wait();
+[e ( _i2c_vid_wait ..  ]
 "60
-[; ;scheduler.c: 60:     if (index == 3) {
-[e $ ! == -> _index `i -> 3 `i 112  ]
-{
-"62
-[; ;scheduler.c: 62:         return 3;
-[e ) -> -> 3 `i `uc ]
-[e $UE 108  ]
+[; ;i2c.c: 60:   SSPBUF = data;
+[e = _SSPBUF -> _data `uc ]
+"61
+[; ;i2c.c: 61: }
+[e :UE 102 ]
+}
 "63
-[; ;scheduler.c: 63:     }
-}
-[e :U 112 ]
+[; ;i2c.c: 63: unsigned short I2C_Read(unsigned short ack)
+[v _I2C_Read `(us ~T0 @X0 1 ef1`us ]
+"64
+[; ;i2c.c: 64: {
+{
+[e :U _I2C_Read ]
+"63
+[; ;i2c.c: 63: unsigned short I2C_Read(unsigned short ack)
+[v _ack `us ~T0 @X0 1 r1 ]
+"64
+[; ;i2c.c: 64: {
+[f ]
+"65
+[; ;i2c.c: 65:   unsigned short incoming;
+[v _incoming `us ~T0 @X0 1 a ]
 "66
-[; ;scheduler.c: 66:     sch_tasks[index].taskFunction = taskFunction;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> _taskFunction `*F940 ]
+[; ;i2c.c: 66:   i2c_vid_wait();
+[e ( _i2c_vid_wait ..  ]
 "67
-[; ;scheduler.c: 67:     sch_tasks[index].delay = delay;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 _delay ]
-"68
-[; ;scheduler.c: 68:     sch_tasks[index].period = period;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 _period ]
+[; ;i2c.c: 67:   RCEN = 1;
+[e = _RCEN -> -> 1 `i `b ]
 "69
-[; ;scheduler.c: 69:     sch_tasks[index].runMe = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 0 `i `o `uo ]
+[; ;i2c.c: 69:   i2c_vid_wait();
+[e ( _i2c_vid_wait ..  ]
 "70
-[; ;scheduler.c: 70:     return index;
-[e ) _index ]
-[e $UE 108  ]
-"71
-[; ;scheduler.c: 71: }
-[e :UE 108 ]
-}
+[; ;i2c.c: 70:   incoming = SSPBUF;
+[e = _incoming -> _SSPBUF `us ]
+"72
+[; ;i2c.c: 72:   i2c_vid_wait();
+[e ( _i2c_vid_wait ..  ]
 "73
-[; ;scheduler.c: 73: void sch_vid_dispatch_tasks(void) {
-[v _sch_vid_dispatch_tasks `(v ~T0 @X0 1 ef ]
-{
-[e :U _sch_vid_dispatch_tasks ]
-[f ]
+[; ;i2c.c: 73:   ACKDT = (ack)?0:1;
+[e = _ACKDT -> ? != -> _ack `ui -> -> 0 `i `ui : -> 0 `i -> 1 `i `b ]
 "74
-[; ;scheduler.c: 74:     u8 index;
-[v _index `uc ~T0 @X0 1 a ]
+[; ;i2c.c: 74:   ACKEN = 1;
+[e = _ACKEN -> -> 1 `i `b ]
 "76
-[; ;scheduler.c: 76:     for (index = 0; index < 3; index++) {
-{
-[e = _index -> -> 0 `i `uc ]
-[e $ < -> _index `i -> 3 `i 114  ]
-[e $U 115  ]
-[e :U 114 ]
-{
+[; ;i2c.c: 76:   return incoming;
+[e ) _incoming ]
+[e $UE 103  ]
 "77
-[; ;scheduler.c: 77:         if (sch_tasks[index].runMe > 0) {
-[e $ ! > . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 0 `i `o `uo 117  ]
-{
-"78
-[; ;scheduler.c: 78:             (*sch_tasks[index].taskFunction)();
-[e ( *U . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 ..  ]
-"79
-[; ;scheduler.c: 79:             sch_tasks[index].runMe -= 1;
-[e =- . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 1 `i `o `uo ]
-"82
-[; ;scheduler.c: 82:             if (sch_tasks[index].period == 0) {
-[e $ ! == . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 -> -> -> 0 `i `o `uo 118  ]
-{
-"83
-[; ;scheduler.c: 83:                 sch_vid_delete_task(index);
-[e ( _sch_vid_delete_task (1 _index ]
-"84
-[; ;scheduler.c: 84:             }
-}
-[e :U 118 ]
-"85
-[; ;scheduler.c: 85:         }
-}
-[e :U 117 ]
-"86
-[; ;scheduler.c: 86:     }
-}
-[e ++ _index -> -> 1 `i `uc ]
-[e $ < -> _index `i -> 3 `i 114  ]
-[e :U 115 ]
-}
-"87
-[; ;scheduler.c: 87: }
-[e :UE 113 ]
-}
-"89
-[; ;scheduler.c: 89: u8 sch_vid_delete_task(u8 index) {
-[v _sch_vid_delete_task `(uc ~T0 @X0 1 ef1`uc ]
-{
-[e :U _sch_vid_delete_task ]
-[v _index `uc ~T0 @X0 1 r1 ]
-[f ]
-"90
-[; ;scheduler.c: 90:     if (index < 3) {
-[e $ ! < -> _index `i -> 3 `i 120  ]
-{
-"91
-[; ;scheduler.c: 91:         sch_tasks[index].taskFunction = 0x0000;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> -> 0 `i `*F948 ]
-"92
-[; ;scheduler.c: 92:         sch_tasks[index].delay = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 -> -> -> 0 `i `o `uo ]
-"93
-[; ;scheduler.c: 93:         sch_tasks[index].period = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 -> -> -> 0 `i `o `uo ]
-"94
-[; ;scheduler.c: 94:         sch_tasks[index].runMe = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 0 `i `o `uo ]
-"95
-[; ;scheduler.c: 95:     }
-}
-[e :U 120 ]
-"96
-[; ;scheduler.c: 96: }
-[e :UE 119 ]
+[; ;i2c.c: 77: }
+[e :UE 103 ]
 }

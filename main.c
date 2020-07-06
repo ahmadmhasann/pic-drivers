@@ -6,6 +6,8 @@
  */
 #define _XTAL_FREQ 8000000 
 #include <xc.h>
+#include<pic16f877a.h>
+
 #include "config.h"
 #include "types.h"
 #include "macros.h"
@@ -13,46 +15,67 @@
 #include "lcd.h"
 #include "ssd.h"
 #include "scheduler.h"
-volatile u8 counter = 0;
+#include "timer.h"
+#include "i2c.h"
+#include "eeprom.h"
+u16 counter = 0;
+volatile u8 setTemperature;
+volatile u8 buttonPressedFlag = 0;
 
-void __interrupt() ISR (void) {
-    if (TMR1IF == 1) // Timer 1 flag has been triggered due to timer overflow
-    {
-        TMR1IF = 0;
-        counter++;
-        if (counter == 15) {
-            counter = 0;
-            PORTB = ~PORTB;
-        }
+void test(void) {
+    counter++;
+    if (counter == 500) {
+        counter = 0;
+        PORTB = ~PORTB;
     }
 }
 
-int main(void) {
+void toggleB(void) {
+    PORTB = ~PORTB;
+}
 
-    dio_vid_set_port_direction(B, 0);
-    dio_vid_set_port_value(B, 0);
+void showNumber25(void) {
+    ssd_set_state(setTemperature);
+}
 
-    /*Enable timer 1 Interrupt*/
-    TMR1IE = 1;
-    /*Enable the Peripheral Interrupt*/
-    PEIE = 1;
-    /*Enable Global Interrupt*/
-    GIE = 1;
-    /*Enables Timer1*/
-    TMR1ON = 1;
-
-    
-    /*while (1) {
-    if (TMR1IF == 1) // Timer flag has been triggered due to timer overflow
-    {
-        TMR1IF = 0;
-        counter++;
-        if (counter == 15) {
-            counter = 0;
-            PORTB = ~PORTB;
+void checkButtons() {
+    if (dio_u8_read_pin_value(B, 3) == 0 && buttonPressedFlag == 0) {
+        buttonPressedFlag = 1;
+        if (setTemperature + 5 < 80) {
+            eeprom_vid_write(0, setTemperature + 5);
+            setTemperature += 5;
         }
+    } else if (dio_u8_read_pin_value(B, 4) == 0 && buttonPressedFlag == 0) {
+        buttonPressedFlag = 1;
+        if (setTemperature - 5 > 30) {
+            eeprom_vid_write(0, setTemperature - 5);
+            setTemperature -= 5;
 
+        }
+    }
+    if (dio_u8_read_pin_value(B, 3) && dio_u8_read_pin_value(B, 4)) {
+        buttonPressedFlag = 0;
     }
 
-    }*/
+
+
+}
+
+int main(void) {
+    ssd_init();
+    dio_vid_set_port_direction(B, 255);
+    setTemperature = eeprom_u8_read(0);
+    if (setTemperature < 35 || setTemperature > 75 || setTemperature % 5 != 0)
+        setTemperature = 60;
+    sch_vid_init();
+    sch_u8_add_task(checkButtons, 1, 1);
+    sch_u8_add_task(showNumber25, 10, 10);
+
+
+
+    while (1) {
+        sch_vid_dispatch_tasks();
+    }
+
+
 }

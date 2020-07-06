@@ -1,24 +1,23 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"27 ./dio.h
-[; ;./dio.h: 27: void dio_vid_set_port_direction (u8 portNumber, u8 direction);
+"29 ./dio.h
+[; ;./dio.h: 29: void dio_vid_set_port_direction (u8 portNumber, u8 direction);
 [v _dio_vid_set_port_direction `(v ~T0 @X0 0 ef2`uc`uc ]
 "67 ssd.c
 [; ;ssd.c: 67:     dio_vid_set_port_direction(D, 0);
 [c E860 0 1 2 3 4 .. ]
 [n E860 . A B C D E  ]
-"32 ./dio.h
-[; ;./dio.h: 32: void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
+"34 ./dio.h
+[; ;./dio.h: 34: void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
 [v _dio_vid_set_pin_direction `(v ~T0 @X0 0 ef3`uc`uc`uc ]
-"28
-[; ;./dio.h: 28: void dio_vid_set_port_value (u8 portNumber, u8 value);
-[v _dio_vid_set_port_value `(v ~T0 @X0 0 ef2`uc`uc ]
-"31
-[; ;./dio.h: 31: void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
+"32
+[; ;./dio.h: 32: u8 dio_u8_read_pin_value (u8 portNumber, u8 index);
+[v _dio_u8_read_pin_value `(uc ~T0 @X0 0 ef2`uc`uc ]
+"33
+[; ;./dio.h: 33: void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
 [v _dio_vid_set_pin_value `(v ~T0 @X0 0 ef3`uc`uc`uc ]
-[v F842 `(v ~T0 @X0 1 tf1`ul ]
-"92 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic.h
-[v __delay `JF842 ~T0 @X0 0 e ]
-[p i __delay ]
+"30
+[; ;./dio.h: 30: void dio_vid_set_port_value (u8 portNumber, u8 value);
+[v _dio_vid_set_port_value `(v ~T0 @X0 0 ef2`uc`uc ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -407,40 +406,40 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _tens `uc ~T0 @X0 1 a ]
 [e = _tens -> / -> _state `i -> 10 `i `uc ]
 "75
-[; ;ssd.c: 75:         while (1) {
-[e :U 118 ]
+[; ;ssd.c: 75:     if (dio_u8_read_pin_value(A, 3)) {
+[e $ ! != -> ( _dio_u8_read_pin_value (2 , -> . `E860 0 `uc -> -> 3 `i `uc `i -> 0 `i 117  ]
 {
 "76
-[; ;ssd.c: 76:         dio_vid_set_port_value(D, ssd_get_number(ones));
-[e ( _dio_vid_set_port_value (2 , -> . `E860 3 `uc ( _ssd_get_number (1 _ones ]
-"77
-[; ;ssd.c: 77:         dio_vid_set_pin_value(A, 2, 0);
-[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 2 `i `uc -> -> 0 `i `uc ]
-"78
-[; ;ssd.c: 78:         _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"79
-[; ;ssd.c: 79:         dio_vid_set_pin_value(A, 2, 1);
+[; ;ssd.c: 76:         dio_vid_set_pin_value(A, 2, 1);
 [e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 2 `i `uc -> -> 1 `i `uc ]
-"80
-[; ;ssd.c: 80:         dio_vid_set_port_value(D, ssd_get_number(tens));
-[e ( _dio_vid_set_port_value (2 , -> . `E860 3 `uc ( _ssd_get_number (1 _tens ]
-"81
-[; ;ssd.c: 81:         dio_vid_set_pin_value(A, 3, 0);
+"77
+[; ;ssd.c: 77:         dio_vid_set_pin_value(A, 3, 0);
 [e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 3 `i `uc -> -> 0 `i `uc ]
-"82
-[; ;ssd.c: 82:         _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"83
-[; ;ssd.c: 83:         dio_vid_set_pin_value(A, 3, 1);
-[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 3 `i `uc -> -> 1 `i `uc ]
-"84
-[; ;ssd.c: 84:     }
+"78
+[; ;ssd.c: 78:         dio_vid_set_port_value(D, ssd_get_number(tens));
+[e ( _dio_vid_set_port_value (2 , -> . `E860 3 `uc ( _ssd_get_number (1 _tens ]
+"79
+[; ;ssd.c: 79:     }
 }
-[e :U 117 ]
 [e $U 118  ]
-[e :U 119 ]
+"80
+[; ;ssd.c: 80:     else {
+[e :U 117 ]
+{
+"81
+[; ;ssd.c: 81:         dio_vid_set_pin_value(A, 2, 0);
+[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 2 `i `uc -> -> 0 `i `uc ]
+"82
+[; ;ssd.c: 82:         dio_vid_set_pin_value(A, 3, 1);
+[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 3 `i `uc -> -> 1 `i `uc ]
+"83
+[; ;ssd.c: 83:         dio_vid_set_port_value(D, ssd_get_number(ones));
+[e ( _dio_vid_set_port_value (2 , -> . `E860 3 `uc ( _ssd_get_number (1 _ones ]
 "85
-[; ;ssd.c: 85: }
+[; ;ssd.c: 85:     }
+}
+[e :U 118 ]
+"98
+[; ;ssd.c: 98: }
 [e :UE 116 ]
 }

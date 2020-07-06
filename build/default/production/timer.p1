@@ -1,28 +1,51 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F887 `(v ~T0 @X0 0 tf ]
-"15 ./scheduler.h
-[; ;./scheduler.h: 15: typedef struct data {
-[s S95 `*F887 1 `uo 1 `uo 1 `uo 1 ]
-[n S95 data taskFunction delay period runMe ]
-"33
-[; ;./scheduler.h: 33: u8 sch_vid_delete_task(u8 index);
-[v _sch_vid_delete_task `(uc ~T0 @X0 0 ef1`uc ]
-[v F910 `(v ~T0 @X0 0 tf ]
-"13 ./timer.h
-[; ;./timer.h: 13: void timer_vid_set_isr_0(void (*callback_function) (void));
-[v _timer_vid_set_isr_0 `(v ~T0 @X0 0 ef1`*F910 ]
-"36 ./scheduler.h
-[; ;./scheduler.h: 36: void sch_update(void);
-[v _sch_update `(v ~T0 @X0 0 ef ]
-"12 ./timer.h
-[; ;./timer.h: 12: void timer_vid_init_0(u16 prescaler, u8 interruptEnable);
-[v _timer_vid_init_0 `(v ~T0 @X0 0 ef2`us`uc ]
+[v F922 `(v ~T0 @X0 0 tf ]
+[v F924 `(v ~T0 @X0 0 tf ]
+[v F926 `(v ~T0 @X0 0 tf ]
+[t ~ __interrupt . k ]
+[t T1 __interrupt ]
+"2881 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2881: extern volatile __bit TMR0IF __attribute__((address(0x5A)));
+[v _TMR0IF `Vb ~T0 @X0 0 e@90 ]
+"532
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 532: extern volatile unsigned char PIR1 __attribute__((address(0x00C)));
+[v _PIR1 `Vuc ~T0 @X0 0 e@12 ]
+"2890
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2890: extern volatile __bit TMR1IF __attribute__((address(0x60)));
+[v _TMR1IF `Vb ~T0 @X0 0 e@96 ]
+"2899
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2899: extern volatile __bit TMR2IF __attribute__((address(0x61)));
+[v _TMR2IF `Vb ~T0 @X0 0 e@97 ]
 [v F929 `(v ~T0 @X0 0 tf ]
-[v F931 `(v ~T0 @X0 0 t? ]
-[v F933 `(v ~T0 @X0 0 t? ]
-[v F938 `(v ~T0 @X0 0 tf ]
-[v F940 `(v ~T0 @X0 0 tf ]
-[v F948 `(v ~T0 @X0 0 tf ]
+[v F931 `(v ~T0 @X0 0 tf ]
+[v F934 `(v ~T0 @X0 0 tf ]
+[v F936 `(v ~T0 @X0 0 tf ]
+[v F939 `(v ~T0 @X0 0 tf ]
+[v F941 `(v ~T0 @X0 0 tf ]
+"2845
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2845: extern volatile __bit T0CS __attribute__((address(0x40D)));
+[v _T0CS `Vb ~T0 @X0 0 e@1037 ]
+"2644
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2644: extern volatile __bit PSA __attribute__((address(0x40B)));
+[v _PSA `Vb ~T0 @X0 0 e@1035 ]
+"2635
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2635: extern volatile __bit PS0 __attribute__((address(0x408)));
+[v _PS0 `Vb ~T0 @X0 0 e@1032 ]
+"2638
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2638: extern volatile __bit PS1 __attribute__((address(0x409)));
+[v _PS1 `Vb ~T0 @X0 0 e@1033 ]
+"2641
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2641: extern volatile __bit PS2 __attribute__((address(0x40A)));
+[v _PS2 `Vb ~T0 @X0 0 e@1034 ]
+"2629
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2629: extern volatile __bit PEIE __attribute__((address(0x5E)));
+[v _PEIE `Vb ~T0 @X0 0 e@94 ]
+"2569
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2569: extern volatile __bit GIE __attribute__((address(0x5F)));
+[v _GIE `Vb ~T0 @X0 0 e@95 ]
+"2878
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2878: extern volatile __bit TMR0IE __attribute__((address(0x5D)));
+[v _TMR0IE `Vb ~T0 @X0 0 e@93 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -203,263 +226,281 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2363
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2363: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"17 scheduler.c
-[; ;scheduler.c: 17: sTask sch_tasks[3];
-[v _sch_tasks `S95 ~T0 @X0 -> 3 `i e ]
+"17 timer.c
+[; ;timer.c: 17: void(*timer0_isr)(void);
+[v _timer0_isr `*F922 ~T0 @X0 1 e ]
+"18
+[; ;timer.c: 18: void(*timer1_isr)(void);
+[v _timer1_isr `*F924 ~T0 @X0 1 e ]
 "19
-[; ;scheduler.c: 19: void sch_vid_init(void) {
-[v _sch_vid_init `(v ~T0 @X0 1 ef ]
-{
-[e :U _sch_vid_init ]
-[f ]
-"20
-[; ;scheduler.c: 20:     u8 i;
-[v _i `uc ~T0 @X0 1 a ]
+[; ;timer.c: 19: void(*timer2_isr)(void);
+[v _timer2_isr `*F926 ~T0 @X0 1 e ]
+[v $root$_timer_isr `(v ~T0 @X0 0 e ]
 "21
-[; ;scheduler.c: 21:     for (i = 0; i < 3; i++) {
+[; ;timer.c: 21: void __attribute__((picinterrupt(("")))) timer_isr() {
+[v _timer_isr `(v ~T1 @X0 1 ef ]
 {
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 3 `i 97  ]
-[e $U 98  ]
-[e :U 97 ]
-{
+[e :U _timer_isr ]
+[f ]
 "22
-[; ;scheduler.c: 22:         sch_vid_delete_task(i);
-[e ( _sch_vid_delete_task (1 _i ]
+[; ;timer.c: 22:     if (TMR0IF == 1) {
+[e $ ! == -> _TMR0IF `i -> 1 `i 97  ]
+{
 "23
-[; ;scheduler.c: 23:     }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 3 `i 97  ]
-[e :U 98 ]
-}
+[; ;timer.c: 23:         TMR0IF = 0;
+[e = _TMR0IF -> -> 0 `i `b ]
 "24
-[; ;scheduler.c: 24:     timer_vid_set_isr_0(sch_update);
-[e ( _timer_vid_set_isr_0 (1 &U _sch_update ]
+[; ;timer.c: 24:         timer0_isr();
+[e ( *U _timer0_isr ..  ]
 "25
-[; ;scheduler.c: 25:     timer_vid_init_0(8, 1);
-[e ( _timer_vid_init_0 (2 , -> -> 8 `i `us -> -> 1 `i `uc ]
+[; ;timer.c: 25:     }
+}
+[e :U 97 ]
+"26
+[; ;timer.c: 26:     if (((PIR1>>TMR1IF)&1) == 1) {
+[e $ ! == & >> -> _PIR1 `i -> _TMR1IF `i -> 1 `i -> 1 `i 98  ]
+{
 "27
-[; ;scheduler.c: 27: }
+[; ;timer.c: 27:         PIR1&=~(1<<TMR1IF);
+[e =& _PIR1 -> ~ << -> 1 `i -> _TMR1IF `i `Vuc ]
+"28
+[; ;timer.c: 28:         timer1_isr();
+[e ( *U _timer1_isr ..  ]
+"29
+[; ;timer.c: 29:     }
+}
+[e :U 98 ]
+"30
+[; ;timer.c: 30:     if (((PIR1>>TMR2IF)&1) == 1) {
+[e $ ! == & >> -> _PIR1 `i -> _TMR2IF `i -> 1 `i -> 1 `i 99  ]
+{
+"31
+[; ;timer.c: 31:         PIR1&=~(1<<TMR2IF);
+[e =& _PIR1 -> ~ << -> 1 `i -> _TMR2IF `i `Vuc ]
+"32
+[; ;timer.c: 32:         timer2_isr();
+[e ( *U _timer2_isr ..  ]
+"33
+[; ;timer.c: 33:     }
+}
+[e :U 99 ]
+"34
+[; ;timer.c: 34: }
 [e :UE 96 ]
 }
-"29
-[; ;scheduler.c: 29: void sch_update(void) {
-[v _sch_update `(v ~T0 @X0 1 ef ]
-{
-[e :U _sch_update ]
-[f ]
-"30
-[; ;scheduler.c: 30:     u8 index;
-[v _index `uc ~T0 @X0 1 a ]
-"31
-[; ;scheduler.c: 31:     for (index = 0; index < 3; index++) {
-{
-[e = _index -> -> 0 `i `uc ]
-[e $ < -> _index `i -> 3 `i 101  ]
-[e $U 102  ]
-[e :U 101 ]
-{
-"33
-[; ;scheduler.c: 33:         if (sch_tasks[index].taskFunction) {
-[e $ ! != . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> -> 0 `i `*F929 104  ]
-{
-"34
-[; ;scheduler.c: 34:             if (sch_tasks[index].delay == 0) {
-[e $ ! == . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 -> -> -> 0 `i `o `uo 105  ]
-{
 "36
-[; ;scheduler.c: 36:                 sch_tasks[index].runMe += 1;
-[e =+ . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 1 `i `o `uo ]
+[; ;timer.c: 36: void timer_vid_set_isr_0(void (*callback_function) (void)) {
+[v _timer_vid_set_isr_0 `(v ~T0 @X0 1 ef1`*F929 ]
+{
+[e :U _timer_vid_set_isr_0 ]
+[v _callback_function `*F931 ~T0 @X0 1 r1 ]
+[f ]
 "37
-[; ;scheduler.c: 37:                 if (sch_tasks[index].period) {
-[e $ ! != . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 -> -> -> 0 `i `o `uo 106  ]
-{
-"39
-[; ;scheduler.c: 39:                     sch_tasks[index].delay = sch_tasks[index].period;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 ]
-"40
-[; ;scheduler.c: 40:                 }
-}
-[e :U 106 ]
-"41
-[; ;scheduler.c: 41:             } else {
-}
-[e $U 107  ]
-[e :U 105 ]
-{
-"43
-[; ;scheduler.c: 43:                 sch_tasks[index].delay -= 1;
-[e =- . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 -> -> -> 1 `i `o `uo ]
-"44
-[; ;scheduler.c: 44:             }
-}
-[e :U 107 ]
-"45
-[; ;scheduler.c: 45:         }
-}
-[e :U 104 ]
-"46
-[; ;scheduler.c: 46:     }
-}
-[e ++ _index -> -> 1 `i `uc ]
-[e $ < -> _index `i -> 3 `i 101  ]
-[e :U 102 ]
-}
-"47
-[; ;scheduler.c: 47: }
+[; ;timer.c: 37:     timer0_isr = callback_function;
+[e = _timer0_isr _callback_function ]
+"38
+[; ;timer.c: 38: }
 [e :UE 100 ]
 }
-"49
-[; ;scheduler.c: 49: u8 sch_u8_add_task(void ( * taskFunction)(),
-[v _sch_u8_add_task `(uc ~T0 @X0 1 ef3`*F931`Cuo`Cuo ]
-"51
-[; ;scheduler.c: 51:         const u64 period) {
+"40
+[; ;timer.c: 40: void timer_vid_set_isr_1(void (*callback_function) (void)) {
+[v _timer_vid_set_isr_1 `(v ~T0 @X0 1 ef1`*F934 ]
 {
-[e :U _sch_u8_add_task ]
-"49
-[; ;scheduler.c: 49: u8 sch_u8_add_task(void ( * taskFunction)(),
-[v _taskFunction `*F933 ~T0 @X0 1 r1 ]
-"50
-[; ;scheduler.c: 50:         const u64 delay,
-[v _delay `Cuo ~T0 @X0 1 r2 ]
-"51
-[; ;scheduler.c: 51:         const u64 period) {
-[v _period `Cuo ~T0 @X0 1 r3 ]
+[e :U _timer_vid_set_isr_1 ]
+[v _callback_function `*F936 ~T0 @X0 1 r1 ]
 [f ]
-"52
-[; ;scheduler.c: 52:     u8 index = 0;
-[v _index `uc ~T0 @X0 1 a ]
-[e = _index -> -> 0 `i `uc ]
-"55
-[; ;scheduler.c: 55:     while ((sch_tasks[index].taskFunction != 0) && (index < 3)) {
-[e $U 109  ]
-[e :U 110 ]
+"41
+[; ;timer.c: 41:     timer1_isr = callback_function;
+[e = _timer1_isr _callback_function ]
+"42
+[; ;timer.c: 42: }
+[e :UE 101 ]
+}
+"44
+[; ;timer.c: 44: void timer_vid_set_isr_2(void (*callback_function) (void)) {
+[v _timer_vid_set_isr_2 `(v ~T0 @X0 1 ef1`*F939 ]
 {
-"56
-[; ;scheduler.c: 56:         index++;
-[e ++ _index -> -> 1 `i `uc ]
+[e :U _timer_vid_set_isr_2 ]
+[v _callback_function `*F941 ~T0 @X0 1 r1 ]
+[f ]
+"45
+[; ;timer.c: 45:     timer2_isr = callback_function;
+[e = _timer2_isr _callback_function ]
+"46
+[; ;timer.c: 46: }
+[e :UE 102 ]
+}
+"48
+[; ;timer.c: 48: void timer_vid_init_0(u16 prescaler, u8 interruptEnable) {
+[v _timer_vid_init_0 `(v ~T0 @X0 1 ef2`us`uc ]
+{
+[e :U _timer_vid_init_0 ]
+[v _prescaler `us ~T0 @X0 1 r1 ]
+[v _interruptEnable `uc ~T0 @X0 1 r2 ]
+[f ]
+"51
+[; ;timer.c: 51:     T0CS = 0;
+[e = _T0CS -> -> 0 `i `b ]
+"54
+[; ;timer.c: 54:     PSA = 0;
+[e = _PSA -> -> 0 `i `b ]
 "57
-[; ;scheduler.c: 57:     }
-}
-[e :U 109 ]
-"55
-[; ;scheduler.c: 55:     while ((sch_tasks[index].taskFunction != 0) && (index < 3)) {
-[e $ && != . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> -> 0 `i `*F938 < -> _index `i -> 3 `i 110  ]
-[e :U 111 ]
+[; ;timer.c: 57:     switch (prescaler) {
+[e $U 105  ]
+{
+"58
+[; ;timer.c: 58:         case 2:
+[e :U 106 ]
+"59
+[; ;timer.c: 59:             PS0 = 0;
+[e = _PS0 -> -> 0 `i `b ]
 "60
-[; ;scheduler.c: 60:     if (index == 3) {
-[e $ ! == -> _index `i -> 3 `i 112  ]
-{
+[; ;timer.c: 60:             PS1 = 0;
+[e = _PS1 -> -> 0 `i `b ]
+"61
+[; ;timer.c: 61:             PS2 = 0;
+[e = _PS2 -> -> 0 `i `b ]
 "62
-[; ;scheduler.c: 62:         return 3;
-[e ) -> -> 3 `i `uc ]
-[e $UE 108  ]
+[; ;timer.c: 62:             break;
+[e $U 104  ]
 "63
-[; ;scheduler.c: 63:     }
-}
-[e :U 112 ]
+[; ;timer.c: 63:         case 4:
+[e :U 107 ]
+"64
+[; ;timer.c: 64:             PS0 = 1;
+[e = _PS0 -> -> 1 `i `b ]
+"65
+[; ;timer.c: 65:             PS1 = 0;
+[e = _PS1 -> -> 0 `i `b ]
 "66
-[; ;scheduler.c: 66:     sch_tasks[index].taskFunction = taskFunction;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> _taskFunction `*F940 ]
+[; ;timer.c: 66:             PS2 = 0;
+[e = _PS2 -> -> 0 `i `b ]
 "67
-[; ;scheduler.c: 67:     sch_tasks[index].delay = delay;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 _delay ]
+[; ;timer.c: 67:             break;
+[e $U 104  ]
 "68
-[; ;scheduler.c: 68:     sch_tasks[index].period = period;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 _period ]
+[; ;timer.c: 68:         case 8:
+[e :U 108 ]
 "69
-[; ;scheduler.c: 69:     sch_tasks[index].runMe = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 0 `i `o `uo ]
+[; ;timer.c: 69:             PS0 = 0;
+[e = _PS0 -> -> 0 `i `b ]
 "70
-[; ;scheduler.c: 70:     return index;
-[e ) _index ]
-[e $UE 108  ]
+[; ;timer.c: 70:             PS1 = 1;
+[e = _PS1 -> -> 1 `i `b ]
 "71
-[; ;scheduler.c: 71: }
-[e :UE 108 ]
-}
+[; ;timer.c: 71:             PS2 = 0;
+[e = _PS2 -> -> 0 `i `b ]
+"72
+[; ;timer.c: 72:             break;
+[e $U 104  ]
 "73
-[; ;scheduler.c: 73: void sch_vid_dispatch_tasks(void) {
-[v _sch_vid_dispatch_tasks `(v ~T0 @X0 1 ef ]
-{
-[e :U _sch_vid_dispatch_tasks ]
-[f ]
+[; ;timer.c: 73:         case 16:
+[e :U 109 ]
 "74
-[; ;scheduler.c: 74:     u8 index;
-[v _index `uc ~T0 @X0 1 a ]
+[; ;timer.c: 74:             PS0 = 1;
+[e = _PS0 -> -> 1 `i `b ]
+"75
+[; ;timer.c: 75:             PS1 = 1;
+[e = _PS1 -> -> 1 `i `b ]
 "76
-[; ;scheduler.c: 76:     for (index = 0; index < 3; index++) {
-{
-[e = _index -> -> 0 `i `uc ]
-[e $ < -> _index `i -> 3 `i 114  ]
-[e $U 115  ]
-[e :U 114 ]
-{
+[; ;timer.c: 76:             PS2 = 0;
+[e = _PS2 -> -> 0 `i `b ]
 "77
-[; ;scheduler.c: 77:         if (sch_tasks[index].runMe > 0) {
-[e $ ! > . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 0 `i `o `uo 117  ]
-{
+[; ;timer.c: 77:             break;
+[e $U 104  ]
 "78
-[; ;scheduler.c: 78:             (*sch_tasks[index].taskFunction)();
-[e ( *U . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 ..  ]
+[; ;timer.c: 78:         case 32:
+[e :U 110 ]
 "79
-[; ;scheduler.c: 79:             sch_tasks[index].runMe -= 1;
-[e =- . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 1 `i `o `uo ]
+[; ;timer.c: 79:             PS0 = 0;
+[e = _PS0 -> -> 0 `i `b ]
+"80
+[; ;timer.c: 80:             PS1 = 0;
+[e = _PS1 -> -> 0 `i `b ]
+"81
+[; ;timer.c: 81:             PS2 = 1;
+[e = _PS2 -> -> 1 `i `b ]
 "82
-[; ;scheduler.c: 82:             if (sch_tasks[index].period == 0) {
-[e $ ! == . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 -> -> -> 0 `i `o `uo 118  ]
-{
+[; ;timer.c: 82:             break;
+[e $U 104  ]
 "83
-[; ;scheduler.c: 83:                 sch_vid_delete_task(index);
-[e ( _sch_vid_delete_task (1 _index ]
+[; ;timer.c: 83:         case 64:
+[e :U 111 ]
 "84
-[; ;scheduler.c: 84:             }
-}
-[e :U 118 ]
+[; ;timer.c: 84:             PS0 = 1;
+[e = _PS0 -> -> 1 `i `b ]
 "85
-[; ;scheduler.c: 85:         }
-}
-[e :U 117 ]
+[; ;timer.c: 85:             PS1 = 0;
+[e = _PS1 -> -> 0 `i `b ]
 "86
-[; ;scheduler.c: 86:     }
-}
-[e ++ _index -> -> 1 `i `uc ]
-[e $ < -> _index `i -> 3 `i 114  ]
-[e :U 115 ]
-}
+[; ;timer.c: 86:             PS2 = 1;
+[e = _PS2 -> -> 1 `i `b ]
 "87
-[; ;scheduler.c: 87: }
-[e :UE 113 ]
-}
+[; ;timer.c: 87:             break;
+[e $U 104  ]
+"88
+[; ;timer.c: 88:         case 128:
+[e :U 112 ]
 "89
-[; ;scheduler.c: 89: u8 sch_vid_delete_task(u8 index) {
-[v _sch_vid_delete_task `(uc ~T0 @X0 1 ef1`uc ]
-{
-[e :U _sch_vid_delete_task ]
-[v _index `uc ~T0 @X0 1 r1 ]
-[f ]
+[; ;timer.c: 89:             PS0 = 0;
+[e = _PS0 -> -> 0 `i `b ]
 "90
-[; ;scheduler.c: 90:     if (index < 3) {
-[e $ ! < -> _index `i -> 3 `i 120  ]
-{
+[; ;timer.c: 90:             PS1 = 1;
+[e = _PS1 -> -> 1 `i `b ]
 "91
-[; ;scheduler.c: 91:         sch_tasks[index].taskFunction = 0x0000;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 0 -> -> 0 `i `*F948 ]
+[; ;timer.c: 91:             PS2 = 1;
+[e = _PS2 -> -> 1 `i `b ]
 "92
-[; ;scheduler.c: 92:         sch_tasks[index].delay = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 1 -> -> -> 0 `i `o `uo ]
+[; ;timer.c: 92:             break;
+[e $U 104  ]
 "93
-[; ;scheduler.c: 93:         sch_tasks[index].period = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 2 -> -> -> 0 `i `o `uo ]
+[; ;timer.c: 93:         case 256:
+[e :U 113 ]
 "94
-[; ;scheduler.c: 94:         sch_tasks[index].runMe = 0;
-[e = . *U + &U _sch_tasks * -> _index `ux -> -> # *U &U _sch_tasks `ui `ux 3 -> -> -> 0 `i `o `uo ]
+[; ;timer.c: 94:             PS0 = 1;
+[e = _PS0 -> -> 1 `i `b ]
 "95
-[; ;scheduler.c: 95:     }
-}
-[e :U 120 ]
+[; ;timer.c: 95:             PS1 = 1;
+[e = _PS1 -> -> 1 `i `b ]
 "96
-[; ;scheduler.c: 96: }
-[e :UE 119 ]
+[; ;timer.c: 96:             PS2 = 1;
+[e = _PS2 -> -> 1 `i `b ]
+"97
+[; ;timer.c: 97:             break;
+[e $U 104  ]
+"98
+[; ;timer.c: 98:     }
+}
+[e $U 104  ]
+[e :U 105 ]
+[e [\ -> _prescaler `ui , $ -> -> 2 `i `ui 106
+ , $ -> -> 4 `i `ui 107
+ , $ -> -> 8 `i `ui 108
+ , $ -> -> 16 `i `ui 109
+ , $ -> -> 32 `i `ui 110
+ , $ -> -> 64 `i `ui 111
+ , $ -> -> 128 `i `ui 112
+ , $ -> -> 256 `i `ui 113
+ 104 ]
+[e :U 104 ]
+"100
+[; ;timer.c: 100:     if (interruptEnable) {
+[e $ ! != -> _interruptEnable `i -> 0 `i 114  ]
+{
+"102
+[; ;timer.c: 102:         PEIE = 1;
+[e = _PEIE -> -> 1 `i `b ]
+"105
+[; ;timer.c: 105:         GIE = 1;
+[e = _GIE -> -> 1 `i `b ]
+"108
+[; ;timer.c: 108:         TMR0IE = 1;
+[e = _TMR0IE -> -> 1 `i `b ]
+"109
+[; ;timer.c: 109:     }
+}
+[e :U 114 ]
+"110
+[; ;timer.c: 110: }
+[e :UE 103 ]
 }

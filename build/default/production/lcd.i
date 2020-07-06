@@ -1766,15 +1766,7 @@ enum {
  D,
     E
 };
-enum {
- OUTPUT=0,
- INPUT=1
-};
-enum {
- LOW = 0,
- HIGH = 1
- };
-
+# 29 "./dio.h"
 void dio_vid_set_port_direction (u8 portNumber, u8 direction);
 void dio_vid_set_port_value (u8 portNumber, u8 value);
 u8 dio_u8_read_port_value (u8 portNumber);
@@ -1817,11 +1809,11 @@ void lcd_vid_write_command (u8 command) {
 
 
 void lcd_vid_init(void) {
-    dio_vid_set_pin_direction(E,2,OUTPUT);
-    dio_vid_set_pin_direction(E,1,OUTPUT);
-    dio_vid_set_pin_value(E,1, LOW);
+    dio_vid_set_pin_direction(E,2,0x00);
+    dio_vid_set_pin_direction(E,1,0x00);
+    dio_vid_set_pin_value(E,1, 0x00);
     _delay((unsigned long)((20)*(8000000/4000.0)));
-        dio_vid_set_pin_value(E,1, HIGH);
+        dio_vid_set_pin_value(E,1, 0x01);
 
  lcd_vid_write_command(0x38);
  lcd_vid_write_command(0x08);

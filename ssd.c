@@ -72,7 +72,18 @@ void ssd_init(void) {
 void ssd_set_state (u8 state) {
     u8 ones = state % 10;
     u8 tens = state / 10;
-        while (1) {
+    if (dio_u8_read_pin_value(ENABLE_2_PORT, ENABLE_2_PIN)) {
+        dio_vid_set_pin_value(ENABLE_1_PORT, ENABLE_1_PIN, 1);
+        dio_vid_set_pin_value(ENABLE_2_PORT, ENABLE_2_PIN, 0);
+        dio_vid_set_port_value(D, ssd_get_number(tens));
+    }
+    else {
+        dio_vid_set_pin_value(ENABLE_1_PORT, ENABLE_1_PIN, 0);
+        dio_vid_set_pin_value(ENABLE_2_PORT, ENABLE_2_PIN, 1);
+        dio_vid_set_port_value(D, ssd_get_number(ones));
+
+    }
+        /*for (counter=0; counter<2; counter++) {
         dio_vid_set_port_value(SEVEN_SEGMENT_PORT, ssd_get_number(ones));
         dio_vid_set_pin_value(ENABLE_1_PORT, ENABLE_1_PIN, 0);
         __delay_ms(1);
@@ -81,5 +92,7 @@ void ssd_set_state (u8 state) {
         dio_vid_set_pin_value(ENABLE_2_PORT, ENABLE_2_PIN, 0);
         __delay_ms(1);
         dio_vid_set_pin_value(ENABLE_2_PORT, ENABLE_2_PIN, 1);
-    }
+                __delay_ms(1);
+
+    }*/
 }

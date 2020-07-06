@@ -7,8 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "scheduler.c" 2
-
-
+# 10 "scheduler.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -1722,7 +1721,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 3 "scheduler.c" 2
+# 10 "scheduler.c" 2
 
 # 1 "./types.h" 1
 # 10 "./types.h"
@@ -1736,10 +1735,10 @@ typedef unsigned long long int u64;
 typedef float f32;
 typedef double f64;
 typedef long double f96;
-# 4 "scheduler.c" 2
+# 11 "scheduler.c" 2
 
 # 1 "./macros.h" 1
-# 5 "scheduler.c" 2
+# 12 "scheduler.c" 2
 
 # 1 "./dio.h" 1
 # 11 "./dio.h"
@@ -1750,38 +1749,127 @@ enum {
  D,
     E
 };
-enum {
- OUTPUT=0,
- INPUT=1
-};
-enum {
- LOW = 0,
- HIGH = 1
- };
-
+# 29 "./dio.h"
 void dio_vid_set_port_direction (u8 portNumber, u8 direction);
 void dio_vid_set_port_value (u8 portNumber, u8 value);
 u8 dio_u8_read_port_value (u8 portNumber);
 u8 dio_u8_read_pin_value (u8 portNumber, u8 index);
 void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
 void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
-# 6 "scheduler.c" 2
+# 13 "scheduler.c" 2
+
+# 1 "./scheduler.h" 1
+# 15 "./scheduler.h"
+typedef struct data {
+
+    void (*taskFunction)(void);
+
+    u64 delay;
+
+    u64 period;
+
+    u64 runMe;
+} sTask;
+
+void sch_vid_dispatch_tasks(void);
+
+u8 sch_u8_add_task(void ( * pFunction)(),
+        const u64 DELAY,
+        const u64 PERIOD);
+void timerInit(void);
+void sch_vid_init(void);
+u8 sch_vid_delete_task(u8 index);
+void SCH_Report_Status(void);
+void SCH_Go_To_Sleep(void);
+void sch_update(void);
+# 14 "scheduler.c" 2
+
+# 1 "./timer.h" 1
+# 12 "./timer.h"
+void timer_vid_init_0(u16 prescaler, u8 interruptEnable);
+void timer_vid_set_isr_0(void (*callback_function) (void));
+void timer_vid_set_isr_1(void (*callback_function) (void));
+void timer_vid_set_isr_2(void (*callback_function) (void));
+# 15 "scheduler.c" 2
 
 
+sTask sch_tasks[3];
 
-void timerInit(void) {
+void sch_vid_init(void) {
+    u8 i;
+    for (i = 0; i < 3; i++) {
+        sch_vid_delete_task(i);
+    }
+    timer_vid_set_isr_0(sch_update);
+    timer_vid_init_0(8, 1);
+
+}
+
+void sch_update(void) {
+    u8 index;
+    for (index = 0; index < 3; index++) {
+
+        if (sch_tasks[index].taskFunction) {
+            if (sch_tasks[index].delay == 0) {
+
+                sch_tasks[index].runMe += 1;
+                if (sch_tasks[index].period) {
+
+                    sch_tasks[index].delay = sch_tasks[index].period;
+                }
+            } else {
+
+                sch_tasks[index].delay -= 1;
+            }
+        }
+    }
+}
+
+u8 sch_u8_add_task(void ( * taskFunction)(),
+        const u64 delay,
+        const u64 period) {
+    u8 index = 0;
 
 
-    TMR1IE = 1;
+    while ((sch_tasks[index].taskFunction != 0) && (index < 3)) {
+        index++;
+    }
 
 
-    PEIE = 1;
+    if (index == 3) {
+
+        return 3;
+    }
 
 
-    GIE = 1;
+    sch_tasks[index].taskFunction = taskFunction;
+    sch_tasks[index].delay = delay;
+    sch_tasks[index].period = period;
+    sch_tasks[index].runMe = 0;
+    return index;
+}
+
+void sch_vid_dispatch_tasks(void) {
+    u8 index;
+
+    for (index = 0; index < 3; index++) {
+        if (sch_tasks[index].runMe > 0) {
+            (*sch_tasks[index].taskFunction)();
+            sch_tasks[index].runMe -= 1;
 
 
-    TMR1ON = 1;
+            if (sch_tasks[index].period == 0) {
+                sch_vid_delete_task(index);
+            }
+        }
+    }
+}
 
-
+u8 sch_vid_delete_task(u8 index) {
+    if (index < 3) {
+        sch_tasks[index].taskFunction = 0x0000;
+        sch_tasks[index].delay = 0;
+        sch_tasks[index].period = 0;
+        sch_tasks[index].runMe = 0;
+    }
 }

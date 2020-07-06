@@ -1729,6 +1729,8 @@ extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
 # 8 "main.c" 2
 
+
+
 # 1 "./config.h" 1
 # 40 "./config.h"
 #pragma config FOSC = HS
@@ -1739,7 +1741,7 @@ extern __bank0 __bit __timeout;
 #pragma config CPD = OFF
 #pragma config WRT = OFF
 #pragma config CP = OFF
-# 9 "main.c" 2
+# 11 "main.c" 2
 
 # 1 "./types.h" 1
 # 10 "./types.h"
@@ -1753,10 +1755,10 @@ typedef unsigned long long int u64;
 typedef float f32;
 typedef double f64;
 typedef long double f96;
-# 10 "main.c" 2
+# 12 "main.c" 2
 
 # 1 "./macros.h" 1
-# 11 "main.c" 2
+# 13 "main.c" 2
 
 # 1 "./dio.h" 1
 # 11 "./dio.h"
@@ -1767,22 +1769,14 @@ enum {
  D,
     E
 };
-enum {
- OUTPUT=0,
- INPUT=1
-};
-enum {
- LOW = 0,
- HIGH = 1
- };
-
+# 29 "./dio.h"
 void dio_vid_set_port_direction (u8 portNumber, u8 direction);
 void dio_vid_set_port_value (u8 portNumber, u8 value);
 u8 dio_u8_read_port_value (u8 portNumber);
 u8 dio_u8_read_pin_value (u8 portNumber, u8 index);
 void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
 void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
-# 12 "main.c" 2
+# 14 "main.c" 2
 
 # 1 "./lcd.h" 1
 # 10 "./lcd.h"
@@ -1793,55 +1787,123 @@ void lcd_vid_write_string(u8 str[]);
 void lcd_vid_write_number(s32 number);
 void lcd_vid_set_position(u8 row, u8 col);
 void lcd_vid_clear_screan (void);
-# 13 "main.c" 2
+# 15 "main.c" 2
 
 # 1 "./ssd.h" 1
 # 14 "./ssd.h"
 u8 ssd_get_number(u8 number);
 void ssd_init(void);
 void ssd_set_state (u8 state);
-# 14 "main.c" 2
+# 16 "main.c" 2
 
 # 1 "./scheduler.h" 1
 # 15 "./scheduler.h"
+typedef struct data {
+
+    void (*taskFunction)(void);
+
+    u64 delay;
+
+    u64 period;
+
+    u64 runMe;
+} sTask;
+
+void sch_vid_dispatch_tasks(void);
+
+u8 sch_u8_add_task(void ( * pFunction)(),
+        const u64 DELAY,
+        const u64 PERIOD);
 void timerInit(void);
-# 15 "main.c" 2
+void sch_vid_init(void);
+u8 sch_vid_delete_task(u8 index);
+void SCH_Report_Status(void);
+void SCH_Go_To_Sleep(void);
+void sch_update(void);
+# 17 "main.c" 2
 
+# 1 "./timer.h" 1
+# 12 "./timer.h"
+void timer_vid_init_0(u16 prescaler, u8 interruptEnable);
+void timer_vid_set_isr_0(void (*callback_function) (void));
+void timer_vid_set_isr_1(void (*callback_function) (void));
+void timer_vid_set_isr_2(void (*callback_function) (void));
+# 18 "main.c" 2
 
+# 1 "./i2c.h" 1
+# 13 "./i2c.h"
+unsigned short I2C_Read(unsigned short ack);
+void I2C_Write(unsigned data);
+void I2C_End();
+void I2C_Begin();
+void i2c_vid_wait (void);
+void i2c_vid_init_master (u16 feq_k);
+# 19 "main.c" 2
 
+# 1 "./eeprom.h" 1
+# 11 "./eeprom.h"
+void eeprom_vid_write(u8 address, u8 data);
+u8 eeprom_u8_read (u8 address);
+# 20 "main.c" 2
 
-volatile u8 counter = 0;
+u16 counter = 0;
+volatile u8 setTemperature;
+volatile u8 buttonPressedFlag = 0;
 
-void __attribute__((picinterrupt(("")))) ISR(void) {
-    if (TMR1IF == 1)
-    {
-        TMR1IF = 0;
-        counter++;
-        if (counter == 15) {
-            counter = 0;
-            PORTB = ~PORTB;
-        }
-
-
-
-
-
-
+void test(void) {
+    counter++;
+    if (counter == 500) {
+        counter = 0;
+        PORTB = ~PORTB;
     }
 }
 
+void toggleB(void) {
+    PORTB = ~PORTB;
+}
+
+void showNumber25(void) {
+    ssd_set_state(setTemperature);
+}
+
+void checkButtons() {
+    if (dio_u8_read_pin_value(B, 3) == 0 && buttonPressedFlag == 0) {
+        buttonPressedFlag = 1;
+        if (setTemperature + 5 < 80) {
+            eeprom_vid_write(0, setTemperature + 5);
+            setTemperature += 5;
+        }
+    } else if (dio_u8_read_pin_value(B, 4) == 0 && buttonPressedFlag == 0) {
+        buttonPressedFlag = 1;
+        if (setTemperature - 5 > 30) {
+            eeprom_vid_write(0, setTemperature - 5);
+            setTemperature -= 5;
+
+        }
+    }
+    if (dio_u8_read_pin_value(B, 3) && dio_u8_read_pin_value(B, 4)) {
+        buttonPressedFlag = 0;
+    }
+
+
+
+}
+
 int main(void) {
+    ssd_init();
+    dio_vid_set_port_direction(B, 255);
+    setTemperature = eeprom_u8_read(0);
+    if (setTemperature < 35 || setTemperature > 75 || setTemperature % 5 != 0)
+        setTemperature = 60;
+    sch_vid_init();
+    sch_u8_add_task(checkButtons, 1, 1);
+    sch_u8_add_task(showNumber25, 10, 10);
 
-    dio_vid_set_port_direction(B, 0);
-    dio_vid_set_port_value(B, 0);
 
 
-    TMR1IE = 1;
+    while (1) {
+        sch_vid_dispatch_tasks();
+    }
 
-    PEIE = 1;
 
-    GIE = 1;
-
-    TMR1ON = 1;
-# 71 "main.c"
 }

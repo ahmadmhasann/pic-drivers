@@ -6,4 +6,7 @@ macros.h  \
 dio.h  \
 lcd.h  \
 ssd.h  \
-scheduler.h 
+scheduler.h  \
+timer.h  \
+i2c.h  \
+eeprom.h 
