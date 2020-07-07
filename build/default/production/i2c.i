@@ -1758,15 +1758,29 @@ void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
 void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
 # 13 "i2c.c" 2
 
+# 1 "./i2c.h" 1
+# 17 "./i2c.h"
+void i2c_vid_master_init(void);
+void i2c_vid_start(void);
+void i2c_vid_stop(void);
+void i2c_vid_restart(void);
+void i2c_vid_wait(void);
+void i2c_vid_ack(void);
+void i2c_vid_nack(void);
+u8 i2c_u8_master_write_slave_address_with_write_req(u8 address);
+u8 i2c_u8_master_write_slave_address_with_read_req(u8 address);
+u8 i2c_u8_master_write_byte(u8 data);
+u8 i2c_u8_master_read_byte();
+# 14 "i2c.c" 2
 
-void i2c_vid_init_master (u16 feq_k) {
+
+void i2c_vid_master_init(void) {
+
     dio_vid_set_pin_direction(C, 3, 0x01);
     dio_vid_set_pin_direction(C, 4, 0x01);
 
-    WCOL = 0;
-
-
-    SSPOV = 0;
+    SSPCON2 = 0x00;
+    SSPSTAT = 0x00;
 
 
     SSPEN = 1;
@@ -1776,49 +1790,85 @@ void i2c_vid_init_master (u16 feq_k) {
     SSPM2 = 0;
     SSPM1 = 0;
     SSPM0 = 0;
-    SSPCON2 = 0x00;
 
 
-    SSPADD = (8000000/(4*feq_k*100))-1;
-
-    SSPSTAT = 0x00;
-
+    SSPADD = ((8000000 / 4) / 9600) - 1;
 }
 
-void i2c_vid_wait (void) {
+void i2c_vid_start(void) {
+    i2c_vid_wait();
 
-    while ( (SSPSTAT & 0b00000100) || (SSPCON2 & 0b00011111));
+    SEN = 1;
 }
 
+void i2c_vid_stop(void) {
+    i2c_vid_wait();
 
-void I2C_Begin()
-{
-  i2c_vid_wait();
-  SEN = 1;
-}
-void I2C_End()
-{
-  i2c_vid_wait();
-  PEN = 1;
-}
-void I2C_Write(unsigned data)
-{
-  i2c_vid_wait();
-  SSPBUF = data;
+    PEN = 1;
 }
 
-unsigned short I2C_Read(unsigned short ack)
-{
-  unsigned short incoming;
-  i2c_vid_wait();
-  RCEN = 1;
+void i2c_vid_restart(void) {
+    i2c_vid_wait();
 
-  i2c_vid_wait();
-  incoming = SSPBUF;
+    RSEN = 1;
+}
 
-  i2c_vid_wait();
-  ACKDT = (ack)?0:1;
-  ACKEN = 1;
+void i2c_vid_wait(void) {
+    while ((SSPSTAT & 0x04) || (SSPCON2 & 0x1F));
+}
 
-  return incoming;
+void i2c_vid_ack(void) {
+    ACKDT = 0;
+    i2c_vid_wait();
+    ACKEN = 1;
+}
+
+void i2c_vid_nack(void) {
+    ACKDT = 1;
+    i2c_vid_wait();
+    ACKEN = 1;
+}
+
+u8 i2c_u8_master_write_slave_address_with_write_req(u8 address) {
+    i2c_vid_wait();
+
+    SSPBUF = (address << 1);
+
+    while(!SSPIF);
+
+    SSPIF = 0;
+    return ACKSTAT;
+}
+
+u8 i2c_u8_master_write_slave_address_with_read_req(u8 address) {
+    i2c_vid_wait();
+
+    SSPBUF = ( (address << 1) | 1);
+
+    while(!SSPIF);
+
+    SSPIF = 0;
+    return ACKSTAT;
+}
+
+u8 i2c_u8_master_write_byte(u8 data) {
+    i2c_vid_wait();
+    SSPBUF = data;
+
+    while(!SSPIF);
+
+    SSPIF = 0;
+    return ACKSTAT;
+}
+
+u8 i2c_u8_master_read_byte() {
+    i2c_vid_wait();
+
+    RCEN = 1;
+
+    while(!SSPIF);
+
+    SSPIF = 0;
+    i2c_vid_wait();
+    return SSPBUF;
 }

@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F877A ]
 [d frameptr 0 ]
-"42 G:\MPLABXProjects\pic_test.X\main.c
+"43 G:\MPLABXProjects\pic_test.X\main.c
 [e E860 . `uc
 A 0
 B 1
@@ -27,7 +27,7 @@ C 2
 D 3
 E 4
 ]
-"16 G:\MPLABXProjects\pic_test.X\i2c.c
+"18 G:\MPLABXProjects\pic_test.X\i2c.c
 [e E860 . `uc
 A 0
 B 1
@@ -49,8 +49,6 @@ E 4
 [v ___llmod __llmod `(ul  1 e 4 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul16.c
-[v ___wmul __wmul `(ui  1 e 2 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul8.c
@@ -74,21 +72,39 @@ E 4
 [v _dio_vid_set_pin_value dio_vid_set_pin_value `(v  1 e 1 0 ]
 "116
 [v _dio_vid_set_pin_direction dio_vid_set_pin_direction `(v  1 e 1 0 ]
-"9 G:\MPLABXProjects\pic_test.X\eeprom.c
-[v _eeprom_vid_write eeprom_vid_write `(v  1 e 1 0 ]
-"28
-[v _eeprom_u8_read eeprom_u8_read `(uc  1 e 1 0 ]
-"41 G:\MPLABXProjects\pic_test.X\i2c.c
+"11 G:\MPLABXProjects\pic_test.X\eeprom_external.c
+[v _eeprom_external_vid_write eeprom_external_vid_write `(v  1 e 1 0 ]
+"20
+[v _eeprom_external_vid_read eeprom_external_vid_read `(uc  1 e 1 0 ]
+"16 G:\MPLABXProjects\pic_test.X\i2c.c
+[v _i2c_vid_master_init i2c_vid_master_init `(v  1 e 1 0 ]
+"37
+[v _i2c_vid_start i2c_vid_start `(v  1 e 1 0 ]
+"43
+[v _i2c_vid_stop i2c_vid_stop `(v  1 e 1 0 ]
+"49
+[v _i2c_vid_restart i2c_vid_restart `(v  1 e 1 0 ]
+"55
 [v _i2c_vid_wait i2c_vid_wait `(v  1 e 1 0 ]
+"65
+[v _i2c_vid_nack i2c_vid_nack `(v  1 e 1 0 ]
+"71
+[v _i2c_u8_master_write_slave_address_with_write_req i2c_u8_master_write_slave_address_with_write_req `(uc  1 e 1 0 ]
+"82
+[v _i2c_u8_master_write_slave_address_with_read_req i2c_u8_master_write_slave_address_with_read_req `(uc  1 e 1 0 ]
+"93
+[v _i2c_u8_master_write_byte i2c_u8_master_write_byte `(uc  1 e 1 0 ]
+"103
+[v _i2c_u8_master_read_byte i2c_u8_master_read_byte `(uc  1 e 1 0 ]
 "24 G:\MPLABXProjects\pic_test.X\lcd.c
 [v _lcd_vid_write_charachter lcd_vid_write_charachter `(v  1 e 1 0 ]
 "55
 [v _lcd_vid_write_command lcd_vid_write_command `(v  1 e 1 0 ]
-"37 G:\MPLABXProjects\pic_test.X\main.c
+"38 G:\MPLABXProjects\pic_test.X\main.c
 [v _showNumber25 showNumber25 `(v  1 e 1 0 ]
-"41
+"42
 [v _checkButtons checkButtons `(v  1 e 1 0 ]
-"64
+"61
 [v _main main `(i  1 e 2 0 ]
 "19 G:\MPLABXProjects\pic_test.X\scheduler.c
 [v _sch_vid_init sch_vid_init `(v  1 e 1 0 ]
@@ -152,6 +168,8 @@ E 4
 [v _ACKDT ACKDT `VEb  1 e 0 @1165 ]
 "2377
 [v _ACKEN ACKEN `VEb  1 e 0 @1164 ]
+"2380
+[v _ACKSTAT ACKSTAT `VEb  1 e 0 @1166 ]
 "2569
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "2629
@@ -170,10 +188,14 @@ E 4
 [v _RCEN RCEN `VEb  1 e 0 @1163 ]
 "2746
 [v _RD RD `VEb  1 e 0 @3168 ]
+"2791
+[v _RSEN RSEN `VEb  1 e 0 @1161 ]
 "2806
 [v _SEN SEN `VEb  1 e 0 @1160 ]
 "2818
 [v _SSPEN SSPEN `VEb  1 e 0 @165 ]
+"2824
+[v _SSPIF SSPIF `VEb  1 e 0 @99 ]
 "2827
 [v _SSPM0 SSPM0 `VEb  1 e 0 @160 ]
 "2830
@@ -182,8 +204,6 @@ E 4
 [v _SSPM2 SSPM2 `VEb  1 e 0 @162 ]
 "2836
 [v _SSPM3 SSPM3 `VEb  1 e 0 @163 ]
-"2839
-[v _SSPOV SSPOV `VEb  1 e 0 @166 ]
 "2845
 [v _T0CS T0CS `VEb  1 e 0 @1037 ]
 "2878
@@ -194,31 +214,29 @@ E 4
 [v _TMR1IF TMR1IF `VEb  1 e 0 @96 ]
 "2899
 [v _TMR2IF TMR2IF `VEb  1 e 0 @97 ]
-"3043
-[v _WCOL WCOL `VEb  1 e 0 @167 ]
 "3046
 [v _WR WR `VEb  1 e 0 @3169 ]
 "3049
 [v _WREN WREN `VEb  1 e 0 @3170 ]
-"21 G:\MPLABXProjects\pic_test.X\main.c
+"22 G:\MPLABXProjects\pic_test.X\main.c
 [v _counter counter `us  1 e 2 0 ]
-"22
-[v _setTemperature setTemperature `VEuc  1 e 1 0 ]
 "23
+[v _setTemperature setTemperature `VEuc  1 e 1 0 ]
+"24
 [v _buttonPressedFlag buttonPressedFlag `VEuc  1 e 1 0 ]
-[s S176 data 13 `*.27(v 1 taskFunction 1 0 `ul 1 delay 4 1 `ul 1 period 4 5 `ul 1 runMe 4 9 ]
+[s S180 data 13 `*.27(v 1 taskFunction 1 0 `ul 1 delay 4 1 `ul 1 period 4 5 `ul 1 runMe 4 9 ]
 "17 G:\MPLABXProjects\pic_test.X\scheduler.c
-[v _sch_tasks sch_tasks `[3]S176  1 e 39 0 ]
+[v _sch_tasks sch_tasks `[3]S180  1 e 39 0 ]
 "17 G:\MPLABXProjects\pic_test.X\timer.c
 [v _timer0_isr timer0_isr `*.27(v  1 e 1 0 ]
 "18
 [v _timer1_isr timer1_isr `*.27(v  1 e 1 0 ]
 "19
 [v _timer2_isr timer2_isr `*.27(v  1 e 1 0 ]
-"64 G:\MPLABXProjects\pic_test.X\main.c
+"61 G:\MPLABXProjects\pic_test.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"81
+"79
 } 0
 "66 G:\MPLABXProjects\pic_test.X\ssd.c
 [v _ssd_init ssd_init `(v  1 e 1 0 ]
@@ -233,16 +251,6 @@ E 4
 [v dio_vid_set_port_direction@direction direction `uc  1 p 1 6 ]
 [v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 9 ]
 "30
-} 0
-"116
-[v _dio_vid_set_pin_direction dio_vid_set_pin_direction `(v  1 e 1 0 ]
-{
-[v dio_vid_set_pin_direction@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_pin_direction@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_pin_direction@index index `uc  1 p 1 6 ]
-[v dio_vid_set_pin_direction@direction direction `uc  1 p 1 7 ]
-[v dio_vid_set_pin_direction@portNumber portNumber `uc  1 a 1 10 ]
-"149
 } 0
 "19 G:\MPLABXProjects\pic_test.X\scheduler.c
 [v _sch_vid_init sch_vid_init `(v  1 e 1 0 ]
@@ -273,15 +281,15 @@ E 4
 [v sch_vid_dispatch_tasks@index index `uc  1 a 1 26 ]
 "87
 } 0
-"41 G:\MPLABXProjects\pic_test.X\main.c
+"42 G:\MPLABXProjects\pic_test.X\main.c
 [v _checkButtons checkButtons `(v  1 e 1 0 ]
 {
-"62
+"59
 } 0
-"37
+"38
 [v _showNumber25 showNumber25 `(v  1 e 1 0 ]
 {
-"39
+"40
 } 0
 "72 G:\MPLABXProjects\pic_test.X\ssd.c
 [v _ssd_set_state ssd_set_state `(v  1 e 1 0 ]
@@ -355,17 +363,14 @@ E 4
 [v sch_vid_delete_task@index index `uc  1 a 1 11 ]
 "96
 } 0
-"9 G:\MPLABXProjects\pic_test.X\eeprom.c
-[v _eeprom_vid_write eeprom_vid_write `(v  1 e 1 0 ]
+"11 G:\MPLABXProjects\pic_test.X\eeprom_external.c
+[v _eeprom_external_vid_write eeprom_external_vid_write `(v  1 e 1 0 ]
 {
-[v eeprom_vid_write@address address `uc  1 a 1 wreg ]
-"11
-[v eeprom_vid_write@gie_Status gie_Status `uc  1 a 1 8 ]
-"9
-[v eeprom_vid_write@address address `uc  1 a 1 wreg ]
-[v eeprom_vid_write@data data `uc  1 p 1 6 ]
-[v eeprom_vid_write@address address `uc  1 a 1 7 ]
-"25
+[v eeprom_external_vid_write@address address `uc  1 a 1 wreg ]
+[v eeprom_external_vid_write@address address `uc  1 a 1 wreg ]
+[v eeprom_external_vid_write@data data `uc  1 p 1 8 ]
+[v eeprom_external_vid_write@address address `uc  1 a 1 9 ]
+"19
 } 0
 "75 G:\MPLABXProjects\pic_test.X\dio.c
 [v _dio_u8_read_pin_value dio_u8_read_pin_value `(uc  1 e 1 0 ]
@@ -415,13 +420,86 @@ E 4
 [v ___bmul@multiplier multiplier `uc  1 a 1 9 ]
 "51
 } 0
-"28 G:\MPLABXProjects\pic_test.X\eeprom.c
-[v _eeprom_u8_read eeprom_u8_read `(uc  1 e 1 0 ]
+"16 G:\MPLABXProjects\pic_test.X\i2c.c
+[v _i2c_vid_master_init i2c_vid_master_init `(v  1 e 1 0 ]
 {
-[v eeprom_u8_read@address address `uc  1 a 1 wreg ]
-[v eeprom_u8_read@address address `uc  1 a 1 wreg ]
-[v eeprom_u8_read@address address `uc  1 a 1 6 ]
 "35
+} 0
+"116 G:\MPLABXProjects\pic_test.X\dio.c
+[v _dio_vid_set_pin_direction dio_vid_set_pin_direction `(v  1 e 1 0 ]
+{
+[v dio_vid_set_pin_direction@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_pin_direction@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_pin_direction@index index `uc  1 p 1 6 ]
+[v dio_vid_set_pin_direction@direction direction `uc  1 p 1 7 ]
+[v dio_vid_set_pin_direction@portNumber portNumber `uc  1 a 1 10 ]
+"149
+} 0
+"20 G:\MPLABXProjects\pic_test.X\eeprom_external.c
+[v _eeprom_external_vid_read eeprom_external_vid_read `(uc  1 e 1 0 ]
+{
+[v eeprom_external_vid_read@address address `uc  1 a 1 wreg ]
+"21
+[v eeprom_external_vid_read@data data `uc  1 a 1 10 ]
+"20
+[v eeprom_external_vid_read@address address `uc  1 a 1 wreg ]
+"22
+[v eeprom_external_vid_read@address address `uc  1 a 1 9 ]
+"33
+} 0
+"43 G:\MPLABXProjects\pic_test.X\i2c.c
+[v _i2c_vid_stop i2c_vid_stop `(v  1 e 1 0 ]
+{
+"47
+} 0
+"37
+[v _i2c_vid_start i2c_vid_start `(v  1 e 1 0 ]
+{
+"41
+} 0
+"49
+[v _i2c_vid_restart i2c_vid_restart `(v  1 e 1 0 ]
+{
+"53
+} 0
+"65
+[v _i2c_vid_nack i2c_vid_nack `(v  1 e 1 0 ]
+{
+"69
+} 0
+"71
+[v _i2c_u8_master_write_slave_address_with_write_req i2c_u8_master_write_slave_address_with_write_req `(uc  1 e 1 0 ]
+{
+[v i2c_u8_master_write_slave_address_with_write_req@address address `uc  1 a 1 wreg ]
+[v i2c_u8_master_write_slave_address_with_write_req@address address `uc  1 a 1 wreg ]
+[v i2c_u8_master_write_slave_address_with_write_req@address address `uc  1 a 1 7 ]
+"80
+} 0
+"82
+[v _i2c_u8_master_write_slave_address_with_read_req i2c_u8_master_write_slave_address_with_read_req `(uc  1 e 1 0 ]
+{
+[v i2c_u8_master_write_slave_address_with_read_req@address address `uc  1 a 1 wreg ]
+[v i2c_u8_master_write_slave_address_with_read_req@address address `uc  1 a 1 wreg ]
+[v i2c_u8_master_write_slave_address_with_read_req@address address `uc  1 a 1 6 ]
+"91
+} 0
+"93
+[v _i2c_u8_master_write_byte i2c_u8_master_write_byte `(uc  1 e 1 0 ]
+{
+[v i2c_u8_master_write_byte@data data `uc  1 a 1 wreg ]
+[v i2c_u8_master_write_byte@data data `uc  1 a 1 wreg ]
+[v i2c_u8_master_write_byte@data data `uc  1 a 1 6 ]
+"101
+} 0
+"103
+[v _i2c_u8_master_read_byte i2c_u8_master_read_byte `(uc  1 e 1 0 ]
+{
+"113
+} 0
+"55
+[v _i2c_vid_wait i2c_vid_wait `(v  1 e 1 0 ]
+{
+"57
 } 0
 "21 G:\MPLABXProjects\pic_test.X\timer.c
 [v _timer_isr timer_isr `II(v  1 e 1 0 ]

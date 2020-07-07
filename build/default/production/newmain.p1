@@ -1,0 +1,38 @@
+Version 4.0 HI-TECH Software Intermediate Code
+[p mainexit ]
+"4 newmain.c
+[; ;newmain.c: 4: struct myStruct {
+[s S2 `uc 1 `uc 1 `i 1 `f 1 ]
+[n S2 myStruct s1 s2 s3 s4 ]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"11 newmain.c
+[; ;newmain.c: 11: int main() {
+[v _main `(i ~T0 @X0 1 ef ]
+{
+[e :U _main ]
+[f ]
+[v F65 `S2 ~T0 @X0 1 s ]
+[i F65
+:U ..
+:U ..
+"12
+[; ;newmain.c: 12:  struct myStruct data = {1,2,3,4};
+-> -> 1 `i `uc
+-> -> 2 `i `uc
+-> 3 `i
+-> -> 4 `i `f
+..
+..
+]
+[v _data `S2 ~T0 @X0 1 a ]
+[e = _data F65 ]
+"13
+[; ;newmain.c: 13:  char x;
+[v _x `uc ~T0 @X0 1 a ]
+"24
+[; ;newmain.c: 24:  int arr[sizeof(data)];
+[v _arr `i ~T0 @X0 -> 8 `i a ]
+"26
+[; ;newmain.c: 26: }
+[e :UE 3 ]
+}

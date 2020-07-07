@@ -86,11 +86,11 @@ void lcd_vid_write_command (u8 command) {
 
 
 void lcd_vid_init(void) {
-    dio_vid_set_pin_direction(LCD_ControlPort,RS,PIN_OUTPUT);
-    dio_vid_set_pin_direction(LCD_ControlPort,LCD_E,PIN_OUTPUT);
-    dio_vid_set_pin_value(LCD_ControlPort,LCD_E, PIN_LOW);
+    dio_vid_set_pin_direction(LCD_ControlPort,RS,OUTPUT_PIN);
+    dio_vid_set_pin_direction(LCD_ControlPort,LCD_E,OUTPUT_PIN);
+    dio_vid_set_pin_value(LCD_ControlPort,LCD_E, LOW_PIN);
     __delay_ms(20);
-        dio_vid_set_pin_value(LCD_ControlPort,LCD_E, PIN_HIGH);
+        dio_vid_set_pin_value(LCD_ControlPort,LCD_E, HIGH_PIN);
         
 	lcd_vid_write_command(L_CFG); //configura
 	lcd_vid_write_command(L_OFF);

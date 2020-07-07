@@ -9,4 +9,5 @@ ssd.h  \
 scheduler.h  \
 timer.h  \
 i2c.h  \
-eeprom.h 
+eeprom.h  \
+eeprom_external.h 

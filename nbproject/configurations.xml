@@ -15,6 +15,7 @@
       <itemPath>timer.h</itemPath>
       <itemPath>i2c.h</itemPath>
       <itemPath>eeprom.h</itemPath>
+      <itemPath>eeprom_external.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -31,6 +32,7 @@
       <itemPath>timer.c</itemPath>
       <itemPath>i2c.c</itemPath>
       <itemPath>eeprom.c</itemPath>
+      <itemPath>eeprom_external.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

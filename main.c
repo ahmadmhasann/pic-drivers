@@ -18,6 +18,7 @@
 #include "timer.h"
 #include "i2c.h"
 #include "eeprom.h"
+#include "eeprom_external.h"
 u16 counter = 0;
 volatile u8 setTemperature;
 volatile u8 buttonPressedFlag = 0;
@@ -42,29 +43,26 @@ void checkButtons() {
     if (dio_u8_read_pin_value(B, 3) == 0 && buttonPressedFlag == 0) {
         buttonPressedFlag = 1;
         if (setTemperature + 5 < 80) {
-            eeprom_vid_write(0, setTemperature + 5);
+            eeprom_external_vid_write(0, setTemperature + 5);
             setTemperature += 5;
         }
     } else if (dio_u8_read_pin_value(B, 4) == 0 && buttonPressedFlag == 0) {
         buttonPressedFlag = 1;
         if (setTemperature - 5 > 30) {
-            eeprom_vid_write(0, setTemperature - 5);
+            eeprom_external_vid_write(0, setTemperature - 5);
             setTemperature -= 5;
-
         }
     }
     if (dio_u8_read_pin_value(B, 3) && dio_u8_read_pin_value(B, 4)) {
         buttonPressedFlag = 0;
     }
-
-
-
 }
 
 int main(void) {
     ssd_init();
+    i2c_vid_master_init();
     dio_vid_set_port_direction(B, 255);
-    setTemperature = eeprom_u8_read(0);
+    setTemperature = eeprom_external_vid_read(0);
     if (setTemperature < 35 || setTemperature > 75 || setTemperature % 5 != 0)
         setTemperature = 60;
     sch_vid_init();
