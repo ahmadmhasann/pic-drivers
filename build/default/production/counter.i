@@ -1,4 +1,4 @@
-# 1 "ssd.c"
+# 1 "counter.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "ssd.c" 2
-# 10 "ssd.c"
+# 1 "counter.c" 2
+# 10 "counter.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -1721,7 +1721,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 27 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.10\\pic\\include\\xc.h" 2 3
-# 10 "ssd.c" 2
+# 10 "counter.c" 2
 
 # 1 "./config.h" 1
 # 21 "./config.h"
@@ -1733,7 +1733,7 @@ extern __bank0 __bit __timeout;
 #pragma config CPD = OFF
 #pragma config WRT = OFF
 #pragma config CP = OFF
-# 11 "ssd.c" 2
+# 11 "counter.c" 2
 
 # 1 "./types.h" 1
 # 10 "./types.h"
@@ -1747,10 +1747,10 @@ typedef unsigned long long int u64;
 typedef float f32;
 typedef double f64;
 typedef long double f96;
-# 12 "ssd.c" 2
+# 12 "counter.c" 2
 
 # 1 "./macros.h" 1
-# 13 "ssd.c" 2
+# 13 "counter.c" 2
 
 # 1 "./dio.h" 1
 # 10 "./dio.h"
@@ -1768,18 +1768,7 @@ u8 dio_u8_read_port_value (u8 portNumber);
 u8 dio_u8_read_pin_value (u8 portNumber, u8 index);
 void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
 void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
-# 14 "ssd.c" 2
-
-# 1 "./lcd.h" 1
-# 10 "./lcd.h"
-void lcd_vid_write_charachter (u8 data);
-void lcd_vid_write_command (u8 command);
-void lcd_vid_init(void);
-void lcd_vid_write_string(u8 str[]);
-void lcd_vid_write_number(s32 number);
-void lcd_vid_set_position(u8 row, u8 col);
-void lcd_vid_clear_screan (void);
-# 15 "ssd.c" 2
+# 14 "counter.c" 2
 
 # 1 "./ssd.h" 1
 # 30 "./ssd.h"
@@ -1790,101 +1779,56 @@ void ssd_vid_set_symbol(u8 symbol);
 u8 ssd_u8_get_state(void);
 void ssd_vid_set_state(u8 state);
 u8 ssd_u8_get_code(u8 number);
-# 16 "ssd.c" 2
+# 15 "counter.c" 2
 
-# 1 "./counter.h" 1
-# 12 "./counter.h"
-extern u8 buttonPressedFlag;
-extern u8 settingModeFlag;
-extern u16 settingModeSecondsCounter;
-void counter_vid_init(void);
-void counter_vid_update(void);
-# 17 "ssd.c" 2
-
-# 1 "./display.h" 1
-# 11 "./display.h"
-extern u8 displayFlag;
-void display_init (void);
-void display_update (void);
-
-void display_vid_blink (void);
-# 18 "ssd.c" 2
+# 1 "./eeprom_external.h" 1
+# 13 "./eeprom_external.h"
+void eeprom_external_vid_write(u8 address, u8 data);
+u8 eeprom_external_vid_read(u8 address);
+# 16 "counter.c" 2
 
 
 
-u16 ssdSymbol = 0;
-u8 ssdState = 1;
 
 
-void ssd_vid_init(void) {
-    dio_vid_set_port_direction(D, 0);
-    dio_vid_set_pin_direction(A, 2, 0);
-    dio_vid_set_pin_direction(A, 3, 0);
+u8 buttonPressedFlag = 0;
+u8 settingModeFlag = 0;
+u16 settingModeSecondsCounter = 0;
+u8 counter = 60;
+
+void counter_vid_init(void) {
+
+    dio_vid_set_pin_direction(B, 2, 0x01);
+    dio_vid_set_pin_direction(B, 1, 0x01);
+    counter = eeprom_external_vid_read(0);
+    if (counter < 35 || counter > 75 || counter % 5 != 0)
+        counter = 60;
+    ssd_vid_set_state(1);
+    ssd_vid_set_symbol(counter);
+
 }
 
-void ssd_vid_update() {
-    if (ssdState == 0) {
-
-        dio_vid_set_pin_value(A, 2, 0);
-        dio_vid_set_pin_value(A, 3, 0);
-        return;
+void counter_vid_update(void) {
+    if (dio_u8_read_pin_value(B, 2) == 0 && buttonPressedFlag == 0) {
+        settingModeFlag = 1;
+        settingModeSecondsCounter = 0;
+        buttonPressedFlag = 1;
+        if (counter + 5 < 80) {
+            eeprom_external_vid_write(0, counter + 5);
+            counter += 5;
+            ssd_vid_set_symbol(counter);
+        }
+    } else if (dio_u8_read_pin_value(B, 1) == 0 && buttonPressedFlag == 0) {
+        settingModeFlag = 1;
+        settingModeSecondsCounter = 0;
+        buttonPressedFlag = 1;
+        if (counter - 5 > 30) {
+            eeprom_external_vid_write(0, counter - 5);
+            counter -= 5;
+            ssd_vid_set_symbol(counter);
+        }
     }
-    u8 ones = ssdSymbol % 10;
-    u8 tens = ssdSymbol / 10;
+    if (dio_u8_read_pin_value(B, 2) && dio_u8_read_pin_value(B, 1))
+        buttonPressedFlag = 0;
 
-    if (dio_u8_read_pin_value(A, 3) == 1) {
-        dio_vid_set_pin_value(A, 3, 0);
-        dio_vid_set_pin_value(A, 2, 1);
-        dio_vid_set_port_value(D, ssd_u8_get_code(tens));
-    } else {
-        dio_vid_set_pin_value(A, 2, 0);
-        dio_vid_set_pin_value(A, 3, 1);
-        dio_vid_set_port_value(D, ssd_u8_get_code(ones));
-    }
-}
-
-u8 ssd_u8_get_symbol() {
-
-    return ssdSymbol;
-
-}
-
-void ssd_vid_set_symbol(u8 symbol) {
-    ssdSymbol = symbol;
-}
-
-u8 ssd_u8_get_state(void) {
-    return ssdState;
-}
-
-void ssd_vid_set_state(u8 state) {
-    ssdState = state;
-}
-
-
-u8 ssd_u8_get_code(u8 number) {
-    switch (number) {
-        case 0:
-            return 0x3F;
-        case 1:
-            return 0x06;
-        case 2:
-            return 0x5B;
-        case 3:
-            return 0x4F;
-        case 4:
-            return 0x66;
-        case 5:
-            return 0x6D;
-        case 6:
-            return 0x7D;
-        case 7:
-            return 0x07;
-        case 8:
-            return 0x7F;
-        case 9:
-            return 0x6F;
-        default:
-            return 0;
-    }
 }

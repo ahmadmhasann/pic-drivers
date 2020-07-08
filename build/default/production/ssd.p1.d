@@ -5,4 +5,6 @@ types.h  \
 macros.h  \
 dio.h  \
 lcd.h  \
-ssd.h 
+ssd.h  \
+counter.h  \
+display.h 

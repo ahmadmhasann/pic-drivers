@@ -19,39 +19,17 @@
 #include "i2c.h"
 #include "eeprom.h"
 #include "eeprom_external.h"
-volatile u8 buttonPressedFlag = 0;
-
-
-
-void checkButtons() {
-    if (dio_u8_read_pin_value(B, 3) == 0 && buttonPressedFlag == 0) {
-        buttonPressedFlag = 1;
-        if (ssdNumber + 5 < 80) {
-            eeprom_external_vid_write(0, ssdNumber + 5);
-            ssdNumber += 5;
-        }
-    } else if (dio_u8_read_pin_value(B, 4) == 0 && buttonPressedFlag == 0) {
-        buttonPressedFlag = 1;
-        if (ssdNumber - 5 > 30) {
-            eeprom_external_vid_write(0, ssdNumber - 5);
-            ssdNumber -= 5;
-        }
-    }
-    if (dio_u8_read_pin_value(B, 3) && dio_u8_read_pin_value(B, 4)) {
-        buttonPressedFlag = 0;
-    }
-}
+#include "counter.h"
+#include "display.h"
 
 int main(void) {
-    ssd_vid_2_digits_init();
+    ssd_vid_init();
     i2c_vid_master_init();
-    dio_vid_set_port_direction(B, 255);
-    ssdNumber = eeprom_external_vid_read(0);
-    if (ssdNumber < 35 || ssdNumber > 75 || ssdNumber % 5 != 0)
-        ssdNumber = 60;
+    counter_vid_init();
     sch_vid_init();
-    sch_u8_add_task(checkButtons, 1, 1);
-    sch_u8_add_task(ssd_vid_2_digits_update, 5, 5);
+    sch_u8_add_task(counter_vid_update, 20, 20);
+    sch_u8_add_task(display_vid_blink, 0, 1000);
+    sch_u8_add_task(ssd_vid_update, 5, 5);
 
     while (1) {
         sch_vid_dispatch_tasks();

@@ -10,4 +10,6 @@ scheduler.h  \
 timer.h  \
 i2c.h  \
 eeprom.h  \
-eeprom_external.h 
+eeprom_external.h  \
+counter.h  \
+display.h 

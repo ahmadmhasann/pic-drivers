@@ -1791,14 +1791,13 @@ void lcd_vid_clear_screan (void);
 
 # 1 "./ssd.h" 1
 # 30 "./ssd.h"
-extern u16 ssdNumber;
-
-void ssd_vid_2_digits_init(void);
-void ssd_vid_2_digits_update();
-u8 ssd_u8_get_symbol(u8 number);
-void ssd_vid_set_symbol(u8 ssdNumber, u8 symbol);
-u8 ssd_u8_get_state(u8 ssdNumber);
-void ssd_vid_set_state(u8 ssdNumber, u8 state);
+void ssd_vid_init(void);
+void ssd_vid_update();
+u8 ssd_u8_get_symbol();
+void ssd_vid_set_symbol(u8 symbol);
+u8 ssd_u8_get_state(void);
+void ssd_vid_set_state(u8 state);
+u8 ssd_u8_get_code(u8 number);
 # 16 "main.c" 2
 
 # 1 "./scheduler.h" 1
@@ -1862,39 +1861,33 @@ void eeprom_external_vid_write(u8 address, u8 data);
 u8 eeprom_external_vid_read(u8 address);
 # 21 "main.c" 2
 
-volatile u8 buttonPressedFlag = 0;
+# 1 "./counter.h" 1
+# 12 "./counter.h"
+extern u8 buttonPressedFlag;
+extern u8 settingModeFlag;
+extern u16 settingModeSecondsCounter;
+void counter_vid_init(void);
+void counter_vid_update(void);
+# 22 "main.c" 2
 
+# 1 "./display.h" 1
+# 11 "./display.h"
+extern u8 displayFlag;
+void display_init (void);
+void display_update (void);
 
+void display_vid_blink (void);
+# 23 "main.c" 2
 
-void checkButtons() {
-    if (dio_u8_read_pin_value(B, 3) == 0 && buttonPressedFlag == 0) {
-        buttonPressedFlag = 1;
-        if (ssdNumber + 5 < 80) {
-            eeprom_external_vid_write(0, ssdNumber + 5);
-            ssdNumber += 5;
-        }
-    } else if (dio_u8_read_pin_value(B, 4) == 0 && buttonPressedFlag == 0) {
-        buttonPressedFlag = 1;
-        if (ssdNumber - 5 > 30) {
-            eeprom_external_vid_write(0, ssdNumber - 5);
-            ssdNumber -= 5;
-        }
-    }
-    if (dio_u8_read_pin_value(B, 3) && dio_u8_read_pin_value(B, 4)) {
-        buttonPressedFlag = 0;
-    }
-}
 
 int main(void) {
-    ssd_vid_2_digits_init();
+    ssd_vid_init();
     i2c_vid_master_init();
-    dio_vid_set_port_direction(B, 255);
-    ssdNumber = eeprom_external_vid_read(0);
-    if (ssdNumber < 35 || ssdNumber > 75 || ssdNumber % 5 != 0)
-        ssdNumber = 60;
+    counter_vid_init();
     sch_vid_init();
-    sch_u8_add_task(checkButtons, 1, 1);
-    sch_u8_add_task(ssd_vid_2_digits_update, 5, 5);
+    sch_u8_add_task(counter_vid_update, 20, 20);
+    sch_u8_add_task(display_vid_blink, 0, 1000);
+    sch_u8_add_task(ssd_vid_update, 5, 5);
 
     while (1) {
         sch_vid_dispatch_tasks();

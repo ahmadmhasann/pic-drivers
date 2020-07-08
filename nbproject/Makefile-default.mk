@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c dio.c lcd.c ssd.c scheduler.c timer.c i2c.c eeprom.c eeprom_external.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c dio.c lcd.c ssd.c scheduler.c timer.c i2c.c eeprom.c eeprom_external.c counter.c display.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/dio.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/ssd.p1 ${OBJECTDIR}/scheduler.p1 ${OBJECTDIR}/timer.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/eeprom.p1 ${OBJECTDIR}/eeprom_external.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/dio.p1.d ${OBJECTDIR}/lcd.p1.d ${OBJECTDIR}/ssd.p1.d ${OBJECTDIR}/scheduler.p1.d ${OBJECTDIR}/timer.p1.d ${OBJECTDIR}/i2c.p1.d ${OBJECTDIR}/eeprom.p1.d ${OBJECTDIR}/eeprom_external.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/dio.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/ssd.p1 ${OBJECTDIR}/scheduler.p1 ${OBJECTDIR}/timer.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/eeprom.p1 ${OBJECTDIR}/eeprom_external.p1 ${OBJECTDIR}/counter.p1 ${OBJECTDIR}/display.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/dio.p1.d ${OBJECTDIR}/lcd.p1.d ${OBJECTDIR}/ssd.p1.d ${OBJECTDIR}/scheduler.p1.d ${OBJECTDIR}/timer.p1.d ${OBJECTDIR}/i2c.p1.d ${OBJECTDIR}/eeprom.p1.d ${OBJECTDIR}/eeprom_external.p1.d ${OBJECTDIR}/counter.p1.d ${OBJECTDIR}/display.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/dio.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/ssd.p1 ${OBJECTDIR}/scheduler.p1 ${OBJECTDIR}/timer.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/eeprom.p1 ${OBJECTDIR}/eeprom_external.p1
+OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/dio.p1 ${OBJECTDIR}/lcd.p1 ${OBJECTDIR}/ssd.p1 ${OBJECTDIR}/scheduler.p1 ${OBJECTDIR}/timer.p1 ${OBJECTDIR}/i2c.p1 ${OBJECTDIR}/eeprom.p1 ${OBJECTDIR}/eeprom_external.p1 ${OBJECTDIR}/counter.p1 ${OBJECTDIR}/display.p1
 
 # Source Files
-SOURCEFILES=main.c dio.c lcd.c ssd.c scheduler.c timer.c i2c.c eeprom.c eeprom_external.c
+SOURCEFILES=main.c dio.c lcd.c ssd.c scheduler.c timer.c i2c.c eeprom.c eeprom_external.c counter.c display.c
 
 
 
@@ -166,6 +166,22 @@ ${OBJECTDIR}/eeprom_external.p1: eeprom_external.c  nbproject/Makefile-${CND_CON
 	@-${MV} ${OBJECTDIR}/eeprom_external.d ${OBJECTDIR}/eeprom_external.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/eeprom_external.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/counter.p1: counter.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/counter.p1.d 
+	@${RM} ${OBJECTDIR}/counter.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/counter.p1 counter.c 
+	@-${MV} ${OBJECTDIR}/counter.d ${OBJECTDIR}/counter.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/counter.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/display.p1: display.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/display.p1.d 
+	@${RM} ${OBJECTDIR}/display.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/display.p1 display.c 
+	@-${MV} ${OBJECTDIR}/display.d ${OBJECTDIR}/display.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/display.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -238,6 +254,22 @@ ${OBJECTDIR}/eeprom_external.p1: eeprom_external.c  nbproject/Makefile-${CND_CON
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/eeprom_external.p1 eeprom_external.c 
 	@-${MV} ${OBJECTDIR}/eeprom_external.d ${OBJECTDIR}/eeprom_external.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/eeprom_external.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/counter.p1: counter.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/counter.p1.d 
+	@${RM} ${OBJECTDIR}/counter.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/counter.p1 counter.c 
+	@-${MV} ${OBJECTDIR}/counter.d ${OBJECTDIR}/counter.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/counter.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/display.p1: display.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/display.p1.d 
+	@${RM} ${OBJECTDIR}/display.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c    -fno-short-double -fno-short-float -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-osccal -mno-resetbits -mno-save-resetbits -mno-download -mno-stackcall $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto     -o ${OBJECTDIR}/display.p1 display.c 
+	@-${MV} ${OBJECTDIR}/display.d ${OBJECTDIR}/display.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/display.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

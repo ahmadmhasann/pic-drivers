@@ -27,14 +27,14 @@
 #define SSD_OFF 0
 #define SSD_ON 1
 
-extern u16 ssdNumber;
+void ssd_vid_init(void);
+void ssd_vid_update();
+u8 ssd_u8_get_symbol();
+void ssd_vid_set_symbol(u8 symbol);
+u8 ssd_u8_get_state(void);
+void ssd_vid_set_state(u8 state);
+u8 ssd_u8_get_code(u8 number);
 
-void ssd_vid_2_digits_init(void);
-void ssd_vid_2_digits_update();
-u8 ssd_u8_get_symbol(u8 number);
-void ssd_vid_set_symbol(u8 ssdNumber, u8 symbol);
-u8 ssd_u8_get_state(u8 ssdNumber);
-void ssd_vid_set_state(u8 ssdNumber, u8 state);
 
 
 
