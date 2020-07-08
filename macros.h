@@ -1,5 +1,5 @@
 /*
- * Macros.h
+ * macros.h
  *
  *  Created on: Aug 3, 2019
  *      Author: Ahmed Hassan

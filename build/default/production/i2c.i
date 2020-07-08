@@ -1741,7 +1741,7 @@ typedef long double f96;
 # 12 "i2c.c" 2
 
 # 1 "./dio.h" 1
-# 11 "./dio.h"
+# 10 "./dio.h"
 enum {
  A,
  B,
@@ -1749,7 +1749,7 @@ enum {
  D,
     E
 };
-# 29 "./dio.h"
+# 30 "./dio.h"
 void dio_vid_set_port_direction (u8 portNumber, u8 direction);
 void dio_vid_set_port_value (u8 portNumber, u8 value);
 u8 dio_u8_read_port_value (u8 portNumber);
@@ -1770,7 +1770,7 @@ void i2c_vid_nack(void);
 u8 i2c_u8_master_write_slave_address_with_write_req(u8 address);
 u8 i2c_u8_master_write_slave_address_with_read_req(u8 address);
 u8 i2c_u8_master_write_byte(u8 data);
-u8 i2c_u8_master_read_byte();
+u8 i2c_u8_master_read_byte(void);
 # 14 "i2c.c" 2
 
 
@@ -1861,7 +1861,7 @@ u8 i2c_u8_master_write_byte(u8 data) {
     return ACKSTAT;
 }
 
-u8 i2c_u8_master_read_byte() {
+u8 i2c_u8_master_read_byte(void) {
     i2c_vid_wait();
 
     RCEN = 1;

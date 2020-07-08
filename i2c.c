@@ -100,7 +100,7 @@ u8 i2c_u8_master_write_byte(u8 data) {
     return ACKSTAT;
 }
 
-u8 i2c_u8_master_read_byte() {
+u8 i2c_u8_master_read_byte(void) {
     i2c_vid_wait();
     /*Enable & Start Receive*/
     RCEN = 1;

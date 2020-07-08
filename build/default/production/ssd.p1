@@ -1,23 +1,32 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"29 ./dio.h
-[; ;./dio.h: 29: void dio_vid_set_port_direction (u8 portNumber, u8 direction);
+"30 ./dio.h
+[; ;./dio.h: 30: void dio_vid_set_port_direction (u8 portNumber, u8 direction);
 [v _dio_vid_set_port_direction `(v ~T0 @X0 0 ef2`uc`uc ]
-"67 ssd.c
-[; ;ssd.c: 67:     dio_vid_set_port_direction(D, 0);
+"21 ssd.c
+[; ;ssd.c: 21:     dio_vid_set_port_direction(D, 0);
 [c E860 0 1 2 3 4 .. ]
 [n E860 . A B C D E  ]
-"34 ./dio.h
-[; ;./dio.h: 34: void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
+"35 ./dio.h
+[; ;./dio.h: 35: void dio_vid_set_pin_direction (u8 portNumber, u8 index, u8 direction);
 [v _dio_vid_set_pin_direction `(v ~T0 @X0 0 ef3`uc`uc`uc ]
-"32
-[; ;./dio.h: 32: u8 dio_u8_read_pin_value (u8 portNumber, u8 index);
-[v _dio_u8_read_pin_value `(uc ~T0 @X0 0 ef2`uc`uc ]
-"33
-[; ;./dio.h: 33: void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
-[v _dio_vid_set_pin_value `(v ~T0 @X0 0 ef3`uc`uc`uc ]
-"30
-[; ;./dio.h: 30: void dio_vid_set_port_value (u8 portNumber, u8 value);
+"37 ./ssd.h
+[; ;./ssd.h: 37: void ssd_vid_set_state(u8 ssdNumber, u8 state);
+[v _ssd_vid_set_state `(v ~T0 @X0 0 ef2`uc`uc ]
+"36
+[; ;./ssd.h: 36: u8 ssd_u8_get_state(u8 ssdNumber);
+[v _ssd_u8_get_state `(uc ~T0 @X0 0 ef1`uc ]
+"35
+[; ;./ssd.h: 35: void ssd_vid_set_symbol(u8 ssdNumber, u8 symbol);
+[v _ssd_vid_set_symbol `(v ~T0 @X0 0 ef2`uc`uc ]
+"31 ./dio.h
+[; ;./dio.h: 31: void dio_vid_set_port_value (u8 portNumber, u8 value);
 [v _dio_vid_set_port_value `(v ~T0 @X0 0 ef2`uc`uc ]
+"33
+[; ;./dio.h: 33: u8 dio_u8_read_pin_value (u8 portNumber, u8 index);
+[v _dio_u8_read_pin_value `(uc ~T0 @X0 0 ef2`uc`uc ]
+"34
+[; ;./dio.h: 34: void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
+[v _dio_vid_set_pin_value `(v ~T0 @X0 0 ef3`uc`uc`uc ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -198,248 +207,401 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2363
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2363: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"40 ./config.h
+"21 ./config.h
 [p x FOSC = HS ]
-"41
+"22
 [p x WDTE = OFF ]
-"42
+"23
 [p x PWRTE = ON ]
-"43
+"24
 [p x BOREN = ON ]
-"44
+"25
 [p x LVP = OFF ]
-"45
+"26
 [p x CPD = OFF ]
-"46
+"27
 [p x WRT = OFF ]
-"47
-[p x CP = OFF ]
-"27 ssd.c
-[; ;ssd.c: 27: u8 ssd_get_number(u8 number) {
-[v _ssd_get_number `(uc ~T0 @X0 1 ef1`uc ]
-{
-[e :U _ssd_get_number ]
-[v _number `uc ~T0 @X0 1 r1 ]
-[f ]
 "28
-[; ;ssd.c: 28:     switch (number) {
-[e $U 97  ]
+[p x CP = OFF ]
+"18 ssd.c
+[; ;ssd.c: 18: u16 ssdNumber = 0;
+[v _ssdNumber `us ~T0 @X0 1 e ]
+[i _ssdNumber
+-> -> 0 `i `us
+]
+"20
+[; ;ssd.c: 20: void ssd_vid_2_digits_init(void) {
+[v _ssd_vid_2_digits_init `(v ~T0 @X0 1 ef ]
 {
-"29
-[; ;ssd.c: 29:         case 0:
-[e :U 98 ]
-"30
-[; ;ssd.c: 30:             return 0x3F;
-[e ) -> -> 63 `i `uc ]
-[e $UE 95  ]
-"31
-[; ;ssd.c: 31:         case 1:
-[e :U 99 ]
-"32
-[; ;ssd.c: 32:             return 0x06;
-[e ) -> -> 6 `i `uc ]
-[e $UE 95  ]
-"33
-[; ;ssd.c: 33:         case 2:
-[e :U 100 ]
-"34
-[; ;ssd.c: 34:             return 0x5B;
-[e ) -> -> 91 `i `uc ]
-[e $UE 95  ]
-"35
-[; ;ssd.c: 35:         case 3:
-[e :U 101 ]
-"36
-[; ;ssd.c: 36:             return 0x4F;
-[e ) -> -> 79 `i `uc ]
-[e $UE 95  ]
-"37
-[; ;ssd.c: 37:         case 4:
-[e :U 102 ]
-"38
-[; ;ssd.c: 38:             return 0x66;
-[e ) -> -> 102 `i `uc ]
-[e $UE 95  ]
-"39
-[; ;ssd.c: 39:         case 5:
-[e :U 103 ]
-"40
-[; ;ssd.c: 40:             return 0x6D;
-[e ) -> -> 109 `i `uc ]
-[e $UE 95  ]
-"41
-[; ;ssd.c: 41:         case 6:
-[e :U 104 ]
-"42
-[; ;ssd.c: 42:             return 0x7D;
-[e ) -> -> 125 `i `uc ]
-[e $UE 95  ]
-"43
-[; ;ssd.c: 43:         case 7:
-[e :U 105 ]
-"44
-[; ;ssd.c: 44:             return 0x07;
-[e ) -> -> 7 `i `uc ]
-[e $UE 95  ]
-"45
-[; ;ssd.c: 45:         case 8:
-[e :U 106 ]
-"46
-[; ;ssd.c: 46:             return 0x7F;
-[e ) -> -> 127 `i `uc ]
-[e $UE 95  ]
-"47
-[; ;ssd.c: 47:         case 9:
-[e :U 107 ]
-"48
-[; ;ssd.c: 48:             return 0x6F;
-[e ) -> -> 111 `i `uc ]
-[e $UE 95  ]
-"49
-[; ;ssd.c: 49:         case 10:
-[e :U 108 ]
-"50
-[; ;ssd.c: 50:             return 0x77;
-[e ) -> -> 119 `i `uc ]
-[e $UE 95  ]
-"51
-[; ;ssd.c: 51:         case 11:
-[e :U 109 ]
-"52
-[; ;ssd.c: 52:             return 0x7c;
-[e ) -> -> 124 `i `uc ]
-[e $UE 95  ]
-"53
-[; ;ssd.c: 53:         case 12:
-[e :U 110 ]
-"54
-[; ;ssd.c: 54:             return 0x58;
-[e ) -> -> 88 `i `uc ]
-[e $UE 95  ]
-"55
-[; ;ssd.c: 55:         case 13:
-[e :U 111 ]
-"56
-[; ;ssd.c: 56:             return 0x5E;
-[e ) -> -> 94 `i `uc ]
-[e $UE 95  ]
-"57
-[; ;ssd.c: 57:         case 14:
-[e :U 112 ]
-"58
-[; ;ssd.c: 58:             return 0x79;
-[e ) -> -> 121 `i `uc ]
-[e $UE 95  ]
-"59
-[; ;ssd.c: 59:         case 15:
-[e :U 113 ]
-"60
-[; ;ssd.c: 60:             return 0x71;
-[e ) -> -> 113 `i `uc ]
-[e $UE 95  ]
-"61
-[; ;ssd.c: 61:         default:
-[e :U 114 ]
-"62
-[; ;ssd.c: 62:             return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 95  ]
-"63
-[; ;ssd.c: 63:     }
-}
-[e $U 96  ]
-[e :U 97 ]
-[e [\ -> _number `i , $ -> 0 `i 98
- , $ -> 1 `i 99
- , $ -> 2 `i 100
- , $ -> 3 `i 101
- , $ -> 4 `i 102
- , $ -> 5 `i 103
- , $ -> 6 `i 104
- , $ -> 7 `i 105
- , $ -> 8 `i 106
- , $ -> 9 `i 107
- , $ -> 10 `i 108
- , $ -> 11 `i 109
- , $ -> 12 `i 110
- , $ -> 13 `i 111
- , $ -> 14 `i 112
- , $ -> 15 `i 113
- 114 ]
-[e :U 96 ]
-"64
-[; ;ssd.c: 64: }
+[e :U _ssd_vid_2_digits_init ]
+[f ]
+"21
+[; ;ssd.c: 21:     dio_vid_set_port_direction(D, 0);
+[e ( _dio_vid_set_port_direction (2 , -> . `E860 3 `uc -> -> 0 `i `uc ]
+"22
+[; ;ssd.c: 22:     dio_vid_set_pin_direction(A, 2, 0);
+[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 0 `uc -> -> 2 `i `uc -> -> 0 `i `uc ]
+"23
+[; ;ssd.c: 23:     dio_vid_set_pin_direction(A, 3, 0);
+[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 0 `uc -> -> 3 `i `uc -> -> 0 `i `uc ]
+"24
+[; ;ssd.c: 24:     ssd_vid_set_state(1, 0);
+[e ( _ssd_vid_set_state (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+"25
+[; ;ssd.c: 25:     ssd_vid_set_state(2, 0);
+[e ( _ssd_vid_set_state (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+"26
+[; ;ssd.c: 26: }
 [e :UE 95 ]
 }
-"66
-[; ;ssd.c: 66: void ssd_init(void) {
-[v _ssd_init `(v ~T0 @X0 1 ef ]
+"28
+[; ;ssd.c: 28: void ssd_vid_2_digits_update() {
+[v _ssd_vid_2_digits_update `(v ~T0 @X0 1 ef ]
 {
-[e :U _ssd_init ]
+[e :U _ssd_vid_2_digits_update ]
 [f ]
-"67
-[; ;ssd.c: 67:     dio_vid_set_port_direction(D, 0);
-[e ( _dio_vid_set_port_direction (2 , -> . `E860 3 `uc -> -> 0 `i `uc ]
-"68
-[; ;ssd.c: 68:     dio_vid_set_pin_direction(A, 2, 0);
-[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 0 `uc -> -> 2 `i `uc -> -> 0 `i `uc ]
-"69
-[; ;ssd.c: 69:     dio_vid_set_pin_direction(A, 3, 0);
-[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 0 `uc -> -> 3 `i `uc -> -> 0 `i `uc ]
-"70
-[; ;ssd.c: 70: }
-[e :UE 115 ]
-}
-"72
-[; ;ssd.c: 72: void ssd_set_state (u8 state) {
-[v _ssd_set_state `(v ~T0 @X0 1 ef1`uc ]
-{
-[e :U _ssd_set_state ]
-[v _state `uc ~T0 @X0 1 r1 ]
-[f ]
-"73
-[; ;ssd.c: 73:     u8 ones = state % 10;
+"29
+[; ;ssd.c: 29:     u8 ones = ssdNumber % 10;
 [v _ones `uc ~T0 @X0 1 a ]
-[e = _ones -> % -> _state `i -> 10 `i `uc ]
-"74
-[; ;ssd.c: 74:     u8 tens = state / 10;
+[e = _ones -> % -> _ssdNumber `ui -> -> 10 `i `ui `uc ]
+"30
+[; ;ssd.c: 30:     u8 tens = ssdNumber / 10;
 [v _tens `uc ~T0 @X0 1 a ]
-[e = _tens -> / -> _state `i -> 10 `i `uc ]
+[e = _tens -> / -> _ssdNumber `ui -> -> 10 `i `ui `uc ]
+"31
+[; ;ssd.c: 31:     if (ssd_u8_get_state(2) == 1) {
+[e $ ! == -> ( _ssd_u8_get_state (1 -> -> 2 `i `uc `i -> 1 `i 97  ]
+{
+"32
+[; ;ssd.c: 32:         ssd_vid_set_state(2, 0);
+[e ( _ssd_vid_set_state (2 , -> -> 2 `i `uc -> -> 0 `i `uc ]
+"33
+[; ;ssd.c: 33:         ssd_vid_set_state(1, 1);
+[e ( _ssd_vid_set_state (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+"34
+[; ;ssd.c: 34:         ssd_vid_set_symbol(1, tens);
+[e ( _ssd_vid_set_symbol (2 , -> -> 1 `i `uc _tens ]
+"35
+[; ;ssd.c: 35:     } else {
+}
+[e $U 98  ]
+[e :U 97 ]
+{
+"36
+[; ;ssd.c: 36:         ssd_vid_set_state(1, 0);
+[e ( _ssd_vid_set_state (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
+"37
+[; ;ssd.c: 37:         ssd_vid_set_state(2, 1);
+[e ( _ssd_vid_set_state (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"38
+[; ;ssd.c: 38:         ssd_vid_set_symbol(2, ones);
+[e ( _ssd_vid_set_symbol (2 , -> -> 2 `i `uc _ones ]
+"39
+[; ;ssd.c: 39:     }
+}
+[e :U 98 ]
+"40
+[; ;ssd.c: 40: }
+[e :UE 96 ]
+}
+"42
+[; ;ssd.c: 42: u8 ssd_u8_get_symbol(u8 number) {
+[v _ssd_u8_get_symbol `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _ssd_u8_get_symbol ]
+[v _number `uc ~T0 @X0 1 r1 ]
+[f ]
+"43
+[; ;ssd.c: 43:     u8 symbol;
+[v _symbol `uc ~T0 @X0 1 a ]
+"44
+[; ;ssd.c: 44:     switch (number) {
+[e $U 101  ]
+{
+"45
+[; ;ssd.c: 45:         case 0:
+[e :U 102 ]
+"46
+[; ;ssd.c: 46:             symbol = 0x3F;
+[e = _symbol -> -> 63 `i `uc ]
+"47
+[; ;ssd.c: 47:             break;
+[e $U 100  ]
+"48
+[; ;ssd.c: 48:         case 1:
+[e :U 103 ]
+"49
+[; ;ssd.c: 49:             symbol = 0x06;
+[e = _symbol -> -> 6 `i `uc ]
+"50
+[; ;ssd.c: 50:             break;
+[e $U 100  ]
+"51
+[; ;ssd.c: 51:         case 2:
+[e :U 104 ]
+"52
+[; ;ssd.c: 52:             symbol = 0x5B;
+[e = _symbol -> -> 91 `i `uc ]
+"53
+[; ;ssd.c: 53:             break;
+[e $U 100  ]
+"54
+[; ;ssd.c: 54:         case 3:
+[e :U 105 ]
+"55
+[; ;ssd.c: 55:             symbol = 0x4F;
+[e = _symbol -> -> 79 `i `uc ]
+"56
+[; ;ssd.c: 56:             break;
+[e $U 100  ]
+"57
+[; ;ssd.c: 57:         case 4:
+[e :U 106 ]
+"58
+[; ;ssd.c: 58:             symbol = 0x66;
+[e = _symbol -> -> 102 `i `uc ]
+"59
+[; ;ssd.c: 59:             break;
+[e $U 100  ]
+"60
+[; ;ssd.c: 60:         case 5:
+[e :U 107 ]
+"61
+[; ;ssd.c: 61:             symbol = 0x6D;
+[e = _symbol -> -> 109 `i `uc ]
+"62
+[; ;ssd.c: 62:             break;
+[e $U 100  ]
+"63
+[; ;ssd.c: 63:         case 6:
+[e :U 108 ]
+"64
+[; ;ssd.c: 64:             symbol = 0x7D;
+[e = _symbol -> -> 125 `i `uc ]
+"65
+[; ;ssd.c: 65:             break;
+[e $U 100  ]
+"66
+[; ;ssd.c: 66:         case 7:
+[e :U 109 ]
+"67
+[; ;ssd.c: 67:             symbol = 0x07;
+[e = _symbol -> -> 7 `i `uc ]
+"68
+[; ;ssd.c: 68:             break;
+[e $U 100  ]
+"69
+[; ;ssd.c: 69:         case 8:
+[e :U 110 ]
+"70
+[; ;ssd.c: 70:             symbol = 0x7F;
+[e = _symbol -> -> 127 `i `uc ]
+"71
+[; ;ssd.c: 71:             break;
+[e $U 100  ]
+"72
+[; ;ssd.c: 72:         case 9:
+[e :U 111 ]
+"73
+[; ;ssd.c: 73:             symbol = 0x6F;
+[e = _symbol -> -> 111 `i `uc ]
+"74
+[; ;ssd.c: 74:             break;
+[e $U 100  ]
 "75
-[; ;ssd.c: 75:     if (dio_u8_read_pin_value(A, 3)) {
-[e $ ! != -> ( _dio_u8_read_pin_value (2 , -> . `E860 0 `uc -> -> 3 `i `uc `i -> 0 `i 117  ]
-{
+[; ;ssd.c: 75:         default:
+[e :U 112 ]
 "76
-[; ;ssd.c: 76:         dio_vid_set_pin_value(A, 2, 1);
-[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 2 `i `uc -> -> 1 `i `uc ]
+[; ;ssd.c: 76:             symbol = 0;
+[e = _symbol -> -> 0 `i `uc ]
 "77
-[; ;ssd.c: 77:         dio_vid_set_pin_value(A, 3, 0);
-[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 3 `i `uc -> -> 0 `i `uc ]
+[; ;ssd.c: 77:     }
+}
+[e $U 100  ]
+[e :U 101 ]
+[e [\ -> _number `i , $ -> 0 `i 102
+ , $ -> 1 `i 103
+ , $ -> 2 `i 104
+ , $ -> 3 `i 105
+ , $ -> 4 `i 106
+ , $ -> 5 `i 107
+ , $ -> 6 `i 108
+ , $ -> 7 `i 109
+ , $ -> 8 `i 110
+ , $ -> 9 `i 111
+ 112 ]
+[e :U 100 ]
 "78
-[; ;ssd.c: 78:         dio_vid_set_port_value(D, ssd_get_number(tens));
-[e ( _dio_vid_set_port_value (2 , -> . `E860 3 `uc ( _ssd_get_number (1 _tens ]
-"79
-[; ;ssd.c: 79:     }
-}
-[e $U 118  ]
+[; ;ssd.c: 78:     return symbol;
+[e ) _symbol ]
+[e $UE 99  ]
 "80
-[; ;ssd.c: 80:     else {
-[e :U 117 ]
-{
-"81
-[; ;ssd.c: 81:         dio_vid_set_pin_value(A, 2, 0);
-[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 2 `i `uc -> -> 0 `i `uc ]
-"82
-[; ;ssd.c: 82:         dio_vid_set_pin_value(A, 3, 1);
-[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 3 `i `uc -> -> 1 `i `uc ]
-"83
-[; ;ssd.c: 83:         dio_vid_set_port_value(D, ssd_get_number(ones));
-[e ( _dio_vid_set_port_value (2 , -> . `E860 3 `uc ( _ssd_get_number (1 _ones ]
-"85
-[; ;ssd.c: 85:     }
+[; ;ssd.c: 80: }
+[e :UE 99 ]
 }
+"82
+[; ;ssd.c: 82: void ssd_vid_set_symbol(u8 ssdNumber, u8 number) {
+[v _ssd_vid_set_symbol `(v ~T0 @X0 1 ef2`uc`uc ]
+{
+[e :U _ssd_vid_set_symbol ]
+[v _ssdNumber `uc ~T0 @X0 1 r1 ]
+[v _number `uc ~T0 @X0 1 r2 ]
+[f ]
+"83
+[; ;ssd.c: 83:     u8 symbol = ssd_u8_get_symbol(number);
+[v _symbol `uc ~T0 @X0 1 a ]
+[e = _symbol ( _ssd_u8_get_symbol (1 _number ]
+"84
+[; ;ssd.c: 84:     ssd_vid_set_state(ssdNumber, 1);
+[e ( _ssd_vid_set_state (2 , _ssdNumber -> -> 1 `i `uc ]
+"85
+[; ;ssd.c: 85:     dio_vid_set_port_value(D, symbol);
+[e ( _dio_vid_set_port_value (2 , -> . `E860 3 `uc _symbol ]
+"86
+[; ;ssd.c: 86: }
+[e :UE 113 ]
+}
+"88
+[; ;ssd.c: 88: u8 ssd_u8_get_state(u8 ssdNumber) {
+[v _ssd_u8_get_state `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _ssd_u8_get_state ]
+[v _ssdNumber `uc ~T0 @X0 1 r1 ]
+[f ]
+"89
+[; ;ssd.c: 89:     u8 state;
+[v _state `uc ~T0 @X0 1 a ]
+"90
+[; ;ssd.c: 90:     switch (ssdNumber) {
+[e $U 116  ]
+{
+"91
+[; ;ssd.c: 91:         case 1:
+[e :U 117 ]
+"92
+[; ;ssd.c: 92:             state = dio_u8_read_pin_value(A, 2);
+[e = _state ( _dio_u8_read_pin_value (2 , -> . `E860 0 `uc -> -> 2 `i `uc ]
+"93
+[; ;ssd.c: 93:             break;
+[e $U 115  ]
+"94
+[; ;ssd.c: 94:         case 2:
 [e :U 118 ]
+"95
+[; ;ssd.c: 95:             state = dio_u8_read_pin_value(A, 3);
+[e = _state ( _dio_u8_read_pin_value (2 , -> . `E860 0 `uc -> -> 3 `i `uc ]
+"96
+[; ;ssd.c: 96:             break;
+[e $U 115  ]
+"97
+[; ;ssd.c: 97:         case 3:
+[e :U 119 ]
 "98
-[; ;ssd.c: 98: }
-[e :UE 116 ]
+[; ;ssd.c: 98:             state = dio_u8_read_pin_value(A, 4);
+[e = _state ( _dio_u8_read_pin_value (2 , -> . `E860 0 `uc -> -> 4 `i `uc ]
+"99
+[; ;ssd.c: 99:             break;
+[e $U 115  ]
+"100
+[; ;ssd.c: 100:         case 4:
+[e :U 120 ]
+"101
+[; ;ssd.c: 101:             state = dio_u8_read_pin_value(A, 5);
+[e = _state ( _dio_u8_read_pin_value (2 , -> . `E860 0 `uc -> -> 5 `i `uc ]
+"102
+[; ;ssd.c: 102:             break;
+[e $U 115  ]
+"103
+[; ;ssd.c: 103:         default:
+[e :U 121 ]
+"104
+[; ;ssd.c: 104:             state = 0;
+[e = _state -> -> 0 `i `uc ]
+"105
+[; ;ssd.c: 105:     }
+}
+[e $U 115  ]
+[e :U 116 ]
+[e [\ -> _ssdNumber `i , $ -> 1 `i 117
+ , $ -> 2 `i 118
+ , $ -> 3 `i 119
+ , $ -> 4 `i 120
+ 121 ]
+[e :U 115 ]
+"106
+[; ;ssd.c: 106:     return state;
+[e ) _state ]
+[e $UE 114  ]
+"107
+[; ;ssd.c: 107: }
+[e :UE 114 ]
+}
+"109
+[; ;ssd.c: 109: void ssd_vid_set_state(u8 ssdNumber, u8 state) {
+[v _ssd_vid_set_state `(v ~T0 @X0 1 ef2`uc`uc ]
+{
+[e :U _ssd_vid_set_state ]
+[v _ssdNumber `uc ~T0 @X0 1 r1 ]
+[v _state `uc ~T0 @X0 1 r2 ]
+[f ]
+"110
+[; ;ssd.c: 110:     switch (ssdNumber) {
+[e $U 124  ]
+{
+"111
+[; ;ssd.c: 111:         case 1:
+[e :U 125 ]
+"112
+[; ;ssd.c: 112:             dio_vid_set_pin_value(A, 2, state);
+[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 2 `i `uc _state ]
+"113
+[; ;ssd.c: 113:             break;
+[e $U 123  ]
+"114
+[; ;ssd.c: 114:         case 2:
+[e :U 126 ]
+"115
+[; ;ssd.c: 115:             dio_vid_set_pin_value(A, 3, state);
+[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 3 `i `uc _state ]
+"116
+[; ;ssd.c: 116:             break;
+[e $U 123  ]
+"117
+[; ;ssd.c: 117:         case 3:
+[e :U 127 ]
+"118
+[; ;ssd.c: 118:             dio_vid_set_pin_value(A, 4, state);
+[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 4 `i `uc _state ]
+"119
+[; ;ssd.c: 119:             break;
+[e $U 123  ]
+"120
+[; ;ssd.c: 120:         case 4:
+[e :U 128 ]
+"121
+[; ;ssd.c: 121:             dio_vid_set_pin_value(A, 5, state);
+[e ( _dio_vid_set_pin_value (3 , , -> . `E860 0 `uc -> -> 5 `i `uc _state ]
+"122
+[; ;ssd.c: 122:             break;
+[e $U 123  ]
+"123
+[; ;ssd.c: 123:         default:
+[e :U 129 ]
+"124
+[; ;ssd.c: 124:             break;
+[e $U 123  ]
+"125
+[; ;ssd.c: 125:     }
+}
+[e $U 123  ]
+[e :U 124 ]
+[e [\ -> _ssdNumber `i , $ -> 1 `i 125
+ , $ -> 2 `i 126
+ , $ -> 3 `i 127
+ , $ -> 4 `i 128
+ 129 ]
+[e :U 123 ]
+"126
+[; ;ssd.c: 126: }
+[e :UE 122 ]
 }

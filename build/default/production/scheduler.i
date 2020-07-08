@@ -1741,7 +1741,7 @@ typedef long double f96;
 # 12 "scheduler.c" 2
 
 # 1 "./dio.h" 1
-# 11 "./dio.h"
+# 10 "./dio.h"
 enum {
  A,
  B,
@@ -1749,7 +1749,7 @@ enum {
  D,
     E
 };
-# 29 "./dio.h"
+# 30 "./dio.h"
 void dio_vid_set_port_direction (u8 portNumber, u8 direction);
 void dio_vid_set_port_value (u8 portNumber, u8 value);
 u8 dio_u8_read_port_value (u8 portNumber);

@@ -2,7 +2,7 @@
  * File:   ssd.c
  * Author: Hassan
  *
- * Created on 01 ?????, 2020, 03:44 ?
+ * Created on July 6,  2020
  */
 
 
@@ -13,86 +13,114 @@
 #include "macros.h"
 #include "dio.h"
 #include "lcd.h"
+#include "ssd.h"
 
-#define SEVEN_SEGMENT_PORT D
-#define ENABLE_1_PORT A
-#define ENABLE_2_PORT A
-#define ENABLE_3_PORT A
-#define ENABLE_4_PORT A
-#define ENABLE_1_PIN 2
-#define ENABLE_2_PIN 3
-#define ENABLE_3_PIN 4
-#define ENABLE_4_PIN 5
+u16 ssdNumber = 0;
 
-u8 ssd_get_number(u8 number) {
+void ssd_vid_2_digits_init(void) {
+    dio_vid_set_port_direction(SSD_PORT, 0);
+    dio_vid_set_pin_direction(SSD_ENABLE_1_PORT, SSD_ENABLE_1_PIN, 0);
+    dio_vid_set_pin_direction(SSD_ENABLE_2_PORT, SSD_ENABLE_2_PIN, 0);
+    ssd_vid_set_state(SSD_1, SSD_OFF);
+    ssd_vid_set_state(SSD_2, SSD_OFF);
+}
+
+void ssd_vid_2_digits_update() {
+    u8 ones = ssdNumber % 10;
+    u8 tens = ssdNumber / 10;
+    if (ssd_u8_get_state(SSD_2) == SSD_ON) {
+        ssd_vid_set_state(SSD_2, SSD_OFF);
+        ssd_vid_set_state(SSD_1, SSD_ON);
+        ssd_vid_set_symbol(SSD_1, tens);
+    } else {
+        ssd_vid_set_state(SSD_1, SSD_OFF);
+        ssd_vid_set_state(SSD_2, SSD_ON);
+        ssd_vid_set_symbol(SSD_2, ones);
+    }
+}
+
+u8 ssd_u8_get_symbol(u8 number) {
+    u8 symbol;
     switch (number) {
         case 0:
-            return 0x3F;
+            symbol = 0x3F;
+            break;
         case 1:
-            return 0x06;
+            symbol = 0x06;
+            break;
         case 2:
-            return 0x5B;
+            symbol = 0x5B;
+            break;
         case 3:
-            return 0x4F;
+            symbol = 0x4F;
+            break;
         case 4:
-            return 0x66;
+            symbol = 0x66;
+            break;
         case 5:
-            return 0x6D;
+            symbol = 0x6D;
+            break;
         case 6:
-            return 0x7D;
+            symbol = 0x7D;
+            break;
         case 7:
-            return 0x07;
+            symbol = 0x07;
+            break;
         case 8:
-            return 0x7F;
+            symbol = 0x7F;
+            break;
         case 9:
-            return 0x6F;
-        case 10:
-            return 0x77;
-        case 11:
-            return 0x7c;
-        case 12:
-            return 0x58;
-        case 13:
-            return 0x5E;
-        case 14:
-            return 0x79;
-        case 15:
-            return 0x71;
+            symbol = 0x6F;
+            break;
         default:
-            return 0;
+            symbol = 0;
     }
+    return symbol;
+
 }
 
-void ssd_init(void) {
-    dio_vid_set_port_direction(SEVEN_SEGMENT_PORT, 0);
-    dio_vid_set_pin_direction(ENABLE_1_PORT, ENABLE_1_PIN, 0);
-    dio_vid_set_pin_direction(ENABLE_2_PORT, ENABLE_2_PIN, 0);
+void ssd_vid_set_symbol(u8 ssdNumber, u8 number) {
+    u8 symbol = ssd_u8_get_symbol(number);
+    ssd_vid_set_state(ssdNumber, SSD_ON);
+    dio_vid_set_port_value(SSD_PORT, symbol);
 }
 
-void ssd_set_state (u8 state) {
-    u8 ones = state % 10;
-    u8 tens = state / 10;
-    if (dio_u8_read_pin_value(ENABLE_2_PORT, ENABLE_2_PIN)) {
-        dio_vid_set_pin_value(ENABLE_1_PORT, ENABLE_1_PIN, 1);
-        dio_vid_set_pin_value(ENABLE_2_PORT, ENABLE_2_PIN, 0);
-        dio_vid_set_port_value(D, ssd_get_number(tens));
+u8 ssd_u8_get_state(u8 ssdNumber) {
+    u8 state;
+    switch (ssdNumber) {
+        case SSD_1:
+            state = dio_u8_read_pin_value(SSD_ENABLE_1_PORT, SSD_ENABLE_1_PIN);
+            break;
+        case SSD_2:
+            state = dio_u8_read_pin_value(SSD_ENABLE_2_PORT, SSD_ENABLE_2_PIN);
+            break;
+        case SSD_3:
+            state = dio_u8_read_pin_value(SSD_ENABLE_3_PORT, SSD_ENABLE_3_PIN);
+            break;
+        case SSD_4:
+            state = dio_u8_read_pin_value(SSD_ENABLE_4_PORT, SSD_ENABLE_4_PIN);
+            break;
+        default:
+            state = 0;
     }
-    else {
-        dio_vid_set_pin_value(ENABLE_1_PORT, ENABLE_1_PIN, 0);
-        dio_vid_set_pin_value(ENABLE_2_PORT, ENABLE_2_PIN, 1);
-        dio_vid_set_port_value(D, ssd_get_number(ones));
+    return state;
+}
 
+void ssd_vid_set_state(u8 ssdNumber, u8 state) {
+    switch (ssdNumber) {
+        case SSD_1:
+            dio_vid_set_pin_value(SSD_ENABLE_1_PORT, SSD_ENABLE_1_PIN, state);
+            break;
+        case SSD_2:
+            dio_vid_set_pin_value(SSD_ENABLE_2_PORT, SSD_ENABLE_2_PIN, state);
+            break;
+        case SSD_3:
+            dio_vid_set_pin_value(SSD_ENABLE_3_PORT, SSD_ENABLE_3_PIN, state);
+            break;
+        case SSD_4:
+            dio_vid_set_pin_value(SSD_ENABLE_4_PORT, SSD_ENABLE_4_PIN, state);
+            break;
+        default:
+            break;
     }
-        /*for (counter=0; counter<2; counter++) {
-        dio_vid_set_port_value(SEVEN_SEGMENT_PORT, ssd_get_number(ones));
-        dio_vid_set_pin_value(ENABLE_1_PORT, ENABLE_1_PIN, 0);
-        __delay_ms(1);
-        dio_vid_set_pin_value(ENABLE_1_PORT, ENABLE_1_PIN, 1);
-        dio_vid_set_port_value(D, ssd_get_number(tens));
-        dio_vid_set_pin_value(ENABLE_2_PORT, ENABLE_2_PIN, 0);
-        __delay_ms(1);
-        dio_vid_set_pin_value(ENABLE_2_PORT, ENABLE_2_PIN, 1);
-                __delay_ms(1);
-
-    }*/
 }

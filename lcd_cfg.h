@@ -1,5 +1,5 @@
 /*
- * LCD_cfg.h
+ * lcd_cfg.h
  *
  *  Created on: Aug 23, 2019
  *      Author: Ahmed Hassan

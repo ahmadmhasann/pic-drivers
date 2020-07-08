@@ -4,4 +4,5 @@ config.h  \
 types.h  \
 macros.h  \
 dio.h  \
-lcd.h 
+lcd.h  \
+ssd.h 

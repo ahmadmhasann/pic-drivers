@@ -18,8 +18,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./i2c.h: 25: u8 i2c_u8_master_write_slave_address_with_read_req(u8 address);
 [v _i2c_u8_master_write_slave_address_with_read_req `(uc ~T0 @X0 0 ef1`uc ]
 "27
-[; ;./i2c.h: 27: u8 i2c_u8_master_read_byte();
-[v _i2c_u8_master_read_byte `(uc ~T0 @X0 0 e? ]
+[; ;./i2c.h: 27: u8 i2c_u8_master_read_byte(void);
+[v _i2c_u8_master_read_byte `(uc ~T0 @X0 0 ef ]
 "23
 [; ;./i2c.h: 23: void i2c_vid_nack(void);
 [v _i2c_vid_nack `(v ~T0 @X0 0 ef ]

@@ -1754,7 +1754,7 @@ void i2c_vid_nack(void);
 u8 i2c_u8_master_write_slave_address_with_write_req(u8 address);
 u8 i2c_u8_master_write_slave_address_with_read_req(u8 address);
 u8 i2c_u8_master_write_byte(u8 data);
-u8 i2c_u8_master_read_byte();
+u8 i2c_u8_master_read_byte(void);
 # 9 "eeprom_external.c" 2
 
 # 1 "./eeprom_external.h" 1

@@ -3,7 +3,7 @@
 [d edition pro ]
 [d chip 16F877A ]
 [d frameptr 0 ]
-"43 G:\MPLABXProjects\pic_test.X\main.c
+"27 G:\MPLABXProjects\pic_test.X\main.c
 [e E860 . `uc
 A 0
 B 1
@@ -19,7 +19,7 @@ C 2
 D 3
 E 4
 ]
-"67 G:\MPLABXProjects\pic_test.X\ssd.c
+"21 G:\MPLABXProjects\pic_test.X\ssd.c
 [e E860 . `uc
 A 0
 B 1
@@ -41,12 +41,12 @@ E 4
 [v ___aldiv __aldiv `(l  1 e 4 0 ]
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\almod.c
 [v ___almod __almod `(l  1 e 4 0 ]
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awdiv.c
-[v ___awdiv __awdiv `(i  1 e 2 0 ]
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awmod.c
-[v ___awmod __awmod `(i  1 e 2 0 ]
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\llmod.c
 [v ___llmod __llmod `(ul  1 e 4 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\Umul32.c
@@ -100,11 +100,9 @@ E 4
 [v _lcd_vid_write_charachter lcd_vid_write_charachter `(v  1 e 1 0 ]
 "55
 [v _lcd_vid_write_command lcd_vid_write_command `(v  1 e 1 0 ]
-"38 G:\MPLABXProjects\pic_test.X\main.c
-[v _showNumber25 showNumber25 `(v  1 e 1 0 ]
-"42
+"26 G:\MPLABXProjects\pic_test.X\main.c
 [v _checkButtons checkButtons `(v  1 e 1 0 ]
-"61
+"45
 [v _main main `(i  1 e 2 0 ]
 "19 G:\MPLABXProjects\pic_test.X\scheduler.c
 [v _sch_vid_init sch_vid_init `(v  1 e 1 0 ]
@@ -116,12 +114,18 @@ E 4
 [v _sch_vid_dispatch_tasks sch_vid_dispatch_tasks `(v  1 e 1 0 ]
 "89
 [v _sch_vid_delete_task sch_vid_delete_task `(uc  1 e 1 0 ]
-"27 G:\MPLABXProjects\pic_test.X\ssd.c
-[v _ssd_get_number ssd_get_number `(uc  1 e 1 0 ]
-"66
-[v _ssd_init ssd_init `(v  1 e 1 0 ]
-"72
-[v _ssd_set_state ssd_set_state `(v  1 e 1 0 ]
+"20 G:\MPLABXProjects\pic_test.X\ssd.c
+[v _ssd_vid_2_digits_init ssd_vid_2_digits_init `(v  1 e 1 0 ]
+"28
+[v _ssd_vid_2_digits_update ssd_vid_2_digits_update `(v  1 e 1 0 ]
+"42
+[v _ssd_u8_get_symbol ssd_u8_get_symbol `(uc  1 e 1 0 ]
+"82
+[v _ssd_vid_set_symbol ssd_vid_set_symbol `(v  1 e 1 0 ]
+"88
+[v _ssd_u8_get_state ssd_u8_get_state `(uc  1 e 1 0 ]
+"109
+[v _ssd_vid_set_state ssd_vid_set_state `(v  1 e 1 0 ]
 "21 G:\MPLABXProjects\pic_test.X\timer.c
 [v _timer_isr timer_isr `II(v  1 e 1 0 ]
 "36
@@ -219,29 +223,27 @@ E 4
 "3049
 [v _WREN WREN `VEb  1 e 0 @3170 ]
 "22 G:\MPLABXProjects\pic_test.X\main.c
-[v _counter counter `us  1 e 2 0 ]
-"23
-[v _setTemperature setTemperature `VEuc  1 e 1 0 ]
-"24
 [v _buttonPressedFlag buttonPressedFlag `VEuc  1 e 1 0 ]
-[s S180 data 13 `*.27(v 1 taskFunction 1 0 `ul 1 delay 4 1 `ul 1 period 4 5 `ul 1 runMe 4 9 ]
+[s S201 data 13 `*.27(v 1 taskFunction 1 0 `ul 1 delay 4 1 `ul 1 period 4 5 `ul 1 runMe 4 9 ]
 "17 G:\MPLABXProjects\pic_test.X\scheduler.c
-[v _sch_tasks sch_tasks `[3]S180  1 e 39 0 ]
+[v _sch_tasks sch_tasks `[3]S201  1 e 39 0 ]
+"18 G:\MPLABXProjects\pic_test.X\ssd.c
+[v _ssdNumber ssdNumber `us  1 e 2 0 ]
 "17 G:\MPLABXProjects\pic_test.X\timer.c
 [v _timer0_isr timer0_isr `*.27(v  1 e 1 0 ]
 "18
 [v _timer1_isr timer1_isr `*.27(v  1 e 1 0 ]
 "19
 [v _timer2_isr timer2_isr `*.27(v  1 e 1 0 ]
-"61 G:\MPLABXProjects\pic_test.X\main.c
+"45 G:\MPLABXProjects\pic_test.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"79
+"61
 } 0
-"66 G:\MPLABXProjects\pic_test.X\ssd.c
-[v _ssd_init ssd_init `(v  1 e 1 0 ]
+"20 G:\MPLABXProjects\pic_test.X\ssd.c
+[v _ssd_vid_2_digits_init ssd_vid_2_digits_init `(v  1 e 1 0 ]
 {
-"70
+"26
 } 0
 "12 G:\MPLABXProjects\pic_test.X\dio.c
 [v _dio_vid_set_port_direction dio_vid_set_port_direction `(v  1 e 1 0 ]
@@ -278,50 +280,45 @@ E 4
 [v _sch_vid_dispatch_tasks sch_vid_dispatch_tasks `(v  1 e 1 0 ]
 {
 "74
-[v sch_vid_dispatch_tasks@index index `uc  1 a 1 26 ]
+[v sch_vid_dispatch_tasks@index index `uc  1 a 1 27 ]
 "87
 } 0
-"42 G:\MPLABXProjects\pic_test.X\main.c
+"26 G:\MPLABXProjects\pic_test.X\main.c
 [v _checkButtons checkButtons `(v  1 e 1 0 ]
 {
-"59
+"43
 } 0
-"38
-[v _showNumber25 showNumber25 `(v  1 e 1 0 ]
+"28 G:\MPLABXProjects\pic_test.X\ssd.c
+[v _ssd_vid_2_digits_update ssd_vid_2_digits_update `(v  1 e 1 0 ]
 {
+"30
+[v ssd_vid_2_digits_update@tens tens `uc  1 a 1 21 ]
+"29
+[v ssd_vid_2_digits_update@ones ones `uc  1 a 1 20 ]
 "40
 } 0
-"72 G:\MPLABXProjects\pic_test.X\ssd.c
-[v _ssd_set_state ssd_set_state `(v  1 e 1 0 ]
+"82
+[v _ssd_vid_set_symbol ssd_vid_set_symbol `(v  1 e 1 0 ]
 {
-[v ssd_set_state@state state `uc  1 a 1 wreg ]
-"74
-[v ssd_set_state@tens tens `uc  1 a 1 19 ]
-"73
-[v ssd_set_state@ones ones `uc  1 a 1 18 ]
-"72
-[v ssd_set_state@state state `uc  1 a 1 wreg ]
-[v ssd_set_state@state state `uc  1 a 1 20 ]
-"98
+[v ssd_vid_set_symbol@ssdNumber ssdNumber `uc  1 a 1 wreg ]
+"83
+[v ssd_vid_set_symbol@symbol symbol `uc  1 a 1 18 ]
+"82
+[v ssd_vid_set_symbol@ssdNumber ssdNumber `uc  1 a 1 wreg ]
+[v ssd_vid_set_symbol@number number `uc  1 p 1 15 ]
+[v ssd_vid_set_symbol@ssdNumber ssdNumber `uc  1 a 1 17 ]
+"86
 } 0
-"27
-[v _ssd_get_number ssd_get_number `(uc  1 e 1 0 ]
+"109
+[v _ssd_vid_set_state ssd_vid_set_state `(v  1 e 1 0 ]
 {
-[v ssd_get_number@number number `uc  1 a 1 wreg ]
-[v ssd_get_number@number number `uc  1 a 1 wreg ]
-[v ssd_get_number@number number `uc  1 a 1 8 ]
-"64
+[v ssd_vid_set_state@ssdNumber ssdNumber `uc  1 a 1 wreg ]
+[v ssd_vid_set_state@ssdNumber ssdNumber `uc  1 a 1 wreg ]
+[v ssd_vid_set_state@state state `uc  1 p 1 11 ]
+[v ssd_vid_set_state@ssdNumber ssdNumber `uc  1 a 1 14 ]
+"126
 } 0
-"33 G:\MPLABXProjects\pic_test.X\dio.c
-[v _dio_vid_set_port_value dio_vid_set_port_value `(v  1 e 1 0 ]
-{
-[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_port_value@value value `uc  1 p 1 9 ]
-[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 12 ]
-"51
-} 0
-"80
+"80 G:\MPLABXProjects\pic_test.X\dio.c
 [v _dio_vid_set_pin_value dio_vid_set_pin_value `(v  1 e 1 0 ]
 {
 [v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 wreg ]
@@ -331,29 +328,58 @@ E 4
 [v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 10 ]
 "113
 } 0
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awmod.c
-[v ___awmod __awmod `(i  1 e 2 0 ]
+"42 G:\MPLABXProjects\pic_test.X\ssd.c
+[v _ssd_u8_get_symbol ssd_u8_get_symbol `(uc  1 e 1 0 ]
 {
-"10
-[v ___awmod@sign sign `uc  1 a 1 12 ]
-[v ___awmod@counter counter `uc  1 a 1 11 ]
-"5
-[v ___awmod@divisor divisor `i  1 p 2 6 ]
-[v ___awmod@dividend dividend `i  1 p 2 8 ]
-"34
+[v ssd_u8_get_symbol@number number `uc  1 a 1 wreg ]
+"43
+[v ssd_u8_get_symbol@symbol symbol `uc  1 a 1 9 ]
+"42
+[v ssd_u8_get_symbol@number number `uc  1 a 1 wreg ]
+[v ssd_u8_get_symbol@number number `uc  1 a 1 8 ]
+"80
 } 0
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\awdiv.c
-[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"33 G:\MPLABXProjects\pic_test.X\dio.c
+[v _dio_vid_set_port_value dio_vid_set_port_value `(v  1 e 1 0 ]
+{
+[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_value@value value `uc  1 p 1 6 ]
+[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 9 ]
+"51
+} 0
+"88 G:\MPLABXProjects\pic_test.X\ssd.c
+[v _ssd_u8_get_state ssd_u8_get_state `(uc  1 e 1 0 ]
+{
+[v ssd_u8_get_state@ssdNumber ssdNumber `uc  1 a 1 wreg ]
+"89
+[v ssd_u8_get_state@state state `uc  1 a 1 16 ]
+"88
+[v ssd_u8_get_state@ssdNumber ssdNumber `uc  1 a 1 wreg ]
+[v ssd_u8_get_state@ssdNumber ssdNumber `uc  1 a 1 15 ]
+"107
+} 0
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
 {
 "10
-[v ___awdiv@quotient quotient `i  1 a 2 13 ]
-"11
-[v ___awdiv@sign sign `uc  1 a 1 12 ]
-[v ___awdiv@counter counter `uc  1 a 1 11 ]
+[v ___lwmod@counter counter `uc  1 a 1 11 ]
 "5
-[v ___awdiv@divisor divisor `i  1 p 2 6 ]
-[v ___awdiv@dividend dividend `i  1 p 2 8 ]
-"41
+[v ___lwmod@divisor divisor `ui  1 p 2 6 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 8 ]
+"25
+} 0
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwdiv.c
+[v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwdiv@quotient quotient `ui  1 a 2 11 ]
+"11
+[v ___lwdiv@counter counter `uc  1 a 1 13 ]
+"5
+[v ___lwdiv@divisor divisor `ui  1 p 2 6 ]
+[v ___lwdiv@dividend dividend `ui  1 p 2 8 ]
+"30
 } 0
 "89 G:\MPLABXProjects\pic_test.X\scheduler.c
 [v _sch_vid_delete_task sch_vid_delete_task `(uc  1 e 1 0 ]

@@ -1,5 +1,5 @@
 /*
- * LCD.h
+ * lcd.h
  *
  *  Created on: Aug 23, 2019
  *      Author: Ahmed Hassan

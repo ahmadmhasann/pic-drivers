@@ -1,10 +1,9 @@
 /*
- * DIO.h
+ * dio.h
  *
- *  Created on: Aug 17, 2019
+ *  Created on: July 6, 2020
  *      Author: Ahmed Hassan
  */
-
 #ifndef DIO_H_
 #define DIO_H_
 
@@ -26,6 +25,8 @@ enum {
 
 #define HIGH_PIN 0x01
 #define LOW_PIN 0x00
+
+
 void dio_vid_set_port_direction (u8 portNumber, u8 direction);
 void dio_vid_set_port_value (u8 portNumber, u8 value);
 u8 dio_u8_read_port_value (u8 portNumber);

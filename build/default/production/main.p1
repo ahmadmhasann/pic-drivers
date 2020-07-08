@@ -1,29 +1,26 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"216 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 216: extern volatile unsigned char PORTB __attribute__((address(0x006)));
-[v _PORTB `Vuc ~T0 @X0 0 e@6 ]
-"16 ./ssd.h
-[; ;./ssd.h: 16: void ssd_set_state (u8 state);
-[v _ssd_set_state `(v ~T0 @X0 0 ef1`uc ]
-"32 ./dio.h
-[; ;./dio.h: 32: u8 dio_u8_read_pin_value (u8 portNumber, u8 index);
+"33 ./dio.h
+[; ;./dio.h: 33: u8 dio_u8_read_pin_value (u8 portNumber, u8 index);
 [v _dio_u8_read_pin_value `(uc ~T0 @X0 0 ef2`uc`uc ]
-"43 main.c
-[; ;main.c: 43:     if (dio_u8_read_pin_value(B, 3) == 0 && buttonPressedFlag == 0) {
+"27 main.c
+[; ;main.c: 27:     if (dio_u8_read_pin_value(B, 3) == 0 && buttonPressedFlag == 0) {
 [c E860 0 1 2 3 4 .. ]
 [n E860 . A B C D E  ]
+"30 ./ssd.h
+[; ;./ssd.h: 30: extern u16 ssdNumber;
+[v _ssdNumber `us ~T0 @X0 0 e ]
 "13 ./eeprom_external.h
 [; ;./eeprom_external.h: 13: void eeprom_external_vid_write(u8 address, u8 data);
 [v _eeprom_external_vid_write `(v ~T0 @X0 0 ef2`uc`uc ]
 [p mainexit ]
-"15 ./ssd.h
-[; ;./ssd.h: 15: void ssd_init(void);
-[v _ssd_init `(v ~T0 @X0 0 ef ]
+"32 ./ssd.h
+[; ;./ssd.h: 32: void ssd_vid_2_digits_init(void);
+[v _ssd_vid_2_digits_init `(v ~T0 @X0 0 ef ]
 "17 ./i2c.h
 [; ;./i2c.h: 17: void i2c_vid_master_init(void);
 [v _i2c_vid_master_init `(v ~T0 @X0 0 ef ]
-"29 ./dio.h
-[; ;./dio.h: 29: void dio_vid_set_port_direction (u8 portNumber, u8 direction);
+"30 ./dio.h
+[; ;./dio.h: 30: void dio_vid_set_port_direction (u8 portNumber, u8 direction);
 [v _dio_vid_set_port_direction `(v ~T0 @X0 0 ef2`uc`uc ]
 "14 ./eeprom_external.h
 [; ;./eeprom_external.h: 14: u8 eeprom_external_vid_read(u8 address);
@@ -31,12 +28,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32 ./scheduler.h
 [; ;./scheduler.h: 32: void sch_vid_init(void);
 [v _sch_vid_init `(v ~T0 @X0 0 ef ]
-[v F912 `(v ~T0 @X0 0 t? ]
+[v F920 `(v ~T0 @X0 0 t? ]
 "28
 [; ;./scheduler.h: 28: u8 sch_u8_add_task(void ( * pFunction)(),
-[v _sch_u8_add_task `(uc ~T0 @X0 0 ef3`*F912`Cuo`Cuo ]
-[v F972 `(v ~T0 @X0 0 t? ]
-"26
+[v _sch_u8_add_task `(uc ~T0 @X0 0 ef3`*F920`Cuo`Cuo ]
+"33 ./ssd.h
+[; ;./ssd.h: 33: void ssd_vid_2_digits_update();
+[v _ssd_vid_2_digits_update `(v ~T0 @X0 0 e? ]
+"26 ./scheduler.h
 [; ;./scheduler.h: 26: void sch_vid_dispatch_tasks(void);
 [v _sch_vid_dispatch_tasks `(v ~T0 @X0 0 ef ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
@@ -219,210 +218,148 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2363
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 2363: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"40 ./config.h
+"21 ./config.h
 [p x FOSC = HS ]
-"41
+"22
 [p x WDTE = OFF ]
-"42
+"23
 [p x PWRTE = ON ]
-"43
+"24
 [p x BOREN = ON ]
-"44
+"25
 [p x LVP = OFF ]
-"45
+"26
 [p x CPD = OFF ]
-"46
+"27
 [p x WRT = OFF ]
-"47
+"28
 [p x CP = OFF ]
 "22 main.c
-[; ;main.c: 22: u16 counter = 0;
-[v _counter `us ~T0 @X0 1 e ]
-[i _counter
--> -> 0 `i `us
-]
-"23
-[; ;main.c: 23: volatile u8 setTemperature;
-[v _setTemperature `Vuc ~T0 @X0 1 e ]
-"24
-[; ;main.c: 24: volatile u8 buttonPressedFlag = 0;
+[; ;main.c: 22: volatile u8 buttonPressedFlag = 0;
 [v _buttonPressedFlag `Vuc ~T0 @X0 1 e ]
 [i _buttonPressedFlag
 -> -> 0 `i `uc
 ]
 "26
-[; ;main.c: 26: void test(void) {
-[v _test `(v ~T0 @X0 1 ef ]
-{
-[e :U _test ]
-[f ]
-"27
-[; ;main.c: 27:     counter++;
-[e ++ _counter -> -> 1 `i `us ]
-"28
-[; ;main.c: 28:     if (counter == 500) {
-[e $ ! == -> _counter `ui -> -> 500 `i `ui 97  ]
-{
-"29
-[; ;main.c: 29:         counter = 0;
-[e = _counter -> -> 0 `i `us ]
-"30
-[; ;main.c: 30:         PORTB = ~PORTB;
-[e = _PORTB -> ~ -> _PORTB `i `uc ]
-"31
-[; ;main.c: 31:     }
-}
-[e :U 97 ]
-"32
-[; ;main.c: 32: }
-[e :UE 96 ]
-}
-"34
-[; ;main.c: 34: void toggleB(void) {
-[v _toggleB `(v ~T0 @X0 1 ef ]
-{
-[e :U _toggleB ]
-[f ]
-"35
-[; ;main.c: 35:     PORTB = ~PORTB;
-[e = _PORTB -> ~ -> _PORTB `i `uc ]
-"36
-[; ;main.c: 36: }
-[e :UE 98 ]
-}
-"38
-[; ;main.c: 38: void showNumber25(void) {
-[v _showNumber25 `(v ~T0 @X0 1 ef ]
-{
-[e :U _showNumber25 ]
-[f ]
-"39
-[; ;main.c: 39:     ssd_set_state(setTemperature);
-[e ( _ssd_set_state (1 _setTemperature ]
-"40
-[; ;main.c: 40: }
-[e :UE 99 ]
-}
-"42
-[; ;main.c: 42: void checkButtons() {
+[; ;main.c: 26: void checkButtons() {
 [v _checkButtons `(v ~T0 @X0 1 ef ]
 {
 [e :U _checkButtons ]
 [f ]
-"43
-[; ;main.c: 43:     if (dio_u8_read_pin_value(B, 3) == 0 && buttonPressedFlag == 0) {
-[e $ ! && == -> ( _dio_u8_read_pin_value (2 , -> . `E860 1 `uc -> -> 3 `i `uc `i -> 0 `i == -> _buttonPressedFlag `i -> 0 `i 101  ]
+"27
+[; ;main.c: 27:     if (dio_u8_read_pin_value(B, 3) == 0 && buttonPressedFlag == 0) {
+[e $ ! && == -> ( _dio_u8_read_pin_value (2 , -> . `E860 1 `uc -> -> 3 `i `uc `i -> 0 `i == -> _buttonPressedFlag `i -> 0 `i 97  ]
 {
-"44
-[; ;main.c: 44:         buttonPressedFlag = 1;
+"28
+[; ;main.c: 28:         buttonPressedFlag = 1;
 [e = _buttonPressedFlag -> -> 1 `i `uc ]
-"45
-[; ;main.c: 45:         if (setTemperature + 5 < 80) {
-[e $ ! < + -> _setTemperature `i -> 5 `i -> 80 `i 102  ]
+"29
+[; ;main.c: 29:         if (ssdNumber + 5 < 80) {
+[e $ ! < + -> _ssdNumber `ui -> -> 5 `i `ui -> -> 80 `i `ui 98  ]
 {
-"46
-[; ;main.c: 46:             eeprom_external_vid_write(0, setTemperature + 5);
-[e ( _eeprom_external_vid_write (2 , -> -> 0 `i `uc -> + -> _setTemperature `i -> 5 `i `uc ]
-"47
-[; ;main.c: 47:             setTemperature += 5;
-[e =+ _setTemperature -> -> 5 `i `Vuc ]
-"48
-[; ;main.c: 48:         }
+"30
+[; ;main.c: 30:             eeprom_external_vid_write(0, ssdNumber + 5);
+[e ( _eeprom_external_vid_write (2 , -> -> 0 `i `uc -> + -> _ssdNumber `ui -> -> 5 `i `ui `uc ]
+"31
+[; ;main.c: 31:             ssdNumber += 5;
+[e =+ _ssdNumber -> -> 5 `i `us ]
+"32
+[; ;main.c: 32:         }
+}
+[e :U 98 ]
+"33
+[; ;main.c: 33:     } else if (dio_u8_read_pin_value(B, 4) == 0 && buttonPressedFlag == 0) {
+}
+[e $U 99  ]
+[e :U 97 ]
+[e $ ! && == -> ( _dio_u8_read_pin_value (2 , -> . `E860 1 `uc -> -> 4 `i `uc `i -> 0 `i == -> _buttonPressedFlag `i -> 0 `i 100  ]
+{
+"34
+[; ;main.c: 34:         buttonPressedFlag = 1;
+[e = _buttonPressedFlag -> -> 1 `i `uc ]
+"35
+[; ;main.c: 35:         if (ssdNumber - 5 > 30) {
+[e $ ! > - -> _ssdNumber `ui -> -> 5 `i `ui -> -> 30 `i `ui 101  ]
+{
+"36
+[; ;main.c: 36:             eeprom_external_vid_write(0, ssdNumber - 5);
+[e ( _eeprom_external_vid_write (2 , -> -> 0 `i `uc -> - -> _ssdNumber `ui -> -> 5 `i `ui `uc ]
+"37
+[; ;main.c: 37:             ssdNumber -= 5;
+[e =- _ssdNumber -> -> 5 `i `us ]
+"38
+[; ;main.c: 38:         }
+}
+[e :U 101 ]
+"39
+[; ;main.c: 39:     }
+}
+[e :U 100 ]
+[e :U 99 ]
+"40
+[; ;main.c: 40:     if (dio_u8_read_pin_value(B, 3) && dio_u8_read_pin_value(B, 4)) {
+[e $ ! && != -> ( _dio_u8_read_pin_value (2 , -> . `E860 1 `uc -> -> 3 `i `uc `i -> 0 `i != -> ( _dio_u8_read_pin_value (2 , -> . `E860 1 `uc -> -> 4 `i `uc `i -> 0 `i 102  ]
+{
+"41
+[; ;main.c: 41:         buttonPressedFlag = 0;
+[e = _buttonPressedFlag -> -> 0 `i `uc ]
+"42
+[; ;main.c: 42:     }
 }
 [e :U 102 ]
-"49
-[; ;main.c: 49:     } else if (dio_u8_read_pin_value(B, 4) == 0 && buttonPressedFlag == 0) {
-}
-[e $U 103  ]
-[e :U 101 ]
-[e $ ! && == -> ( _dio_u8_read_pin_value (2 , -> . `E860 1 `uc -> -> 4 `i `uc `i -> 0 `i == -> _buttonPressedFlag `i -> 0 `i 104  ]
-{
-"50
-[; ;main.c: 50:         buttonPressedFlag = 1;
-[e = _buttonPressedFlag -> -> 1 `i `uc ]
-"51
-[; ;main.c: 51:         if (setTemperature - 5 > 30) {
-[e $ ! > - -> _setTemperature `i -> 5 `i -> 30 `i 105  ]
-{
-"52
-[; ;main.c: 52:             eeprom_external_vid_write(0, setTemperature - 5);
-[e ( _eeprom_external_vid_write (2 , -> -> 0 `i `uc -> - -> _setTemperature `i -> 5 `i `uc ]
-"53
-[; ;main.c: 53:             setTemperature -= 5;
-[e =- _setTemperature -> -> 5 `i `Vuc ]
-"54
-[; ;main.c: 54:         }
-}
-[e :U 105 ]
-"55
-[; ;main.c: 55:     }
-}
-[e :U 104 ]
-[e :U 103 ]
-"56
-[; ;main.c: 56:     if (dio_u8_read_pin_value(B, 3) && dio_u8_read_pin_value(B, 4)) {
-[e $ ! && != -> ( _dio_u8_read_pin_value (2 , -> . `E860 1 `uc -> -> 3 `i `uc `i -> 0 `i != -> ( _dio_u8_read_pin_value (2 , -> . `E860 1 `uc -> -> 4 `i `uc `i -> 0 `i 106  ]
-{
-"57
-[; ;main.c: 57:         buttonPressedFlag = 0;
-[e = _buttonPressedFlag -> -> 0 `i `uc ]
-"58
-[; ;main.c: 58:     }
-}
-[e :U 106 ]
-"59
-[; ;main.c: 59: }
-[e :UE 100 ]
+"43
+[; ;main.c: 43: }
+[e :UE 96 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"61
-[; ;main.c: 61: int main(void) {
+"45
+[; ;main.c: 45: int main(void) {
 [v _main `(i ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"62
-[; ;main.c: 62:     ssd_init();
-[e ( _ssd_init ..  ]
-"63
-[; ;main.c: 63:     i2c_vid_master_init();
+"46
+[; ;main.c: 46:     ssd_vid_2_digits_init();
+[e ( _ssd_vid_2_digits_init ..  ]
+"47
+[; ;main.c: 47:     i2c_vid_master_init();
 [e ( _i2c_vid_master_init ..  ]
-"64
-[; ;main.c: 64:     dio_vid_set_port_direction(B, 255);
+"48
+[; ;main.c: 48:     dio_vid_set_port_direction(B, 255);
 [e ( _dio_vid_set_port_direction (2 , -> . `E860 1 `uc -> -> 255 `i `uc ]
-"65
-[; ;main.c: 65:     setTemperature = eeprom_external_vid_read(0);
-[e = _setTemperature ( _eeprom_external_vid_read (1 -> -> 0 `i `uc ]
-"66
-[; ;main.c: 66:     if (setTemperature < 35 || setTemperature > 75 || setTemperature % 5 != 0)
-[e $ ! || || < -> _setTemperature `i -> 35 `i > -> _setTemperature `i -> 75 `i != % -> _setTemperature `i -> 5 `i -> 0 `i 108  ]
-"67
-[; ;main.c: 67:         setTemperature = 60;
-[e = _setTemperature -> -> 60 `i `uc ]
-[e :U 108 ]
-"68
-[; ;main.c: 68:     sch_vid_init();
+"49
+[; ;main.c: 49:     ssdNumber = eeprom_external_vid_read(0);
+[e = _ssdNumber -> ( _eeprom_external_vid_read (1 -> -> 0 `i `uc `us ]
+"50
+[; ;main.c: 50:     if (ssdNumber < 35 || ssdNumber > 75 || ssdNumber % 5 != 0)
+[e $ ! || || < -> _ssdNumber `ui -> -> 35 `i `ui > -> _ssdNumber `ui -> -> 75 `i `ui != % -> _ssdNumber `ui -> -> 5 `i `ui -> -> 0 `i `ui 104  ]
+"51
+[; ;main.c: 51:         ssdNumber = 60;
+[e = _ssdNumber -> -> 60 `i `us ]
+[e :U 104 ]
+"52
+[; ;main.c: 52:     sch_vid_init();
 [e ( _sch_vid_init ..  ]
-"69
-[; ;main.c: 69:     sch_u8_add_task(checkButtons, 1, 1);
+"53
+[; ;main.c: 53:     sch_u8_add_task(checkButtons, 1, 1);
 [e ( _sch_u8_add_task (3 , , &U _checkButtons -> -> -> 1 `i `o `uo -> -> -> 1 `i `o `uo ]
-"70
-[; ;main.c: 70:     sch_u8_add_task(showNumber25, 10, 10);
-[e ( _sch_u8_add_task (3 , , -> &U _showNumber25 `*F972 -> -> -> 10 `i `o `uo -> -> -> 10 `i `o `uo ]
-"74
-[; ;main.c: 74:     while (1) {
-[e :U 110 ]
+"54
+[; ;main.c: 54:     sch_u8_add_task(ssd_vid_2_digits_update, 5, 5);
+[e ( _sch_u8_add_task (3 , , &U _ssd_vid_2_digits_update -> -> -> 5 `i `o `uo -> -> -> 5 `i `o `uo ]
+"56
+[; ;main.c: 56:     while (1) {
+[e :U 106 ]
 {
-"75
-[; ;main.c: 75:         sch_vid_dispatch_tasks();
+"57
+[; ;main.c: 57:         sch_vid_dispatch_tasks();
 [e ( _sch_vid_dispatch_tasks ..  ]
-"76
-[; ;main.c: 76:     }
+"58
+[; ;main.c: 58:     }
 }
-[e :U 109 ]
-[e $U 110  ]
-[e :U 111 ]
-"79
-[; ;main.c: 79: }
-[e :UE 107 ]
+[e :U 105 ]
+[e $U 106  ]
+[e :U 107 ]
+"61
+[; ;main.c: 61: }
+[e :UE 103 ]
 }

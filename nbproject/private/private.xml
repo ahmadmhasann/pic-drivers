@@ -5,10 +5,21 @@
         <group>
             <file>file:/G:/MPLABXProjects/pic_test.X/i2c.c</file>
             <file>file:/G:/MPLABXProjects/pic_test.X/dio.h</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/scheduler.c</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/ssd.h</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/timer.c</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/macros.h</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/lcd_cfg.h</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/lcd.h</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/eeprom_external.c</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/lcd.c</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/ssd.c</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/eeprom_external.h</file>
             <file>file:/G:/MPLABXProjects/pic_test.X/eeprom.c</file>
             <file>file:/G:/MPLABXProjects/pic_test.X/config.h</file>
             <file>file:/G:/MPLABXProjects/pic_test.X/i2c.h</file>
             <file>file:/G:/MPLABXProjects/pic_test.X/dio.c</file>
+            <file>file:/G:/MPLABXProjects/pic_test.X/scheduler.h</file>
             <file>file:/G:/MPLABXProjects/pic_test.X/main.c</file>
             <file>file:/G:/MPLABXProjects/pic_test.X/eeprom.h</file>
         </group>

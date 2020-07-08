@@ -1,6 +1,6 @@
 /*
- * File:   eeprom.h
- * Author: Hassan
+ * File:   eeprom_external.h
+ * Author: Ahmed Hassan
  *
  * Created on July 8, 2020
  */

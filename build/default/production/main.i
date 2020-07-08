@@ -1732,7 +1732,7 @@ extern __bank0 __bit __timeout;
 
 
 # 1 "./config.h" 1
-# 40 "./config.h"
+# 21 "./config.h"
 #pragma config FOSC = HS
 #pragma config WDTE = OFF
 #pragma config PWRTE = ON
@@ -1761,7 +1761,7 @@ typedef long double f96;
 # 13 "main.c" 2
 
 # 1 "./dio.h" 1
-# 11 "./dio.h"
+# 10 "./dio.h"
 enum {
  A,
  B,
@@ -1769,7 +1769,7 @@ enum {
  D,
     E
 };
-# 29 "./dio.h"
+# 30 "./dio.h"
 void dio_vid_set_port_direction (u8 portNumber, u8 direction);
 void dio_vid_set_port_value (u8 portNumber, u8 value);
 u8 dio_u8_read_port_value (u8 portNumber);
@@ -1790,10 +1790,15 @@ void lcd_vid_clear_screan (void);
 # 15 "main.c" 2
 
 # 1 "./ssd.h" 1
-# 14 "./ssd.h"
-u8 ssd_get_number(u8 number);
-void ssd_init(void);
-void ssd_set_state (u8 state);
+# 30 "./ssd.h"
+extern u16 ssdNumber;
+
+void ssd_vid_2_digits_init(void);
+void ssd_vid_2_digits_update();
+u8 ssd_u8_get_symbol(u8 number);
+void ssd_vid_set_symbol(u8 ssdNumber, u8 symbol);
+u8 ssd_u8_get_state(u8 ssdNumber);
+void ssd_vid_set_state(u8 ssdNumber, u8 state);
 # 16 "main.c" 2
 
 # 1 "./scheduler.h" 1
@@ -1842,7 +1847,7 @@ void i2c_vid_nack(void);
 u8 i2c_u8_master_write_slave_address_with_write_req(u8 address);
 u8 i2c_u8_master_write_slave_address_with_read_req(u8 address);
 u8 i2c_u8_master_write_byte(u8 data);
-u8 i2c_u8_master_read_byte();
+u8 i2c_u8_master_read_byte(void);
 # 19 "main.c" 2
 
 # 1 "./eeprom.h" 1
@@ -1857,38 +1862,22 @@ void eeprom_external_vid_write(u8 address, u8 data);
 u8 eeprom_external_vid_read(u8 address);
 # 21 "main.c" 2
 
-u16 counter = 0;
-volatile u8 setTemperature;
 volatile u8 buttonPressedFlag = 0;
 
-void test(void) {
-    counter++;
-    if (counter == 500) {
-        counter = 0;
-        PORTB = ~PORTB;
-    }
-}
 
-void toggleB(void) {
-    PORTB = ~PORTB;
-}
-
-void showNumber25(void) {
-    ssd_set_state(setTemperature);
-}
 
 void checkButtons() {
     if (dio_u8_read_pin_value(B, 3) == 0 && buttonPressedFlag == 0) {
         buttonPressedFlag = 1;
-        if (setTemperature + 5 < 80) {
-            eeprom_external_vid_write(0, setTemperature + 5);
-            setTemperature += 5;
+        if (ssdNumber + 5 < 80) {
+            eeprom_external_vid_write(0, ssdNumber + 5);
+            ssdNumber += 5;
         }
     } else if (dio_u8_read_pin_value(B, 4) == 0 && buttonPressedFlag == 0) {
         buttonPressedFlag = 1;
-        if (setTemperature - 5 > 30) {
-            eeprom_external_vid_write(0, setTemperature - 5);
-            setTemperature -= 5;
+        if (ssdNumber - 5 > 30) {
+            eeprom_external_vid_write(0, ssdNumber - 5);
+            ssdNumber -= 5;
         }
     }
     if (dio_u8_read_pin_value(B, 3) && dio_u8_read_pin_value(B, 4)) {
@@ -1897,17 +1886,15 @@ void checkButtons() {
 }
 
 int main(void) {
-    ssd_init();
+    ssd_vid_2_digits_init();
     i2c_vid_master_init();
     dio_vid_set_port_direction(B, 255);
-    setTemperature = eeprom_external_vid_read(0);
-    if (setTemperature < 35 || setTemperature > 75 || setTemperature % 5 != 0)
-        setTemperature = 60;
+    ssdNumber = eeprom_external_vid_read(0);
+    if (ssdNumber < 35 || ssdNumber > 75 || ssdNumber % 5 != 0)
+        ssdNumber = 60;
     sch_vid_init();
     sch_u8_add_task(checkButtons, 1, 1);
-    sch_u8_add_task(showNumber25, 10, 10);
-
-
+    sch_u8_add_task(ssd_vid_2_digits_update, 5, 5);
 
     while (1) {
         sch_vid_dispatch_tasks();
