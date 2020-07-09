@@ -1,9 +1,21 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"15 ./counter.h
+[; ;./counter.h: 15: void counter_vid_init(void);
+[v _counter_vid_init `(v ~T0 @X0 0 ef ]
+"35 ./ssd.h
+[; ;./ssd.h: 35: void ssd_vid_set_state(u8 state);
+[v _ssd_vid_set_state `(v ~T0 @X0 0 ef1`uc ]
+"33
+[; ;./ssd.h: 33: void ssd_vid_set_symbol(u8 symbol);
+[v _ssd_vid_set_symbol `(v ~T0 @X0 0 ef1`uc ]
+"17 ./counter.h
+[; ;./counter.h: 17: u8 counter_u8_get_counter (void);
+[v _counter_u8_get_counter `(uc ~T0 @X0 0 ef ]
 "31 ./dio.h
 [; ;./dio.h: 31: void dio_vid_set_port_value (u8 portNumber, u8 value);
 [v _dio_vid_set_port_value `(v ~T0 @X0 0 ef2`uc`uc ]
-"24 display.c
-[; ;display.c: 24:     dio_vid_set_port_value(B, 0x00);
+"27 display.c
+[; ;display.c: 27:     dio_vid_set_port_value(B, 0x00);
 [c E860 0 1 2 3 4 .. ]
 [n E860 . A B C D E  ]
 "30 ./ssd.h
@@ -15,18 +27,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "34
 [; ;./dio.h: 34: void dio_vid_set_pin_value (u8 portNumber, u8 index, u8 value);
 [v _dio_vid_set_pin_value `(v ~T0 @X0 0 ef3`uc`uc`uc ]
-"14 ./counter.h
-[; ;./counter.h: 14: extern u16 settingModeSecondsCounter;
-[v _settingModeSecondsCounter `us ~T0 @X0 0 e ]
-"13
-[; ;./counter.h: 13: extern u8 settingModeFlag;
-[v _settingModeFlag `uc ~T0 @X0 0 e ]
 "34 ./ssd.h
 [; ;./ssd.h: 34: u8 ssd_u8_get_state(void);
 [v _ssd_u8_get_state `(uc ~T0 @X0 0 ef ]
-"35
-[; ;./ssd.h: 35: void ssd_vid_set_state(u8 state);
-[v _ssd_vid_set_state `(v ~T0 @X0 0 ef1`uc ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.10\pic\include\pic16f877a.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -223,137 +226,146 @@ Version 4.0 HI-TECH Software Intermediate Code
 [p x WRT = OFF ]
 "28
 [p x CP = OFF ]
-"21 display.c
-[; ;display.c: 21: u8 displayFlag = 0xff;
+"18 display.c
+[; ;display.c: 18: u8 displayFlag = 0xff;
 [v _displayFlag `uc ~T0 @X0 1 e ]
 [i _displayFlag
 -> -> 255 `i `uc
 ]
-"23
-[; ;display.c: 23: void display_init(void) {
+"19
+[; ;display.c: 19: u8 settingModeFlag = 0;
+[v _settingModeFlag `uc ~T0 @X0 1 e ]
+[i _settingModeFlag
+-> -> 0 `i `uc
+]
+"20
+[; ;display.c: 20: u16 settingModeCounter = 0;
+[v _settingModeCounter `us ~T0 @X0 1 e ]
+[i _settingModeCounter
+-> -> 0 `i `us
+]
+"22
+[; ;display.c: 22: void display_init(void) {
 [v _display_init `(v ~T0 @X0 1 ef ]
 {
 [e :U _display_init ]
 [f ]
-"24
-[; ;display.c: 24:     dio_vid_set_port_value(B, 0x00);
-[e ( _dio_vid_set_port_value (2 , -> . `E860 1 `uc -> -> 0 `i `uc ]
+"23
+[; ;display.c: 23:     counter_vid_init();
+[e ( _counter_vid_init ..  ]
 "25
-[; ;display.c: 25:     ssd_vid_init();
-[e ( _ssd_vid_init ..  ]
+[; ;display.c: 25:     ssd_vid_set_state(1);
+[e ( _ssd_vid_set_state (1 -> -> 1 `i `uc ]
 "26
-[; ;display.c: 26:     dio_vid_set_pin_direction(B, 3, 0x00);
-[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 1 `uc -> -> 3 `i `uc -> -> 0 `i `uc ]
+[; ;display.c: 26:     ssd_vid_set_symbol(counter_u8_get_counter());
+[e ( _ssd_vid_set_symbol (1 ( _counter_u8_get_counter ..  ]
 "27
-[; ;display.c: 27:     dio_vid_set_pin_direction(B, 4, 0x00);
-[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 1 `uc -> -> 4 `i `uc -> -> 0 `i `uc ]
-"28
-[; ;display.c: 28:     dio_vid_set_pin_direction(B, 5, 0x00);
-[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 1 `uc -> -> 5 `i `uc -> -> 0 `i `uc ]
+[; ;display.c: 27:     dio_vid_set_port_value(B, 0x00);
+[e ( _dio_vid_set_port_value (2 , -> . `E860 1 `uc -> -> 0 `i `uc ]
 "29
-[; ;display.c: 29:     dio_vid_set_pin_value(B, 5, 0x01);
+[; ;display.c: 29:     ssd_vid_init();
+[e ( _ssd_vid_init ..  ]
+"31
+[; ;display.c: 31:     dio_vid_set_pin_direction(B, 3, 0x00);
+[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 1 `uc -> -> 3 `i `uc -> -> 0 `i `uc ]
+"32
+[; ;display.c: 32:     dio_vid_set_pin_direction(B, 4, 0x00);
+[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 1 `uc -> -> 4 `i `uc -> -> 0 `i `uc ]
+"33
+[; ;display.c: 33:     dio_vid_set_pin_direction(B, 5, 0x00);
+[e ( _dio_vid_set_pin_direction (3 , , -> . `E860 1 `uc -> -> 5 `i `uc -> -> 0 `i `uc ]
+"34
+[; ;display.c: 34:     dio_vid_set_pin_value(B, 5, 0x01);
 [e ( _dio_vid_set_pin_value (3 , , -> . `E860 1 `uc -> -> 5 `i `uc -> -> 1 `i `uc ]
-"30
-[; ;display.c: 30: }
+"37
+[; ;display.c: 37: }
 [e :UE 95 ]
 }
-"32
-[; ;display.c: 32: void display_vid_blink(void) {
-[v _display_vid_blink `(v ~T0 @X0 1 ef ]
-{
-[e :U _display_vid_blink ]
-[f ]
-"34
-[; ;display.c: 34:     if (settingModeSecondsCounter > 5 && settingModeFlag == 1) {
-[e $ ! && > -> _settingModeSecondsCounter `ui -> -> 5 `i `ui == -> _settingModeFlag `i -> 1 `i 97  ]
-{
-"35
-[; ;display.c: 35:         settingModeFlag = 0;
-[e = _settingModeFlag -> -> 0 `i `uc ]
-"36
-[; ;display.c: 36:         settingModeSecondsCounter = 0;
-[e = _settingModeSecondsCounter -> -> 0 `i `us ]
-"37
-[; ;display.c: 37:     }
-}
-[e $U 98  ]
 "39
-[; ;display.c: 39:     else if (settingModeFlag) {
-[e :U 97 ]
-[e $ ! != -> _settingModeFlag `i -> 0 `i 99  ]
+[; ;display.c: 39: void display_vid_update(void) {
+[v _display_vid_update `(v ~T0 @X0 1 ef ]
 {
-"40
-[; ;display.c: 40:         settingModeSecondsCounter++;
-[e ++ _settingModeSecondsCounter -> -> 1 `i `us ]
+[e :U _display_vid_update ]
+[f ]
 "41
-[; ;display.c: 41:         if (ssd_u8_get_state() == 1)
-[e $ ! == -> ( _ssd_u8_get_state ..  `i -> 1 `i 100  ]
+[; ;display.c: 41:     if (settingModeCounter == 250 && settingModeFlag == 1) {
+[e $ ! && == -> _settingModeCounter `ui -> -> 250 `i `ui == -> _settingModeFlag `i -> 1 `i 97  ]
+{
 "42
-[; ;display.c: 42:             ssd_vid_set_state(0);
+[; ;display.c: 42:         settingModeFlag = 0;
+[e = _settingModeFlag -> -> 0 `i `uc ]
+"43
+[; ;display.c: 43:         settingModeCounter = 0;
+[e = _settingModeCounter -> -> 0 `i `us ]
+"44
+[; ;display.c: 44:     }
+}
+[e :U 97 ]
+"47
+[; ;display.c: 47:     if (settingModeFlag) {
+[e $ ! != -> _settingModeFlag `i -> 0 `i 98  ]
+{
+"48
+[; ;display.c: 48:         settingModeCounter++;
+[e ++ _settingModeCounter -> -> 1 `i `us ]
+"49
+[; ;display.c: 49:         if (settingModeCounter % 50 == 0) {
+[e $ ! == % -> _settingModeCounter `ui -> -> 50 `i `ui -> -> 0 `i `ui 99  ]
+{
+"50
+[; ;display.c: 50:             if (ssd_u8_get_state() == 1)
+[e $ ! == -> ( _ssd_u8_get_state ..  `i -> 1 `i 100  ]
+"51
+[; ;display.c: 51:                 ssd_vid_set_state(0);
 [e ( _ssd_vid_set_state (1 -> -> 0 `i `uc ]
 [e $U 101  ]
-"43
-[; ;display.c: 43:         else {
+"52
+[; ;display.c: 52:             else
 [e :U 100 ]
-{
-"44
-[; ;display.c: 44:                         ssd_vid_set_state(1);
+"53
+[; ;display.c: 53:                 ssd_vid_set_state(1);
 [e ( _ssd_vid_set_state (1 -> -> 1 `i `uc ]
-"46
-[; ;display.c: 46:         }
-}
 [e :U 101 ]
-"47
-[; ;display.c: 47:     }
+"54
+[; ;display.c: 54:         }
+}
+[e :U 99 ]
+"55
+[; ;display.c: 55:     }
 }
 [e $U 102  ]
-"48
-[; ;display.c: 48:     else {
-[e :U 99 ]
+"57
+[; ;display.c: 57:     else {
+[e :U 98 ]
 {
-"49
-[; ;display.c: 49:         ssd_vid_set_state(1);
+"58
+[; ;display.c: 58:         ssd_vid_set_state(1);
 [e ( _ssd_vid_set_state (1 -> -> 1 `i `uc ]
-"50
-[; ;display.c: 50:     }
+"59
+[; ;display.c: 59:     }
 }
 [e :U 102 ]
-[e :U 98 ]
-"51
-[; ;display.c: 51: }
+"62
+[; ;display.c: 62:     ssd_vid_set_symbol(counter_u8_get_counter());
+[e ( _ssd_vid_set_symbol (1 ( _counter_u8_get_counter ..  ]
+"63
+[; ;display.c: 63: }
 [e :UE 96 ]
 }
-"53
-[; ;display.c: 53: void display_update(void) {
-[v _display_update `(v ~T0 @X0 1 ef ]
+"65
+[; ;display.c: 65: void display_set_setting_mode (u8 mode) {
+[v _display_set_setting_mode `(v ~T0 @X0 1 ef1`uc ]
 {
-[e :U _display_update ]
+[e :U _display_set_setting_mode ]
+[v _mode `uc ~T0 @X0 1 r1 ]
 [f ]
-"54
-[; ;display.c: 54:     if (settingModeSecondsCounter == 2500 && settingModeFlag == 1) {
-[e $ ! && == -> _settingModeSecondsCounter `ui -> -> 2500 `i `ui == -> _settingModeFlag `i -> 1 `i 104  ]
-{
-"55
-[; ;display.c: 55:         settingModeFlag = 0;
-[e = _settingModeFlag -> -> 0 `i `uc ]
-"56
-[; ;display.c: 56:         settingModeSecondsCounter = 0;
-[e = _settingModeSecondsCounter -> -> 0 `i `us ]
-"57
-[; ;display.c: 57:     }
-}
-[e :U 104 ]
-"58
-[; ;display.c: 58:     settingModeSecondsCounter++;
-[e ++ _settingModeSecondsCounter -> -> 1 `i `us ]
-"60
-[; ;display.c: 60:     if (settingModeSecondsCounter % 500 == 0)
-[e $ ! == % -> _settingModeSecondsCounter `ui -> -> 500 `i `ui -> -> 0 `i `ui 105  ]
-"61
-[; ;display.c: 61:         displayFlag = ~displayFlag;
-[e = _displayFlag -> ~ -> _displayFlag `i `uc ]
-[e :U 105 ]
-"62
-[; ;display.c: 62: }
+"66
+[; ;display.c: 66:     settingModeFlag = mode;
+[e = _settingModeFlag _mode ]
+"67
+[; ;display.c: 67:     settingModeCounter = 0;
+[e = _settingModeCounter -> -> 0 `i `us ]
+"68
+[; ;display.c: 68: }
 [e :UE 103 ]
 }

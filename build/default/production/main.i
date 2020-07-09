@@ -1865,28 +1865,27 @@ u8 eeprom_external_vid_read(u8 address);
 # 12 "./counter.h"
 extern u8 buttonPressedFlag;
 extern u8 settingModeFlag;
-extern u16 settingModeSecondsCounter;
+extern u16 settingModeCounter;
 void counter_vid_init(void);
 void counter_vid_update(void);
+u8 counter_u8_get_counter (void);
 # 22 "main.c" 2
 
 # 1 "./display.h" 1
-# 11 "./display.h"
+# 17 "./display.h"
 extern u8 displayFlag;
 void display_init (void);
-void display_update (void);
-
-void display_vid_blink (void);
+void display_vid_update (void);
+void display_set_setting_mode (u8 mode);
 # 23 "main.c" 2
 
 
 int main(void) {
-    ssd_vid_init();
     i2c_vid_master_init();
-    counter_vid_init();
+    display_init();
     sch_vid_init();
     sch_u8_add_task(counter_vid_update, 20, 20);
-    sch_u8_add_task(display_vid_blink, 0, 1000);
+    sch_u8_add_task(display_vid_update, 0, 20);
     sch_u8_add_task(ssd_vid_update, 5, 5);
 
     while (1) {

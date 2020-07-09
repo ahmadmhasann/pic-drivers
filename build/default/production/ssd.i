@@ -1796,18 +1796,18 @@ u8 ssd_u8_get_code(u8 number);
 # 12 "./counter.h"
 extern u8 buttonPressedFlag;
 extern u8 settingModeFlag;
-extern u16 settingModeSecondsCounter;
+extern u16 settingModeCounter;
 void counter_vid_init(void);
 void counter_vid_update(void);
+u8 counter_u8_get_counter (void);
 # 17 "ssd.c" 2
 
 # 1 "./display.h" 1
-# 11 "./display.h"
+# 17 "./display.h"
 extern u8 displayFlag;
 void display_init (void);
-void display_update (void);
-
-void display_vid_blink (void);
+void display_vid_update (void);
+void display_set_setting_mode (u8 mode);
 # 18 "ssd.c" 2
 
 

@@ -1785,54 +1785,68 @@ u8 ssd_u8_get_code(u8 number);
 # 12 "./counter.h"
 extern u8 buttonPressedFlag;
 extern u8 settingModeFlag;
-extern u16 settingModeSecondsCounter;
+extern u16 settingModeCounter;
 void counter_vid_init(void);
 void counter_vid_update(void);
+u8 counter_u8_get_counter (void);
 # 16 "display.c" 2
 
-
-
-
+# 1 "./display.h" 1
+# 17 "./display.h"
+extern u8 displayFlag;
+void display_init (void);
+void display_vid_update (void);
+void display_set_setting_mode (u8 mode);
+# 17 "display.c" 2
 
 u8 displayFlag = 0xff;
+u8 settingModeFlag = 0;
+u16 settingModeCounter = 0;
 
 void display_init(void) {
+    counter_vid_init();
+
+    ssd_vid_set_state(1);
+    ssd_vid_set_symbol(counter_u8_get_counter());
     dio_vid_set_port_value(B, 0x00);
+
     ssd_vid_init();
+
     dio_vid_set_pin_direction(B, 3, 0x00);
     dio_vid_set_pin_direction(B, 4, 0x00);
     dio_vid_set_pin_direction(B, 5, 0x00);
     dio_vid_set_pin_value(B, 5, 0x01);
+
+
 }
 
-void display_vid_blink(void) {
+void display_vid_update(void) {
 
-    if (settingModeSecondsCounter > 5 && settingModeFlag == 1) {
+    if (settingModeCounter == 250 && settingModeFlag == 1) {
         settingModeFlag = 0;
-        settingModeSecondsCounter = 0;
+        settingModeCounter = 0;
     }
 
-    else if (settingModeFlag) {
-        settingModeSecondsCounter++;
-        if (ssd_u8_get_state() == 1)
-            ssd_vid_set_state(0);
-        else {
-                        ssd_vid_set_state(1);
 
+    if (settingModeFlag) {
+        settingModeCounter++;
+        if (settingModeCounter % 50 == 0) {
+            if (ssd_u8_get_state() == 1)
+                ssd_vid_set_state(0);
+            else
+                ssd_vid_set_state(1);
         }
     }
+
     else {
         ssd_vid_set_state(1);
     }
+
+
+    ssd_vid_set_symbol(counter_u8_get_counter());
 }
 
-void display_update(void) {
-    if (settingModeSecondsCounter == 2500 && settingModeFlag == 1) {
-        settingModeFlag = 0;
-        settingModeSecondsCounter = 0;
-    }
-    settingModeSecondsCounter++;
-
-    if (settingModeSecondsCounter % 500 == 0)
-        displayFlag = ~displayFlag;
+void display_set_setting_mode (u8 mode) {
+    settingModeFlag = mode;
+    settingModeCounter = 0;
 }

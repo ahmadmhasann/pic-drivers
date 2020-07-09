@@ -5,4 +5,5 @@ types.h  \
 macros.h  \
 dio.h  \
 ssd.h  \
-eeprom_external.h 
+eeprom_external.h  \
+display.h 

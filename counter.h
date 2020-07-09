@@ -11,9 +11,10 @@
 
 extern u8 buttonPressedFlag;
 extern u8 settingModeFlag;
-extern u16 settingModeSecondsCounter;
+extern u16 settingModeCounter;
 void counter_vid_init(void);
 void counter_vid_update(void);
+u8 counter_u8_get_counter (void);
 
 
 #endif	

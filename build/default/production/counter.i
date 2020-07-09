@@ -1787,40 +1787,43 @@ void eeprom_external_vid_write(u8 address, u8 data);
 u8 eeprom_external_vid_read(u8 address);
 # 16 "counter.c" 2
 
+# 1 "./display.h" 1
+# 17 "./display.h"
+extern u8 displayFlag;
+void display_init (void);
+void display_vid_update (void);
+void display_set_setting_mode (u8 mode);
+# 17 "counter.c" 2
 
 
 
 
 u8 buttonPressedFlag = 0;
 u8 settingModeFlag = 0;
-u16 settingModeSecondsCounter = 0;
+u16 settingModeCounter = 0;
 u8 counter = 60;
 
 void counter_vid_init(void) {
-
     dio_vid_set_pin_direction(B, 2, 0x01);
     dio_vid_set_pin_direction(B, 1, 0x01);
     counter = eeprom_external_vid_read(0);
     if (counter < 35 || counter > 75 || counter % 5 != 0)
         counter = 60;
-    ssd_vid_set_state(1);
-    ssd_vid_set_symbol(counter);
 
 }
 
 void counter_vid_update(void) {
     if (dio_u8_read_pin_value(B, 2) == 0 && buttonPressedFlag == 0) {
-        settingModeFlag = 1;
-        settingModeSecondsCounter = 0;
+        display_set_setting_mode(1);
         buttonPressedFlag = 1;
         if (counter + 5 < 80) {
             eeprom_external_vid_write(0, counter + 5);
             counter += 5;
             ssd_vid_set_symbol(counter);
         }
-    } else if (dio_u8_read_pin_value(B, 1) == 0 && buttonPressedFlag == 0) {
-        settingModeFlag = 1;
-        settingModeSecondsCounter = 0;
+    }
+    else if (dio_u8_read_pin_value(B, 1) == 0 && buttonPressedFlag == 0) {
+        display_set_setting_mode(1);
         buttonPressedFlag = 1;
         if (counter - 5 > 30) {
             eeprom_external_vid_write(0, counter - 5);
@@ -1831,4 +1834,9 @@ void counter_vid_update(void) {
     if (dio_u8_read_pin_value(B, 2) && dio_u8_read_pin_value(B, 1))
         buttonPressedFlag = 0;
 
+}
+
+
+u8 counter_u8_get_counter (void) {
+    return counter;
 }

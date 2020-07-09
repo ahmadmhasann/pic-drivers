@@ -27,7 +27,7 @@ C 2
 D 3
 E 4
 ]
-"28 G:\MPLABXProjects\pic_test.X\counter.c
+"27 G:\MPLABXProjects\pic_test.X\counter.c
 [e E860 . `uc
 A 0
 B 1
@@ -35,7 +35,7 @@ C 2
 D 3
 E 4
 ]
-"24 G:\MPLABXProjects\pic_test.X\display.c
+"27 G:\MPLABXProjects\pic_test.X\display.c
 [e E860 . `uc
 A 0
 B 1
@@ -72,8 +72,10 @@ E 4
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
 "26 G:\MPLABXProjects\pic_test.X\counter.c
 [v _counter_vid_init counter_vid_init `(v  1 e 1 0 ]
-"38
+"35
 [v _counter_vid_update counter_vid_update `(v  1 e 1 0 ]
+"60
+[v _counter_u8_get_counter counter_u8_get_counter `(uc  1 e 1 0 ]
 "12 G:\MPLABXProjects\pic_test.X\dio.c
 [v _dio_vid_set_port_direction dio_vid_set_port_direction `(v  1 e 1 0 ]
 "33
@@ -86,8 +88,12 @@ E 4
 [v _dio_vid_set_pin_value dio_vid_set_pin_value `(v  1 e 1 0 ]
 "116
 [v _dio_vid_set_pin_direction dio_vid_set_pin_direction `(v  1 e 1 0 ]
-"32 G:\MPLABXProjects\pic_test.X\display.c
-[v _display_vid_blink display_vid_blink `(v  1 e 1 0 ]
+"22 G:\MPLABXProjects\pic_test.X\display.c
+[v _display_init display_init `(v  1 e 1 0 ]
+"39
+[v _display_vid_update display_vid_update `(v  1 e 1 0 ]
+"65
+[v _display_set_setting_mode display_set_setting_mode `(v  1 e 1 0 ]
 "11 G:\MPLABXProjects\pic_test.X\eeprom_external.c
 [v _eeprom_external_vid_write eeprom_external_vid_write `(v  1 e 1 0 ]
 "20
@@ -238,17 +244,15 @@ E 4
 [v _WREN WREN `VEb  1 e 0 @3170 ]
 "21 G:\MPLABXProjects\pic_test.X\counter.c
 [v _buttonPressedFlag buttonPressedFlag `uc  1 e 1 0 ]
-"22
-[v _settingModeFlag settingModeFlag `uc  1 e 1 0 ]
-"23
-[v _settingModeSecondsCounter settingModeSecondsCounter `us  1 e 2 0 ]
 "24
 [v _counter counter `uc  1 e 1 0 ]
-"21 G:\MPLABXProjects\pic_test.X\display.c
-[v _displayFlag displayFlag `uc  1 e 1 0 ]
-[s S168 data 13 `*.27(v 1 taskFunction 1 0 `ul 1 delay 4 1 `ul 1 period 4 5 `ul 1 runMe 4 9 ]
+"19 G:\MPLABXProjects\pic_test.X\display.c
+[v _settingModeFlag settingModeFlag `uc  1 e 1 0 ]
+"20
+[v _settingModeCounter settingModeCounter `us  1 e 2 0 ]
+[s S164 data 13 `*.27(v 1 taskFunction 1 0 `ul 1 delay 4 1 `ul 1 period 4 5 `ul 1 runMe 4 9 ]
 "17 G:\MPLABXProjects\pic_test.X\scheduler.c
-[v _sch_tasks sch_tasks `[3]S168  1 e 39 0 ]
+[v _sch_tasks sch_tasks `[3]S164  1 e 39 0 ]
 "21 G:\MPLABXProjects\pic_test.X\ssd.c
 [v _ssdSymbol ssdSymbol `us  1 e 2 0 ]
 "22
@@ -262,21 +266,7 @@ E 4
 "25 G:\MPLABXProjects\pic_test.X\main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"39
-} 0
-"25 G:\MPLABXProjects\pic_test.X\ssd.c
-[v _ssd_vid_init ssd_vid_init `(v  1 e 1 0 ]
-{
-"29
-} 0
-"12 G:\MPLABXProjects\pic_test.X\dio.c
-[v _dio_vid_set_port_direction dio_vid_set_port_direction `(v  1 e 1 0 ]
-{
-[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_port_direction@direction direction `uc  1 p 1 6 ]
-[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 9 ]
-"30
+"38
 } 0
 "19 G:\MPLABXProjects\pic_test.X\scheduler.c
 [v _sch_vid_init sch_vid_init `(v  1 e 1 0 ]
@@ -307,15 +297,15 @@ E 4
 [v sch_vid_dispatch_tasks@index index `uc  1 a 1 22 ]
 "87
 } 0
-"32 G:\MPLABXProjects\pic_test.X\display.c
-[v _display_vid_blink display_vid_blink `(v  1 e 1 0 ]
+"39 G:\MPLABXProjects\pic_test.X\display.c
+[v _display_vid_update display_vid_update `(v  1 e 1 0 ]
 {
-"51
+"63
 } 0
-"38 G:\MPLABXProjects\pic_test.X\counter.c
+"35 G:\MPLABXProjects\pic_test.X\counter.c
 [v _counter_vid_update counter_vid_update `(v  1 e 1 0 ]
 {
-"61
+"57
 } 0
 "31 G:\MPLABXProjects\pic_test.X\ssd.c
 [v _ssd_vid_update ssd_vid_update `(v  1 e 1 0 ]
@@ -333,35 +323,6 @@ E 4
 [v ssd_u8_get_code@number number `uc  1 a 1 wreg ]
 [v ssd_u8_get_code@number number `uc  1 a 1 8 ]
 "96
-} 0
-"33 G:\MPLABXProjects\pic_test.X\dio.c
-[v _dio_vid_set_port_value dio_vid_set_port_value `(v  1 e 1 0 ]
-{
-[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_port_value@value value `uc  1 p 1 9 ]
-[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 12 ]
-"51
-} 0
-"80
-[v _dio_vid_set_pin_value dio_vid_set_pin_value `(v  1 e 1 0 ]
-{
-[v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 wreg ]
-[v dio_vid_set_pin_value@index index `uc  1 p 1 6 ]
-[v dio_vid_set_pin_value@value value `uc  1 p 1 7 ]
-[v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 10 ]
-"113
-} 0
-"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
-[v ___lwmod __lwmod `(ui  1 e 2 0 ]
-{
-"10
-[v ___lwmod@counter counter `uc  1 a 1 11 ]
-"5
-[v ___lwmod@divisor divisor `ui  1 p 2 6 ]
-[v ___lwmod@dividend dividend `ui  1 p 2 8 ]
-"25
 } 0
 "5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwdiv.c
 [v ___lwdiv __lwdiv `(ui  1 e 2 0 ]
@@ -388,6 +349,16 @@ E 4
 {
 "64
 } 0
+"5 C:\Program Files (x86)\Microchip\xc8\v2.10\pic\sources\c90\common\lwmod.c
+[v ___lwmod __lwmod `(ui  1 e 2 0 ]
+{
+"10
+[v ___lwmod@counter counter `uc  1 a 1 11 ]
+"5
+[v ___lwmod@divisor divisor `ui  1 p 2 6 ]
+[v ___lwmod@dividend dividend `ui  1 p 2 8 ]
+"25
+} 0
 "11 G:\MPLABXProjects\pic_test.X\eeprom_external.c
 [v _eeprom_external_vid_write eeprom_external_vid_write `(v  1 e 1 0 ]
 {
@@ -396,6 +367,14 @@ E 4
 [v eeprom_external_vid_write@data data `uc  1 p 1 8 ]
 [v eeprom_external_vid_write@address address `uc  1 a 1 9 ]
 "19
+} 0
+"65 G:\MPLABXProjects\pic_test.X\display.c
+[v _display_set_setting_mode display_set_setting_mode `(v  1 e 1 0 ]
+{
+[v display_set_setting_mode@mode mode `uc  1 a 1 wreg ]
+[v display_set_setting_mode@mode mode `uc  1 a 1 wreg ]
+[v display_set_setting_mode@mode mode `uc  1 a 1 7 ]
+"68
 } 0
 "75 G:\MPLABXProjects\pic_test.X\dio.c
 [v _dio_u8_read_pin_value dio_u8_read_pin_value `(uc  1 e 1 0 ]
@@ -450,10 +429,10 @@ E 4
 {
 "35
 } 0
-"26 G:\MPLABXProjects\pic_test.X\counter.c
-[v _counter_vid_init counter_vid_init `(v  1 e 1 0 ]
+"22 G:\MPLABXProjects\pic_test.X\display.c
+[v _display_init display_init `(v  1 e 1 0 ]
 {
-"36
+"37
 } 0
 "58 G:\MPLABXProjects\pic_test.X\ssd.c
 [v _ssd_vid_set_symbol ssd_vid_set_symbol `(v  1 e 1 0 ]
@@ -470,6 +449,44 @@ E 4
 [v ssd_vid_set_state@state state `uc  1 a 1 wreg ]
 [v ssd_vid_set_state@state state `uc  1 a 1 7 ]
 "68
+} 0
+"25
+[v _ssd_vid_init ssd_vid_init `(v  1 e 1 0 ]
+{
+"29
+} 0
+"12 G:\MPLABXProjects\pic_test.X\dio.c
+[v _dio_vid_set_port_direction dio_vid_set_port_direction `(v  1 e 1 0 ]
+{
+[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_direction@direction direction `uc  1 p 1 6 ]
+[v dio_vid_set_port_direction@portNumber portNumber `uc  1 a 1 9 ]
+"30
+} 0
+"33
+[v _dio_vid_set_port_value dio_vid_set_port_value `(v  1 e 1 0 ]
+{
+[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_port_value@value value `uc  1 p 1 9 ]
+[v dio_vid_set_port_value@portNumber portNumber `uc  1 a 1 12 ]
+"51
+} 0
+"80
+[v _dio_vid_set_pin_value dio_vid_set_pin_value `(v  1 e 1 0 ]
+{
+[v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 wreg ]
+[v dio_vid_set_pin_value@index index `uc  1 p 1 6 ]
+[v dio_vid_set_pin_value@value value `uc  1 p 1 7 ]
+[v dio_vid_set_pin_value@portNumber portNumber `uc  1 a 1 10 ]
+"113
+} 0
+"26 G:\MPLABXProjects\pic_test.X\counter.c
+[v _counter_vid_init counter_vid_init `(v  1 e 1 0 ]
+{
+"33
 } 0
 "20 G:\MPLABXProjects\pic_test.X\eeprom_external.c
 [v _eeprom_external_vid_read eeprom_external_vid_read `(uc  1 e 1 0 ]
@@ -557,6 +574,11 @@ E 4
 [v ___awmod@divisor divisor `i  1 p 2 6 ]
 [v ___awmod@dividend dividend `i  1 p 2 8 ]
 "34
+} 0
+"60 G:\MPLABXProjects\pic_test.X\counter.c
+[v _counter_u8_get_counter counter_u8_get_counter `(uc  1 e 1 0 ]
+{
+"62
 } 0
 "21 G:\MPLABXProjects\pic_test.X\timer.c
 [v _timer_isr timer_isr `II(v  1 e 1 0 ]

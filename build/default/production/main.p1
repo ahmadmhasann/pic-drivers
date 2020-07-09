@@ -1,14 +1,11 @@
 Version 4.0 HI-TECH Software Intermediate Code
 [p mainexit ]
-"30 ./ssd.h
-[; ;./ssd.h: 30: void ssd_vid_init(void);
-[v _ssd_vid_init `(v ~T0 @X0 0 ef ]
 "17 ./i2c.h
 [; ;./i2c.h: 17: void i2c_vid_master_init(void);
 [v _i2c_vid_master_init `(v ~T0 @X0 0 ef ]
-"15 ./counter.h
-[; ;./counter.h: 15: void counter_vid_init(void);
-[v _counter_vid_init `(v ~T0 @X0 0 ef ]
+"18 ./display.h
+[; ;./display.h: 18: void display_init (void);
+[v _display_init `(v ~T0 @X0 0 ef ]
 "32 ./scheduler.h
 [; ;./scheduler.h: 32: void sch_vid_init(void);
 [v _sch_vid_init `(v ~T0 @X0 0 ef ]
@@ -19,11 +16,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16 ./counter.h
 [; ;./counter.h: 16: void counter_vid_update(void);
 [v _counter_vid_update `(v ~T0 @X0 0 ef ]
-[v F978 `(v ~T0 @X0 0 t? ]
-"15 ./display.h
-[; ;./display.h: 15: void display_vid_blink (void);
-[v _display_vid_blink `(v ~T0 @X0 0 ef ]
 [v F980 `(v ~T0 @X0 0 t? ]
+"19 ./display.h
+[; ;./display.h: 19: void display_vid_update (void);
+[v _display_vid_update `(v ~T0 @X0 0 ef ]
+[v F982 `(v ~T0 @X0 0 t? ]
 "31 ./ssd.h
 [; ;./ssd.h: 31: void ssd_vid_update();
 [v _ssd_vid_update `(v ~T0 @X0 0 e? ]
@@ -234,40 +231,37 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _main ]
 [f ]
 "26
-[; ;main.c: 26:     ssd_vid_init();
-[e ( _ssd_vid_init ..  ]
-"27
-[; ;main.c: 27:     i2c_vid_master_init();
+[; ;main.c: 26:     i2c_vid_master_init();
 [e ( _i2c_vid_master_init ..  ]
+"27
+[; ;main.c: 27:     display_init();
+[e ( _display_init ..  ]
 "28
-[; ;main.c: 28:     counter_vid_init();
-[e ( _counter_vid_init ..  ]
-"29
-[; ;main.c: 29:     sch_vid_init();
+[; ;main.c: 28:     sch_vid_init();
 [e ( _sch_vid_init ..  ]
+"29
+[; ;main.c: 29:     sch_u8_add_task(counter_vid_update, 20, 20);
+[e ( _sch_u8_add_task (3 , , -> &U _counter_vid_update `*F980 -> -> -> 20 `i `o `uo -> -> -> 20 `i `o `uo ]
 "30
-[; ;main.c: 30:     sch_u8_add_task(counter_vid_update, 20, 20);
-[e ( _sch_u8_add_task (3 , , -> &U _counter_vid_update `*F978 -> -> -> 20 `i `o `uo -> -> -> 20 `i `o `uo ]
+[; ;main.c: 30:     sch_u8_add_task(display_vid_update, 0, 20);
+[e ( _sch_u8_add_task (3 , , -> &U _display_vid_update `*F982 -> -> -> 0 `i `o `uo -> -> -> 20 `i `o `uo ]
 "31
-[; ;main.c: 31:     sch_u8_add_task(display_vid_blink, 0, 1000);
-[e ( _sch_u8_add_task (3 , , -> &U _display_vid_blink `*F980 -> -> -> 0 `i `o `uo -> -> -> 1000 `i `o `uo ]
-"32
-[; ;main.c: 32:     sch_u8_add_task(ssd_vid_update, 5, 5);
+[; ;main.c: 31:     sch_u8_add_task(ssd_vid_update, 5, 5);
 [e ( _sch_u8_add_task (3 , , &U _ssd_vid_update -> -> -> 5 `i `o `uo -> -> -> 5 `i `o `uo ]
-"34
-[; ;main.c: 34:     while (1) {
+"33
+[; ;main.c: 33:     while (1) {
 [e :U 98 ]
 {
-"35
-[; ;main.c: 35:         sch_vid_dispatch_tasks();
+"34
+[; ;main.c: 34:         sch_vid_dispatch_tasks();
 [e ( _sch_vid_dispatch_tasks ..  ]
-"36
-[; ;main.c: 36:     }
+"35
+[; ;main.c: 35:     }
 }
 [e :U 97 ]
 [e $U 98  ]
 [e :U 99 ]
-"39
-[; ;main.c: 39: }
+"38
+[; ;main.c: 38: }
 [e :UE 96 ]
 }

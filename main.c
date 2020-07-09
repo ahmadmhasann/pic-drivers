@@ -23,12 +23,11 @@
 #include "display.h"
 
 int main(void) {
-    ssd_vid_init();
     i2c_vid_master_init();
-    counter_vid_init();
+    display_init();
     sch_vid_init();
     sch_u8_add_task(counter_vid_update, 20, 20);
-    sch_u8_add_task(display_vid_blink, 0, 1000);
+    sch_u8_add_task(display_vid_update, 0, 20);
     sch_u8_add_task(ssd_vid_update, 5, 5);
 
     while (1) {
